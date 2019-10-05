@@ -11,9 +11,11 @@ import UIKit
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     
+    
+    
 
     @IBOutlet weak var tableView: UITableView!
-    var test = ["a","b","c"]
+    var nameArray = ["a","b","c"]
     
     
     override func viewDidLoad() {
@@ -21,15 +23,24 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         tableView.delegate = self
         tableView.dataSource = self
+        
+        UserDefaults.standard.set(nameArray, forKey: "namearray")
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if UserDefaults.standard.object(forKey: "namearray") != nil{
+            nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
+            print(nameArray)
+            tableView.reloadData()
+        }
+        
         tableView.reloadData()
     }
     
+   
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -39,14 +50,14 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.count
+        return nameArray.count
     }
     
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
-        cell.textLabel?.text = test[indexPath.row]
+        cell.textLabel?.text = nameArray[indexPath.row]
         
         return cell
     }
@@ -63,7 +74,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
         
-        nextVC.name = test[indexPath.row]
+        nextVC.name = nameArray[indexPath.row]
         
         navigationController?.pushViewController(nextVC, animated: true)
         
