@@ -10,10 +10,6 @@ import UIKit
 
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    
-    
-    
-
     @IBOutlet weak var tableView: UITableView!
     var nameArray = ["a","b","c"]
     

@@ -16,6 +16,7 @@ class ListDetailViewController: UIViewController {
     
     var name : String = ""
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

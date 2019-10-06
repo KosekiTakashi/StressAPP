@@ -18,7 +18,9 @@ class SearchDetailViewController: UIViewController {
     
     var name :String = ""
     var nameArray = [String]()
+    var searchNameArray = [String]()
     var tapcount = 0
+    var number = 0
     
     
     
@@ -32,11 +34,20 @@ class SearchDetailViewController: UIViewController {
         if UserDefaults.standard.object(forKey: "namearray") != nil{
             nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
         }
+        
+        if UserDefaults.standard.object(forKey: "serachNameArray") != nil{
+                searchNameArray = UserDefaults.standard.object(forKey: "serachNameArray") as! [String]
+                
+            }
+        
+            print(searchNameArray)
+        
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         
     }
     
@@ -50,6 +61,9 @@ class SearchDetailViewController: UIViewController {
         addButton.isEnabled = false
         addLabel.isHidden = false
         
+        searchNameArray.remove(at: number)
+        print(searchNameArray)
+        UserDefaults.standard.set(searchNameArray, forKey: "serachNameArray")
     }
     
         

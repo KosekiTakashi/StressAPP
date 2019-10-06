@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
-    var nameArray = ["d","e","f"]
+    var searchNameArray = ["d","e","f"]
         
         
         override func viewDidLoad() {
@@ -19,11 +19,21 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
             tableView.delegate = self
             tableView.dataSource = self
-           
+            print(searchNameArray)
+            
+            UserDefaults.standard.set(searchNameArray, forKey: "serachNameArray")
+
         }
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
+            
+            
+            if UserDefaults.standard.object(forKey: "serachNameArray") != nil{
+                searchNameArray = UserDefaults.standard.object(forKey: "serachNameArray") as! [String]
+                print(searchNameArray)
+                tableView.reloadData()
+            }
             
             tableView.reloadData()
         }
@@ -37,14 +47,14 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         //セルの数
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return nameArray.count
+            return searchNameArray.count
         }
         
         //cellの設定
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
             
-            cell.textLabel?.text = nameArray[indexPath.row]
+            cell.textLabel?.text = searchNameArray[indexPath.row]
             
             return cell
         }
@@ -61,7 +71,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             let nextVC = storyboard?.instantiateViewController(identifier: "SearchDetail") as! SearchDetailViewController
             
-            nextVC.name = nameArray[indexPath.row]
+            nextVC.name = searchNameArray[indexPath.row]
+            print(indexPath.row)
+            nextVC.number = indexPath.row
             
             navigationController?.pushViewController(nextVC, animated: true)
             
