@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List View Controller-->
+        <!--自分のリスト-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="List" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="ListViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,7 +34,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" id="g4f-kS-n0J"/>
+                    <navigationItem key="navigationItem" title="自分のリスト" id="g4f-kS-n0J"/>
                     <connections>
                         <outlet property="tableView" destination="ufd-5s-MNE" id="P3U-TO-sOe"/>
                         <segue destination="B0L-2D-Vor" kind="show" id="Czr-MA-ol9"/>
@@ -79,7 +79,7 @@
             </objects>
             <point key="canvasLocation" x="2537.68115942029" y="-320.08928571428572"/>
         </scene>
-        <!--Second View Controller-->
+        <!--カレンダー-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
@@ -108,13 +108,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qWT-mj-7nj"/>
+                    <navigationItem key="navigationItem" title="カレンダー" id="qWT-mj-7nj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1659.4202898550725" y="359.59821428571428"/>
         </scene>
-        <!--Search View Controller-->
+        <!--探そう-->
         <scene sceneID="o8l-ML-40v">
             <objects>
                 <viewController storyboardIdentifier="search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ycR-Ka-A1j" customClass="SearchViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,7 +141,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="PlD-rS-95Q"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VZY-7V-Ubb"/>
+                    <navigationItem key="navigationItem" title="探そう" id="VZY-7V-Ubb"/>
                     <connections>
                         <outlet property="tableView" destination="mNj-qR-2Zf" id="JCx-gT-YLw"/>
                         <segue destination="6lQ-0P-L99" kind="show" id="tZq-cb-AQH"/>
@@ -193,6 +193,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ool-Jy-HvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2537.68115942029" y="1125.6696428571429"/>
+        </scene>
+        <!--Add View Controller-->
+        <scene sceneID="cFz-2C-exc">
+            <objects>
+                <viewController id="hZQ-JJ-Q2p" customClass="AddViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WSc-N9-CEw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxL-at-68b">
+                                <rect key="frame" x="141" y="716" width="133" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="リスト名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dM4-Xx-IKE">
+                                <rect key="frame" x="58" y="139" width="299" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="詳細" translatesAutoresizingMaskIntoConstraints="NO" id="VQt-oz-cSH">
+                                <rect key="frame" x="58" y="205" width="299" height="298"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ejT-ED-oPP">
+                                <rect key="frame" x="58" y="533" width="299" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="n6W-Id-bKC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fEA-yb-tyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1488.4057971014495" y="770.75892857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -251,11 +294,11 @@
             </objects>
             <point key="canvasLocation" x="749.27536231884062" y="359.59821428571428"/>
         </scene>
-        <!--共有-->
+        <!--Search-->
         <scene sceneID="DTg-md-0bi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ENY-YV-nFE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="共有" image="magnifyingglass" catalog="system" id="IaN-yf-HeW"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="IaN-yf-HeW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o1P-E7-3Tc">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

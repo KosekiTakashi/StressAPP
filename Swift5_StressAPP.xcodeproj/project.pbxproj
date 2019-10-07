@@ -17,6 +17,7 @@
 		B41C46DF2347726C00D3210C /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46DE2347726C00D3210C /* ListDetailViewController.swift */; };
 		B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E02348A68B00D3210C /* SearchViewController.swift */; };
 		B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E22348A74600D3210C /* SearchDetailViewController.swift */; };
+		B41C46E7234B553300D3210C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E6234B553300D3210C /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B41C46DE2347726C00D3210C /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		B41C46E02348A68B00D3210C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B41C46E22348A74600D3210C /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
+		B41C46E6234B553300D3210C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				B41C46DE2347726C00D3210C /* ListDetailViewController.swift */,
 				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
+				B41C46E6234B553300D3210C /* AddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
 				B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */,
+				B41C46E7234B553300D3210C /* AddViewController.swift in Sources */,
 				B41C46CA234758DF00D3210C /* SecondViewController.swift in Sources */,
 				B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */,
 				B41C46DD23475CF500D3210C /* ListViewController.swift in Sources */,

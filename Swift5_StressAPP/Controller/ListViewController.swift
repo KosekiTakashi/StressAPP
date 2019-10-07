@@ -12,6 +12,9 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var tableView: UITableView!
     var nameArray = ["a","b","c"]
+    var detailArray = [String]()
+    var urlString = [String]()
+    
     
     
     override func viewDidLoad() {
@@ -26,6 +29,8 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.navigationController?.title = String(nameArray.count)
         
         if UserDefaults.standard.object(forKey: "namearray") != nil{
             nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
