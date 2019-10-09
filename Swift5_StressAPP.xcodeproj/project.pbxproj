@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14AEEC138735407862C307A3 /* Pods_Swift5_StressAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */; };
 		B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C3234758DF00D3210C /* AppDelegate.swift */; };
 		B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C5234758DF00D3210C /* SceneDelegate.swift */; };
 		B41C46CA234758DF00D3210C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C9234758DF00D3210C /* SecondViewController.swift */; };
@@ -18,9 +19,13 @@
 		B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E02348A68B00D3210C /* SearchViewController.swift */; };
 		B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E22348A74600D3210C /* SearchDetailViewController.swift */; };
 		B41C46E7234B553300D3210C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E6234B553300D3210C /* AddViewController.swift */; };
+		B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FB234CE40200E1230D /* LoginViewController.swift */; };
+		B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* Contents.swift */; };
+		B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4F198FF234D70B100E1230D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07BBD21DEA52D753BD682DFF /* Pods-Swift5_StressAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.debug.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.debug.xcconfig"; sourceTree = "<group>"; };
 		B41C46C0234758DF00D3210C /* Swift5_StressAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift5_StressAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41C46C3234758DF00D3210C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B41C46C5234758DF00D3210C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +39,11 @@
 		B41C46E02348A68B00D3210C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B41C46E22348A74600D3210C /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		B41C46E6234B553300D3210C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		B4F198FB234CE40200E1230D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B4F198FD234CE9DB00E1230D /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
+		B4F198FF234D70B100E1230D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift5_StressAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB80D451DDBA31C9049F5B1C /* Pods-Swift5_StressAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.release.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14AEEC138735407862C307A3 /* Pods_Swift5_StressAPP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0489C367AD24D9F67F10D84F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				07BBD21DEA52D753BD682DFF /* Pods-Swift5_StressAPP.debug.xcconfig */,
+				FB80D451DDBA31C9049F5B1C /* Pods-Swift5_StressAPP.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		64E02224E0BCA3BB39B3A328 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B41C46B7234758DF00D3210C = {
 			isa = PBXGroup;
 			children = (
 				B41C46C2234758DF00D3210C /* Swift5_StressAPP */,
 				B41C46C1234758DF00D3210C /* Products */,
+				0489C367AD24D9F67F10D84F /* Pods */,
+				64E02224E0BCA3BB39B3A328 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +100,7 @@
 				B41C46DB23475B9B00D3210C /* View */,
 				B41C46DA23475B9000D3210C /* Controller */,
 				B41C46D3234758E200D3210C /* Info.plist */,
+				B4F198FF234D70B100E1230D /* GoogleService-Info.plist */,
 			);
 			path = Swift5_StressAPP;
 			sourceTree = "<group>";
@@ -77,6 +108,7 @@
 		B41C46D923475B8500D3210C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B4F198FD234CE9DB00E1230D /* Contents.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -92,6 +124,7 @@
 				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
 				B41C46E6234B553300D3210C /* AddViewController.swift */,
+				B4F198FB234CE40200E1230D /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -113,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B41C46D6234758E200D3210C /* Build configuration list for PBXNativeTarget "Swift5_StressAPP" */;
 			buildPhases = (
+				5FF1BF2B62F940AFD4FB5AD8 /* [CP] Check Pods Manifest.lock */,
 				B41C46BC234758DF00D3210C /* Sources */,
 				B41C46BD234758DF00D3210C /* Frameworks */,
 				B41C46BE234758DF00D3210C /* Resources */,
+				4F6A5AF941A008945D874535 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -165,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41C46D2234758E200D3210C /* LaunchScreen.storyboard in Resources */,
+				B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */,
 				B41C46CF234758E200D3210C /* Assets.xcassets in Resources */,
 				B41C46CD234758DF00D3210C /* Main.storyboard in Resources */,
 			);
@@ -172,11 +208,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4F6A5AF941A008945D874535 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FF1BF2B62F940AFD4FB5AD8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swift5_StressAPP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B41C46BC234758DF00D3210C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */,
+				B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
 				B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */,
 				B41C46E7234B553300D3210C /* AddViewController.swift in Sources */,
@@ -326,6 +406,7 @@
 		};
 		B41C46D7234758E200D3210C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07BBD21DEA52D753BD682DFF /* Pods-Swift5_StressAPP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -343,6 +424,7 @@
 		};
 		B41C46D8234758E200D3210C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB80D451DDBA31C9049F5B1C /* Pods-Swift5_StressAPP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

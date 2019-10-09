@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>528711892436-m8m8j4p2nvnpfco3da54989mp9guu182.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.528711892436-m8m8j4p2nvnpfco3da54989mp9guu182</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAsxA-HZzXZgx4M3lTXnpLEGmLPoFpgp4g</string>
+	<key>GCM_SENDER_ID</key>
+	<string>528711892436</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ios-koseki.Swift5-StressAPP</string>
+	<key>PROJECT_ID</key>
+	<string>stressapp-7d738</string>
+	<key>STORAGE_BUCKET</key>
+	<string>stressapp-7d738.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:528711892436:ios:058185b2c48e1034242a41</string>
+	<key>DATABASE_URL</key>
+	<string>https://stressapp-7d738.firebaseio.com</string>
+</dict>
+</plist>

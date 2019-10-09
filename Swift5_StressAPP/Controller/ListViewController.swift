@@ -11,10 +11,15 @@ import UIKit
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    var nameArray = ["a","b","c"]
-    var detailArray = [String]()
-    var urlString = [String]()
     
+    
+    var nameArray = ["a","b","c"]
+    
+    var titleName = String()
+    var detail = String()
+    var urlString = String()
+    
+    var mylist = [Mylsit]()
     
     
     override func viewDidLoad() {
@@ -24,17 +29,18 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.dataSource = self
         
         UserDefaults.standard.set(nameArray, forKey: "namearray")
-       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.title = String(nameArray.count)
+        UserDefaults.standard.set(mylist, forKey: "mylist")
+        print(titleName)
+        
         
         if UserDefaults.standard.object(forKey: "namearray") != nil{
             nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
-            print(nameArray)
             tableView.reloadData()
         }
         

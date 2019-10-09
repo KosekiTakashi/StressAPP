@@ -12,14 +12,20 @@ class SearchDetailViewController: UIViewController {
     
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var titleNameLabel: UILabel!
+    @IBOutlet weak var deatailLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
     
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var addLabel: UILabel!
     
-    var name :String = ""
+    var userName :String = ""
+    var titleName :String = ""
+    var detail :String = ""
+    var urlString :String = ""
+    
     var nameArray = [String]()
     var searchNameArray = [String]()
-    var tapcount = 0
     var number = 0
     
     
@@ -27,7 +33,10 @@ class SearchDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = name
+        nameLabel.text = userName
+        titleNameLabel.text = titleName
+        deatailLabel.text = detail
+        urlLabel.text = urlString
         
         addLabel.isHidden = true
         
@@ -36,11 +45,11 @@ class SearchDetailViewController: UIViewController {
         }
         
         if UserDefaults.standard.object(forKey: "serachNameArray") != nil{
-                searchNameArray = UserDefaults.standard.object(forKey: "serachNameArray") as! [String]
+            searchNameArray = UserDefaults.standard.object(forKey: "serachNameArray") as! [String]
                 
-            }
+        }
         
-            print(searchNameArray)
+        print(searchNameArray)
         
 
     }
@@ -48,14 +57,13 @@ class SearchDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
     }
     
     
     
     @IBAction func addAction(_ sender: Any) {
         
-        nameArray.append(name)
+        nameArray.append(titleName)
         UserDefaults.standard.set(nameArray, forKey: "namearray")
         
         addButton.isEnabled = false
