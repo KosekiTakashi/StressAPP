@@ -19,7 +19,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var detail = String()
     var urlString = String()
     
-    var mylist = [Mylsit]()
+   
     
     
     override func viewDidLoad() {
@@ -35,7 +35,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         super.viewWillAppear(animated)
         
         self.navigationController?.title = String(nameArray.count)
-        UserDefaults.standard.set(mylist, forKey: "mylist")
         print(titleName)
         
         
@@ -47,7 +46,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.reloadData()
     }
     
-   
+
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

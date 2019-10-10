@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class Contents {
     var userNameString:String = ""
     var titleNameString:String = ""
@@ -23,15 +24,3 @@ class Contents {
     }
 }
 
-
-class Mylsit{
-    var titleNameString:String = ""
-    var detail:String = ""
-    var urlString:String = ""
-    
-    init(titleName:String,detail:String,urlString:String) {
-        self.titleNameString = titleName
-        self.detail = detail
-        self.urlString = urlString
-    }
-}

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SearchDetailViewController: UIViewController {
     
@@ -25,7 +26,7 @@ class SearchDetailViewController: UIViewController {
     var urlString :String = ""
     
     var nameArray = [String]()
-    var searchNameArray = [String]()
+    var searchNameArray = [Contents]()
     var number = 0
     
     
@@ -43,15 +44,8 @@ class SearchDetailViewController: UIViewController {
         if UserDefaults.standard.object(forKey: "namearray") != nil{
             nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
         }
-        
-        if UserDefaults.standard.object(forKey: "serachNameArray") != nil{
-            searchNameArray = UserDefaults.standard.object(forKey: "serachNameArray") as! [String]
-                
-        }
-        
         print(searchNameArray)
         
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,14 +60,17 @@ class SearchDetailViewController: UIViewController {
         nameArray.append(titleName)
         UserDefaults.standard.set(nameArray, forKey: "namearray")
         
+        let nextVC = storyboard?.instantiateViewController(identifier: "search") as! SearchViewController
+        nextVC.searchNameArray.remove(at: number-1)
+        
         addButton.isEnabled = false
         addLabel.isHidden = false
         
-        searchNameArray.remove(at: number)
-        print(searchNameArray)
-        UserDefaults.standard.set(searchNameArray, forKey: "serachNameArray")
     }
     
+    
+    
+
         
 
 }

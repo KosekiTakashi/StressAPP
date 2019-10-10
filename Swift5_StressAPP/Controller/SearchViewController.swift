@@ -36,6 +36,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             super.viewWillAppear(animated)
             
             fetchData()
+            
         
         }
         
@@ -81,8 +82,13 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             nextVC.detail = searchNameArray[indexPath.row].detail
             nextVC.urlString = searchNameArray[indexPath.row].urlString
             
-            print(indexPath.row)
+            nextVC.searchNameArray = searchNameArray
             nextVC.number = indexPath.row
+            print(nextVC.number)
+            print(nextVC.userName)
+            print(searchNameArray[nextVC.number].userNameString)
+            
+            
             
             navigationController?.pushViewController(nextVC, animated: true)
             

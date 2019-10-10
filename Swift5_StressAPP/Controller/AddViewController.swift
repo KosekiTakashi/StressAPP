@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
     @IBOutlet weak var UserNameLabel: UILabel!
@@ -18,12 +19,13 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     @IBOutlet weak var addButton: UIButton!
     
+   
     var userName = String()
     var titleName = String()
     var detail = String()
     var urlString = String()
     
-    var mylist = [Mylsit]()
+    var nameArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +45,13 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if UserDefaults.standard.object(forKey: "namearray") != nil{
+            nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
+        }
+        
         addButton.isHidden = true
         addButton.isEnabled = false
         
-        if UserDefaults.standard.object(forKey: "mylist") != nil{
-            mylist = UserDefaults.standard.object(forKey: "mylist") as! [Mylsit]
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,12 +82,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         timeLineDB.updateChildValues(timeLineInfo)
         
-//        let nextVC = storyboard?.instantiateViewController(identifier: "List") as! ListViewController
-//        nextVC.titleName = titleName
-//        nextVC.detail = detail
-//        nextVC.urlString = urlString
         
-        mylist.append(Mylsit.init(titleName: titleName, detail: detail, urlString: urlString))
+        //自分のリストに追加したい
+        nameArray.append(titleName)
+        UserDefaults.standard.set(nameArray, forKey: "namearray")
         
         
         titleTextField.text = ""
@@ -93,7 +94,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         addButton.isHidden = true
         addButton.isEnabled = false
-    //self.navigationController?.popViewController(animated: true)
+        
+        
     }
     
 
