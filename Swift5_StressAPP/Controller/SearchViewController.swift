@@ -12,6 +12,7 @@ import Firebase
 class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     var searchNameArray = [Contents]()

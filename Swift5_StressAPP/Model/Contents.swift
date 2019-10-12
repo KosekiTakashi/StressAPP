@@ -33,4 +33,3 @@ class Mylist: Object {
     @objc dynamic var urlString: String = ""
     
 }
-

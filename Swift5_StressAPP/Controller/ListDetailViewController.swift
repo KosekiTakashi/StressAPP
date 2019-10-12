@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListDetailViewController: UIViewController {
     
@@ -20,7 +21,7 @@ class ListDetailViewController: UIViewController {
     var name : String = ""
     var detail : String = ""
     var urlString : String = ""
-    
+    var number : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,24 @@ class ListDetailViewController: UIViewController {
         titleTextField.text = name
         detailTextView.text = detail
         URLTextField.text = urlString
-       
+        print(number)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+       
+    }
+    
+    
+    func list(){
+        // Realmのインスタンスを取得
+        let realm = try! Realm()
+        
+        let mylistArray = realm.objects(Mylist.self)
+        mylistArray.first?.titleName = name
+
     }
     
 

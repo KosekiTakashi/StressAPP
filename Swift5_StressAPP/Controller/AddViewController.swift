@@ -24,7 +24,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var titleName = String()
     var detail = String()
     var urlString = String()
-    var nameArray = [String]()
     var mylistArray = [String]()
     
     
@@ -47,9 +46,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if UserDefaults.standard.object(forKey: "namearray") != nil{
-            nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
-        }
+       
         
         addButton.isHidden = true
         addButton.isEnabled = false
@@ -134,9 +131,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         
         //自分のリストに追加したい
-        nameArray.append(titleName)
-        UserDefaults.standard.set(nameArray, forKey: "namearray")
-        
         let mylist = Mylist()
         mylist.titleName = titleName
         mylist.detail = detail

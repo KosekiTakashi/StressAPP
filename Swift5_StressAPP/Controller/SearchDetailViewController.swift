@@ -25,11 +25,9 @@ class SearchDetailViewController: UIViewController {
     var titleName :String = ""
     var detail :String = ""
     var urlString :String = ""
-    
-    var nameArray = [String]()
+
     var searchNameArray = [Contents]()
     var number = 0
-    
     
     
     override func viewDidLoad() {
@@ -42,9 +40,6 @@ class SearchDetailViewController: UIViewController {
         
         addLabel.isHidden = true
         
-        if UserDefaults.standard.object(forKey: "namearray") != nil{
-            nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
-        }
         print(searchNameArray)
         
     }
@@ -58,9 +53,6 @@ class SearchDetailViewController: UIViewController {
     
     @IBAction func addAction(_ sender: Any) {
         
-        nameArray.append(titleName)
-        UserDefaults.standard.set(nameArray, forKey: "namearray")
-        
         let mylist = Mylist()
         mylist.titleName = titleName
         mylist.detail = detail
@@ -73,7 +65,12 @@ class SearchDetailViewController: UIViewController {
         }
         
         let nextVC = storyboard?.instantiateViewController(identifier: "search") as! SearchViewController
-        //nextVC.searchNameArray.remove(at: number)
+        
+        print("========")
+        print(number)
+        print(searchNameArray.count)
+        searchNameArray.remove(at: number)
+        print(searchNameArray)
         
         addButton.isEnabled = false
         addLabel.isHidden = false

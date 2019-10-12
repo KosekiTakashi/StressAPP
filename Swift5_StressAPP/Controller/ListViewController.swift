@@ -13,14 +13,10 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     @IBOutlet weak var tableView: UITableView!
     
-    
-    var nameArray = ["a","b","c"]
-    
     var titleName = String()
     var detail = String()
     var urlString = String()
     
-   
     var realm : Realm!
     var mylistArray: Results<Mylist>!
     
@@ -30,19 +26,19 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.delegate = self
         tableView.dataSource = self
         
-        UserDefaults.standard.set(nameArray, forKey: "namearray")
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.title = String(nameArray.count)
+        self.navigationController?.title = String(mylistArray.count)
         print(titleName)
         
-        if UserDefaults.standard.object(forKey: "namearray") != nil{
-            nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
-            tableView.reloadData()
-        }
+    
+        
+        //realm = try! Realm()
+        //let mylist = realm.objects(Mylist.self).filter("titleName == name")
         
         tableView.reloadData()
     }
@@ -52,7 +48,10 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         var token: NotificationToken!
         realm = try! Realm()
         mylistArray = realm.objects(Mylist.self)
-        print(mylistArray as Any)
+        print(mylistArray[1] as Any)
+        
+        
+
         token = mylistArray.observe { [weak self] _ in
             self?.reload()
           }
@@ -95,10 +94,11 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        
+        let number = indexPath.row
         nextVC.name = mylistArray[indexPath.row].titleName
         nextVC.detail = mylistArray[indexPath.row].detail
         nextVC.urlString = mylistArray[indexPath.row].urlString
+        nextVC.number = number
         
         navigationController?.pushViewController(nextVC, animated: true)
         
