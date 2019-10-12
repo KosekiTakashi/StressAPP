@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import RealmSwift
 
 class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
@@ -24,8 +24,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var titleName = String()
     var detail = String()
     var urlString = String()
-    
     var nameArray = [String]()
+    var mylistArray = [String]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +61,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         detail = detailTextView.text!
         urlString = URLTextField.text!
         
-        if titleName != nil || detail != nil{
-            addButton.isHidden = false
-            addButton.isEnabled = true
-        }
+       if titleName != "" && detail != ""{
+                  addButton.isHidden = false
+                  addButton.isEnabled = true
+              }
         titleTextField.resignFirstResponder()
         detailTextView.resignFirstResponder()
         URLTextField.resignFirstResponder()
@@ -76,10 +78,58 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         detail = detailTextView.text!
         urlString = URLTextField.text!
         
+        if titleName == "" || detail == ""{
+            addButton.isHidden = true
+            addButton.isEnabled = false
+            
+            return
+        }
+        
+        showeAlart()
+        
+        
+        addButton.isHidden = true
+        addButton.isEnabled = false
+        
+        
+    }
+    
+    func showeAlart(){
+        let alertController = UIAlertController(title: "タイムラインに共有しますか？", message:"NOを押すと自分のリストにだけ追加できます", preferredStyle: .actionSheet)
+       
+        let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
+        }
+        
+        
+        
+        let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
+            self.timeLineAndmyListAdd()
+            self.titleTextField.text = ""
+            self.detailTextView.text = ""
+            self.URLTextField.text = ""
+        }
+        
+        let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
+            self.mylistAdd()
+            self.titleTextField.text = ""
+            self.detailTextView.text = ""
+            self.URLTextField.text = ""
+        }
+        
+        alertController.addAction(OK)
+        alertController.addAction(NO)
+        alertController.addAction(cancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func timeLineAndmyListAdd(){
         let timeLineDB = Database.database().reference().child("timeLine").childByAutoId()
         
         let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp()] as [String:Any]
         
+        print("timeLine")
         timeLineDB.updateChildValues(timeLineInfo)
         
         
@@ -87,16 +137,34 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         nameArray.append(titleName)
         UserDefaults.standard.set(nameArray, forKey: "namearray")
         
+        let mylist = Mylist()
+        mylist.titleName = titleName
+        mylist.detail = detail
+        mylist.urlString = urlString
         
-        titleTextField.text = ""
-        detailTextView.text = ""
-        URLTextField.text = ""
+        let realm = try! Realm()
         
-        addButton.isHidden = true
-        addButton.isEnabled = false
-        
-        
+        try! realm.write {
+            realm.add(mylist)
+        }
     }
+    
+    
+    func mylistAdd(){
+        let mylist = Mylist()
+        mylist.titleName = titleName
+        mylist.detail = detail
+        mylist.urlString = urlString
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(mylist)
+        }
+    }
+    
+    
+    
     
 
     /*

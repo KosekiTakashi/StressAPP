@@ -103,6 +103,12 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.9.0)
+  - Realm (3.17.3):
+    - Realm/Headers (= 3.17.3)
+  - Realm/Headers (3.17.3)
+  - RealmSwift (3.17.3):
+    - Realm (= 3.17.3)
+  - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
   - Firebase
@@ -111,6 +117,8 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Messaging
   - Firebase/Storage
+  - RealmSwift
+  - TextFieldEffects
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -134,6 +142,9 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - Realm
+    - RealmSwift
+    - TextFieldEffects
 
 SPEC CHECKSUMS:
   Firebase: 9cbe4e5b5eaafa05dc932be58b7c8c3820d71e88
@@ -156,7 +167,10 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
+  RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 5618cadfaef60d847a13ee8f2f36de898289a754
+PODFILE CHECKSUM: 7d0b0f9cfaa0ee2bcf0007b9f7e719ca45bb50f6
 
 COCOAPODS: 1.7.5

@@ -12,16 +12,23 @@ class ListDetailViewController: UIViewController {
     
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var detailTextView: UITextView!
+    @IBOutlet weak var URLTextField: UITextField!
     
     
     var name : String = ""
+    var detail : String = ""
+    var urlString : String = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = name
-
+        titleTextField.text = name
+        detailTextView.text = detail
+        URLTextField.text = urlString
+       
         // Do any additional setup after loading the view.
     }
     

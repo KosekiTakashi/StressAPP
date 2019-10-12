@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 class SearchDetailViewController: UIViewController {
     
@@ -60,8 +61,19 @@ class SearchDetailViewController: UIViewController {
         nameArray.append(titleName)
         UserDefaults.standard.set(nameArray, forKey: "namearray")
         
+        let mylist = Mylist()
+        mylist.titleName = titleName
+        mylist.detail = detail
+        mylist.urlString = urlString
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            realm.add(mylist)
+        }
+        
         let nextVC = storyboard?.instantiateViewController(identifier: "search") as! SearchViewController
-        nextVC.searchNameArray.remove(at: number-1)
+        //nextVC.searchNameArray.remove(at: number)
         
         addButton.isEnabled = false
         addLabel.isHidden = false

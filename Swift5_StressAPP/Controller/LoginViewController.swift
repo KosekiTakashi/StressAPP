@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
 
@@ -18,6 +19,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         userNameTextField.delegate = self
+        
     
         // Do any additional setup after loading the view.
     }

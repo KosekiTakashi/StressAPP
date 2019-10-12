@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -20,7 +21,8 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var urlString = String()
     
    
-    
+    var realm : Realm!
+    var mylistArray: Results<Mylist>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController?.title = String(nameArray.count)
         print(titleName)
         
-        
         if UserDefaults.standard.object(forKey: "namearray") != nil{
             nameArray = UserDefaults.standard.object(forKey: "namearray") as! [String]
             tableView.reloadData()
@@ -46,6 +47,21 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.reloadData()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        var token: NotificationToken!
+        realm = try! Realm()
+        mylistArray = realm.objects(Mylist.self)
+        print(mylistArray as Any)
+        token = mylistArray.observe { [weak self] _ in
+            self?.reload()
+          }
+
+    }
+
+    func reload() {
+      tableView.reloadData()
+    }
 
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,14 +72,14 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nameArray.count
+        return mylistArray.count
     }
     
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
-        cell.textLabel?.text = nameArray[indexPath.row]
+        cell.textLabel?.text = mylistArray[indexPath.row].titleName
         
         return cell
     }
@@ -80,7 +96,9 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
         
-        nextVC.name = nameArray[indexPath.row]
+        nextVC.name = mylistArray[indexPath.row].titleName
+        nextVC.detail = mylistArray[indexPath.row].detail
+        nextVC.urlString = mylistArray[indexPath.row].urlString
         
         navigationController?.pushViewController(nextVC, animated: true)
         

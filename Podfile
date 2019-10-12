@@ -12,4 +12,7 @@ pod 'Firebase/Messaging'
 pod 'Firebase/Core'
 pod 'Firebase/Storage'
 pod 'Firebase/Auth'
+pod 'RealmSwift'
+pod 'TextFieldEffects'
+
 end
