@@ -25,6 +25,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var detail = String()
     var urlString = String()
     var mylistArray = [String]()
+    var count = Int()
     
     
     
@@ -122,15 +123,14 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     }
     
     func timeLineAndmyListAdd(){
+        //タイムライン
         let timeLineDB = Database.database().reference().child("timeLine").childByAutoId()
-        
-        let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp()] as [String:Any]
+        let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
         
         print("timeLine")
         timeLineDB.updateChildValues(timeLineInfo)
         
-        
-        //自分のリストに追加したい
+        //自分のリスト
         let mylist = Mylist()
         mylist.titleName = titleName
         mylist.detail = detail

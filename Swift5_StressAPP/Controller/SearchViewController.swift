@@ -82,7 +82,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             nextVC.titleName = searchNameArray[indexPath.row].titleNameString
             nextVC.detail = searchNameArray[indexPath.row].detail
             nextVC.urlString = searchNameArray[indexPath.row].urlString
-            
+            nextVC.count = searchNameArray[indexPath.row].count
             nextVC.searchNameArray = searchNameArray
             nextVC.number = indexPath.row
             print(nextVC.number)
@@ -110,6 +110,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                             let titleName = postData["titleName"] as? String
                             let detail = postData["detail"] as? String
                             let urlstring = postData["URL"] as? String
+                            let count = postData["count"] as? Int
                             
                             var postDate:CLong?
                             
@@ -117,7 +118,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                                 postDate = postedDate
                             }
                         
-                            self.searchNameArray.append(Contents.init(userName: userName! , titleName: titleName!, detail: detail!, urlString: urlstring!))
+                            self.searchNameArray.append(Contents.init(userName: userName! , titleName: titleName!, detail: detail!, urlString: urlstring!,count: count!))
                         }
                     }
                 }

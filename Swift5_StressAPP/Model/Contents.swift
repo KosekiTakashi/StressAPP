@@ -14,13 +14,15 @@ class Contents {
     var titleNameString:String = ""
     var detail:String = ""
     var urlString:String = ""
+    var count:Int = 0
     
     
-    init(userName:String,titleName:String,detail:String,urlString:String) {
+    init(userName:String,titleName:String,detail:String,urlString:String,count:Int) {
         self.userNameString = userName
         self.titleNameString = titleName
         self.detail = detail
         self.urlString = urlString
+        self.count = count
     }
 }
 

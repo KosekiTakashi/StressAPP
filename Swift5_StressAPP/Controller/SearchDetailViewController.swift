@@ -28,6 +28,7 @@ class SearchDetailViewController: UIViewController {
 
     var searchNameArray = [Contents]()
     var number = 0
+    var count = Int()
     
     
     override func viewDidLoad() {
@@ -64,13 +65,10 @@ class SearchDetailViewController: UIViewController {
             realm.add(mylist)
         }
         
-        let nextVC = storyboard?.instantiateViewController(identifier: "search") as! SearchViewController
-        
-        print("========")
-        print(number)
-        print(searchNameArray.count)
+        //同じ物を二度追加したくない
+        //ここで配列から消してもタイムラインが更新されたら結局最新のデータを持ってきてしまうから消す意味がない気がする
         searchNameArray.remove(at: number)
-        print(searchNameArray)
+        
         
         addButton.isEnabled = false
         addLabel.isHidden = false
