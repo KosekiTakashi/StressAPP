@@ -8,9 +8,12 @@
 
 import UIKit
 import TextFieldEffects
+import Firebase
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
-
+    
+    @IBOutlet weak var emailTextField: KaedeTextField!
+    @IBOutlet weak var passwordTextField: KaedeTextField!
     @IBOutlet weak var userNameTextField: UITextField!
     
     var username : String = ""
@@ -19,7 +22,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         userNameTextField.delegate = self
-        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     
         // Do any additional setup after loading the view.
     }
@@ -31,17 +35,59 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         UserDefaults.standard.set(username, forKey: "userName")
         
         userNameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         
     }
     
     
-    @IBAction func Action(_ sender: Any) {
+    
+    @IBAction func newCreate(_ sender: Any) {
+        
         UserDefaults.standard.set(username, forKey: "userName")
         
-        performSegue(withIdentifier: "tab", sender: nil)
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if error != nil{
+                print(error as Any)
+            }else{
+                print("succees")
+                
+                
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                
+                changeRequest?.displayName = self.username
+                changeRequest?.commitChanges(completion: { (error) in
+                    print(error as Any)
+                    return
+                })
+                
+                self.performSegue(withIdentifier: "tab", sender: nil)
+            }
+        }
     }
     
 
+    @IBAction func login(_ sender: Any) {
+        UserDefaults.standard.set(username, forKey: "userName")
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if error != nil{
+                print(error as Any)
+            }else{
+                print("succees")
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                
+                changeRequest?.displayName = self.username
+                changeRequest?.commitChanges(completion: { (error) in
+                    print(error as Any)
+                    return
+                })
+                
+                self.performSegue(withIdentifier: "tab", sender: nil)
+            }
+        }
+        
+        
+    }
     /*
     // MARK: - Navigation
 

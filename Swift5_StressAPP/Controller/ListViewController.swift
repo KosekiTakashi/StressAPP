@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import Firebase
 
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -26,7 +27,8 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.delegate = self
         tableView.dataSource = self
         
-       
+        let user = Auth.auth().currentUser?.displayName
+        print(user!)
     }
     
     override func viewWillAppear(_ animated: Bool) {

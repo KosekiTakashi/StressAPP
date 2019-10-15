@@ -36,6 +36,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             userName = UserDefaults.standard.object(forKey: "userName") as! String
         }
         
+        userName = (Auth.auth().currentUser?.displayName)!
+        
         UserNameLabel.text = userName
         
         titleTextField.delegate = self
