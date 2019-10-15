@@ -298,7 +298,7 @@
             </objects>
             <point key="canvasLocation" x="2537.68115942029" y="1125.6696428571429"/>
         </scene>
-        <!--Item-->
+        <!--追加-->
         <scene sceneID="cFz-2C-exc">
             <objects>
                 <viewController id="hZQ-JJ-Q2p" customClass="AddViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
@@ -354,7 +354,7 @@
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="n6W-Id-bKC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="XR3-Qr-FDh"/>
+                    <tabBarItem key="tabBarItem" title="追加" image="plus.circle" catalog="system" id="XR3-Qr-FDh"/>
                     <connections>
                         <outlet property="URLTextField" destination="ejT-ED-oPP" id="S9P-Kc-MLR"/>
                         <outlet property="UserNameLabel" destination="dE0-Ww-MnH" id="7T2-ou-g5b"/>
@@ -448,9 +448,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="skl-hr-iEN" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="hZQ-JJ-Q2p" kind="relationship" relationship="viewControllers" id="Kbe-bM-QfT"/>
                         <segue destination="m7N-xJ-CjX" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="ENY-YV-nFE" kind="relationship" relationship="viewControllers" id="dmR-6H-lHf"/>
-                        <segue destination="hZQ-JJ-Q2p" kind="relationship" relationship="viewControllers" id="Kbe-bM-QfT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -519,5 +519,6 @@
         <image name="calendar" catalog="system" width="64" height="52"/>
         <image name="list.number" catalog="system" width="64" height="48"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="plus.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>
