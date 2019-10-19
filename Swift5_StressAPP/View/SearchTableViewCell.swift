@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SerchTabViewCell: UITableViewCell {
     
@@ -17,6 +18,7 @@ class SerchTabViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var countLabel: UILabel!
     
     
     
@@ -25,7 +27,7 @@ class SerchTabViewCell: UITableViewCell {
         didSet{
             userNameLabel.text = content.userNameString
             titleNameLabel.text = content.titleNameString
-            addButton.setTitle("❤️\(content.count)", for: [])
+            countLabel.text = String(content.count)
         }
     }
     
@@ -40,18 +42,31 @@ class SerchTabViewCell: UITableViewCell {
         
         if tapupcount == 0 {
             content.pluslike()
-            addButton.setTitle("❤️\(content.count)", for: [])
+            countLabel.text = String(content.count)
+            mylistAdd()
             tapupcount = 1
+            addButton.isEnabled = false
         }else{
             content.minuslike()
-            addButton.setTitle("❤️\(content.count)", for: [])
+            addButton.setTitle("dawnload\(content.count)", for: [])
             tapupcount = 0
             
         }
         
+
+    }
+    
+    func mylistAdd(){
+        let mylist = Mylist()
+        mylist.titleName = content.titleNameString
+        mylist.detail = content.detail
+        mylist.urlString = content.urlString
         
+        let realm = try! Realm()
         
-        
+        try! realm.write {
+            realm.add(mylist)
+        }
     }
     
     
