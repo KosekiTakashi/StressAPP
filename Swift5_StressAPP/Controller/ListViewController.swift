@@ -28,14 +28,14 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.dataSource = self
         
         let user = Auth.auth().currentUser?.displayName
-        print(user!)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.title = String(mylistArray.count)
-        print(titleName)
+        
         
     
         
@@ -50,7 +50,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         var token: NotificationToken!
         realm = try! Realm()
         mylistArray = realm.objects(Mylist.self)
-        print(mylistArray[1] as Any)
         
         
 

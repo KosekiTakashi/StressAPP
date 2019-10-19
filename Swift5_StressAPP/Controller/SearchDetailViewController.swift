@@ -17,6 +17,7 @@ class SearchDetailViewController: UIViewController {
     @IBOutlet weak var titleNameLabel: UILabel!
     @IBOutlet weak var deatailLabel: UILabel!
     @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var addLabel: UILabel!
@@ -29,7 +30,8 @@ class SearchDetailViewController: UIViewController {
     var searchNameArray = [Contents]()
     var number = 0
     var count = Int()
-    
+    var tapcount = Int()
+    var content:Contents!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +40,19 @@ class SearchDetailViewController: UIViewController {
         titleNameLabel.text = titleName
         deatailLabel.text = detail
         urlLabel.text = urlString
+        countLabel.text = "ダウンロード数：\(count)"
         
         addLabel.isHidden = true
-        
-        print(searchNameArray)
+        print(tapcount)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if tapcount == 1{
+            addButton.isEnabled = false
+        }
     }
     
     
@@ -65,15 +70,33 @@ class SearchDetailViewController: UIViewController {
             realm.add(mylist)
         }
         
-        //同じ物を二度追加したくない
-        //ここで配列から消してもタイムラインが更新されたら結局最新のデータを持ってきてしまうから消す意味がない気がする
-        searchNameArray.remove(at: number)
-        
         
         addButton.isEnabled = false
         addLabel.isHidden = false
         
+        
+        //tap()
+        //let nextVC = storyboard?.instantiateViewController(identifier: "Search") as! SearchViewController
+        
+        //nextVC.tapcount = 1
     }
+    
+    func tap(){
+    
+        if tapcount == 0 {
+            content.pluslike()
+            countLabel.text = "ダウンロード数：\(count)"
+            tapcount = 1
+        
+        }else{
+            content.minuslike()
+            countLabel.text = "ダウンロード数：\(count)"
+            tapcount = 0
+            }
+        
+    }
+    
+    
     
     
     

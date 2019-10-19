@@ -126,10 +126,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     func timeLineAndmyListAdd(){
         //タイムライン
-        let timeLineDB = Database.database().reference().child("timeLine").childByAutoId()
+        let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
         let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
         
-        print("timeLine")
+        print("timeLines")
         timeLineDB.updateChildValues(timeLineInfo)
         
         //自分のリスト

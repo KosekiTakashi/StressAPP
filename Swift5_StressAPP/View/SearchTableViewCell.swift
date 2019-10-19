@@ -48,6 +48,10 @@ class SerchTabViewCell: UITableViewCell {
             tapupcount = 0
             
         }
+        
+        
+        
+        
     }
     
     

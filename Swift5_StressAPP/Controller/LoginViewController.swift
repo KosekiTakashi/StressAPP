@@ -15,6 +15,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailTextField: KaedeTextField!
     @IBOutlet weak var passwordTextField: KaedeTextField!
     @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var newButton: UIButton!
     
     var username : String = ""
     
@@ -38,12 +39,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
+        
     }
     
     
     
     @IBAction func newCreate(_ sender: Any) {
-        
         UserDefaults.standard.set(username, forKey: "userName")
         
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -76,7 +77,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 print("succees")
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 
-                changeRequest?.displayName = self.username
+                
                 changeRequest?.commitChanges(completion: { (error) in
                     print(error as Any)
                     return
