@@ -18,6 +18,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var searchNameArray = [Contents]()
     var userName = String()
     var titleName = String()
+    var count = Int()
+    var urlString = String()
+    let timeLinesref = Database.database().reference().child("timeLines")
         
         
         override func viewDidLoad() {
@@ -29,7 +32,11 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             if UserDefaults.standard.object(forKey: "userName") != nil{
                 userName = UserDefaults.standard.object(forKey: "userName") as! String
+                
             }
+            
+            title = "timeLine"
+            
 
         }
         
@@ -37,6 +44,20 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             super.viewWillAppear(animated)
             
             fetchData()
+            
+            
+            //新しい受け取り
+            timeLinesref.observe(.value) { (snapshot) in
+                self.searchNameArray.removeAll()
+                
+                for child in snapshot.children{
+                    let childSnapshoto = child as! DataSnapshot
+                    let content = Contents(snapshot: childSnapshoto)
+                    self.searchNameArray.insert(content, at: 0)
+                    
+                }
+                self.tableView.reloadData()
+            }
             
         
         }
@@ -56,20 +77,26 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //cellの設定
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
+            let content = searchNameArray[indexPath.row]
+            cell.content = content
             
+            return cell
+            
+            /*
             let userName = cell.viewWithTag(1) as! UILabel
             userName.text = searchNameArray[indexPath.row].userNameString
             
             let titleName = cell.viewWithTag(2) as! UILabel
             titleName.text = searchNameArray[indexPath.row].titleNameString
             return cell
+            */
         }
         
         //セルの高さ
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             
-            return 170
+            return 140
         }
         
         
@@ -85,9 +112,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             nextVC.count = searchNameArray[indexPath.row].count
             nextVC.searchNameArray = searchNameArray
             nextVC.number = indexPath.row
-            print(nextVC.number)
-            print(nextVC.userName)
-            print(searchNameArray[nextVC.number].userNameString)
+            
             
             
             
@@ -132,10 +157,6 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             }
         }
         
-        
-       
-
-        
 
         /*
         // MARK: - Navigation
@@ -148,4 +169,3 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         */
 
     }
-
