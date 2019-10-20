@@ -32,6 +32,7 @@ class SearchDetailViewController: UIViewController {
     var count = Int()
     var tapcount = Int()
     var content:Contents!
+    var userID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,7 @@ class SearchDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        userID = (Auth.auth().currentUser?.uid)!
         if tapcount == 1{
             addButton.isEnabled = false
         }
@@ -58,27 +59,19 @@ class SearchDetailViewController: UIViewController {
     
     
     @IBAction func addAction(_ sender: Any) {
+        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
         
-        let mylist = Mylist()
-        mylist.titleName = titleName
-        mylist.detail = detail
-        mylist.urlString = urlString
+        let mylistInfo = ["titleName":titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
         
-        let realm = try! Realm()
+        myListDB.updateChildValues(mylistInfo)
         
-        try! realm.write {
-            realm.add(mylist)
-        }
         
         
         addButton.isEnabled = false
         addLabel.isHidden = false
         
         
-        //tap()
-        //let nextVC = storyboard?.instantiateViewController(identifier: "Search") as! SearchViewController
         
-        //nextVC.tapcount = 1
     }
     
     func tap(){
@@ -88,11 +81,7 @@ class SearchDetailViewController: UIViewController {
             countLabel.text = "ダウンロード数：\(count)"
             tapcount = 1
         
-        }else{
-            content.minuslike()
-            countLabel.text = "ダウンロード数：\(count)"
-            tapcount = 0
-            }
+        }
         
     }
     

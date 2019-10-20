@@ -76,18 +76,4 @@ class Mylist: Object {
     
 }
 
-struct MyList{
-    var titleNameString:String = ""
-    var detail:String = ""
-    var urlString:String = ""
-    var key:String = ""
-    
-    init(titleName:String,detail:String,urlString:String,key:String) {
-       
-        self.titleNameString = titleName
-        self.detail = detail
-        self.urlString = urlString
-        self.key = key
-        
-    }
-}
+

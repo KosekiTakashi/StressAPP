@@ -28,7 +28,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var mylistArray = [String]()
     var count = Int()
     
-    var mylist_fire : MyList!
+    var mylist_fire : FireMyList!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,57 +132,23 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         //タイムライン
         let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
         let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
-        
-        print("timeLines")
         timeLineDB.updateChildValues(timeLineInfo)
-        
+    
         //自分のリスト
-        let mylist = Mylist()
-        mylist.titleName = titleName
-        mylist.detail = detail
-        mylist.urlString = urlString
+        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
+        let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
+        myListDB.updateChildValues(mylistInfo)
         
-        let realm = try! Realm()
-        
-        try! realm.write {
-            realm.add(mylist)
-        }
-        //addmylist(uid: userID, mylist: mylist_fire )
     }
     
     
     func mylistAdd(){
-        let mylist = Mylist()
-        mylist.titleName = titleName
-        mylist.detail = detail
-        mylist.urlString = urlString
         
-        let realm = try! Realm()
+        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
+        let mylistInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
+        myListDB.updateChildValues(mylistInfo)
         
-        try! realm.write {
-            realm.add(mylist)
-        }
     }
-    
-    
-    func firebaseMylistAdd(userID:String,mylist:MyList){
-        let ref = Database.database().reference()
-        let key = ref.child("mylist").childByAutoId().key
-        
-        let update = ["/userMyList/\(key)/":["title":mylist.titleNameString,"detail":mylist.detail,"url":mylist.urlString]]
-        ref.updateChildValues(update)
-    }
-    
-    func uid() -> String{
-        return Auth.auth().currentUser!.uid
-    }
-    
-    
-    func addmylist(uid:String,mylist:MyList){
-        firebaseMylistAdd(userID: userID, mylist: MyList(titleName: titleName, detail: detail, urlString: urlString, key: userID ))
-    }
-    
-    
     
 
     /*

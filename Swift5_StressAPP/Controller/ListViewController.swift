@@ -21,6 +21,11 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var realm : Realm!
     var mylistArray: Results<Mylist>!
     
+    var MyList = [FireMyList]()
+    var userID  =  ""
+    var userName = ""
+    let MyListref = Database.database().reference().child("MyList")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,16 +38,26 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(userID)
+        self.navigationController?.title = String(MyList.count)
+        userID = (Auth.auth().currentUser?.uid)!
+        userName = (Auth.auth().currentUser?.displayName)!
+        print(userID)
+        MyListref.child(userID).observe(.value) { (snapshot) in
+            self.MyList.removeAll()
+            for child in snapshot.children{
+                let childSnapshoto = child as! DataSnapshot
+                let content = FireMyList(snapshot: childSnapshoto)
+                self.MyList.insert(content, at: 0)
+                    
+            }
+            self.tableView.reloadData()
+            print(self.MyList)
+            
+        }
         
-        self.navigationController?.title = String(mylistArray.count)
+        title = "\(userName)'sリスト (\(MyList.count))"
         
-        
-    
-        
-        //realm = try! Realm()
-        //let mylist = realm.objects(Mylist.self).filter("titleName == name")
-        
-        tableView.reloadData()
     }
     
     override func awakeFromNib() {
@@ -72,14 +87,14 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mylistArray.count
+        return MyList.count
     }
     
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
-        cell.textLabel?.text = mylistArray[indexPath.row].titleName
+        cell.textLabel?.text = MyList[indexPath.row].titleNameString
         
         return cell
     }
@@ -96,9 +111,9 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
         let number = indexPath.row
-        nextVC.name = mylistArray[indexPath.row].titleName
-        nextVC.detail = mylistArray[indexPath.row].detail
-        nextVC.urlString = mylistArray[indexPath.row].urlString
+        nextVC.name = MyList[indexPath.row].titleNameString
+        nextVC.detail = MyList[indexPath.row].detail
+        nextVC.urlString = MyList[indexPath.row].urlString
         nextVC.number = number
         
         navigationController?.pushViewController(nextVC, animated: true)

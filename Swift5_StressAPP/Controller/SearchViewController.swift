@@ -24,46 +24,41 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     let timeLinesref = Database.database().reference().child("timeLines")
         
         
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-            tableView.delegate = self
-            tableView.dataSource = self
-            print(searchNameArray)
+        tableView.delegate = self
+        tableView.dataSource = self
+        print(searchNameArray)
             
-            if UserDefaults.standard.object(forKey: "userName") != nil{
-                userName = UserDefaults.standard.object(forKey: "userName") as! String
-                
-            }
+        if UserDefaults.standard.object(forKey: "userName") != nil{
+            userName = UserDefaults.standard.object(forKey: "userName") as! String
+        }
             
-            title = "timeLine"
-            
-
+        title = "timeLine"
+        
         }
         
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            
-            fetchData()
-            
-            
-            //新しい受け取り
-            timeLinesref.observe(.value) { (snapshot) in
-                self.searchNameArray.removeAll()
-                
-                for child in snapshot.children{
-                    let childSnapshoto = child as! DataSnapshot
-                    let content = Contents(snapshot: childSnapshoto)
-                    self.searchNameArray.insert(content, at: 0)
-                    
-                }
-                print(self.tapcount)
-                self.tableView.reloadData()
-            }
-            
-            
-            
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        //fetchData()
+            
+            
+        //新しい受け取り
+        timeLinesref.observe(.value) { (snapshot) in
+            self.searchNameArray.removeAll()
+                
+            for child in snapshot.children{
+                let childSnapshoto = child as! DataSnapshot
+                let content = Contents(snapshot: childSnapshoto)
+                self.searchNameArray.insert(content, at: 0)
+                    
+            }
+            print(self.tapcount)
+            self.tableView.reloadData()
+        }
+            
         }
         
         //セクションの数
@@ -123,7 +118,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
         }
     
-        func fetchData(){
+        
+    //もう使ってない
+    func fetchData(){
             let ref = Database.database().reference().child("timeLine").queryLimited(toLast: 20).queryOrdered(byChild: "postDate").observe(.value) { (snapShot) in
                 
                 self.searchNameArray.removeAll()

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		14AEEC138735407862C307A3 /* Pods_Swift5_StressAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */; };
 		B41781AC235B11B7002149F9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */; };
+		B41781AE235CA2DA002149F9 /* Mylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AD235CA2DA002149F9 /* Mylist.swift */; };
 		B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C3234758DF00D3210C /* AppDelegate.swift */; };
 		B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C5234758DF00D3210C /* SceneDelegate.swift */; };
 		B41C46CA234758DF00D3210C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C9234758DF00D3210C /* SecondViewController.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		07BBD21DEA52D753BD682DFF /* Pods-Swift5_StressAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.debug.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.debug.xcconfig"; sourceTree = "<group>"; };
 		B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		B41781AD235CA2DA002149F9 /* Mylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mylist.swift; sourceTree = "<group>"; };
 		B41C46C0234758DF00D3210C /* Swift5_StressAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift5_StressAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41C46C3234758DF00D3210C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B41C46C5234758DF00D3210C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B4F198FD234CE9DB00E1230D /* Contents.swift */,
+				B41781AD235CA2DA002149F9 /* Mylist.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */,
+				B41781AE235CA2DA002149F9 /* Mylist.swift in Sources */,
 				B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
 				B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */,

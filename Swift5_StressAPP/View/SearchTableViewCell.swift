@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import RealmSwift
 
 class SerchTabViewCell: UITableViewCell {
@@ -14,6 +15,8 @@ class SerchTabViewCell: UITableViewCell {
    
     var tapupcount = 0
     var tapdowncount = 0
+    
+    var userID = (Auth.auth().currentUser?.uid)!
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -44,29 +47,25 @@ class SerchTabViewCell: UITableViewCell {
             countLabel.text = String(content.count)
             mylistAdd()
             tapupcount = 1
-            UserDefaults.standard.set(tapupcount, forKey: "tapcount")
+            
             addButton.isEnabled = false
-        }else{
-            //content.minuslike()
-            //addButton.setTitle("dawnload\(content.count)", for: [])
-            //tapupcount = 0
-            addButton.isEnabled = false
+      
         }
         
 
     }
     
     func mylistAdd(){
-        let mylist = Mylist()
-        mylist.titleName = content.titleNameString
-        mylist.detail = content.detail
-        mylist.urlString = content.urlString
         
-        let realm = try! Realm()
         
-        try! realm.write {
-            realm.add(mylist)
-        }
+        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
+        
+        let mylistInfo = ["titleName":content.titleNameString as Any,"detail": content.detail as Any,"URL":content.urlString as Any,"postDate":ServerValue.timestamp(),"count":content.count as Any] as [String:Any]
+        
+        myListDB.updateChildValues(mylistInfo)
+        
+        
+    
     }
     
     
