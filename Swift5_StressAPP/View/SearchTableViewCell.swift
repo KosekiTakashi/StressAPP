@@ -39,18 +39,18 @@ class SerchTabViewCell: UITableViewCell {
     
     
     func tap(){
-        
         if tapupcount == 0 {
             content.pluslike()
             countLabel.text = String(content.count)
             mylistAdd()
             tapupcount = 1
+            UserDefaults.standard.set(tapupcount, forKey: "tapcount")
             addButton.isEnabled = false
         }else{
-            content.minuslike()
-            addButton.setTitle("dawnload\(content.count)", for: [])
-            tapupcount = 0
-            
+            //content.minuslike()
+            //addButton.setTitle("dawnload\(content.count)", for: [])
+            //tapupcount = 0
+            addButton.isEnabled = false
         }
         
 

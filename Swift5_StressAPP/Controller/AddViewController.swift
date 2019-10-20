@@ -21,13 +21,14 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
    
     var userName = String()
+    var userID = String()
     var titleName = String()
     var detail = String()
     var urlString = String()
     var mylistArray = [String]()
     var count = Int()
     
-    
+    var mylist_fire : MyList!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,9 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
         
         userName = (Auth.auth().currentUser?.displayName)!
+        userID = (Auth.auth().currentUser?.uid)!
+        
+        print(userID)
         
         UserNameLabel.text = userName
         
@@ -143,6 +147,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         try! realm.write {
             realm.add(mylist)
         }
+        //addmylist(uid: userID, mylist: mylist_fire )
     }
     
     
@@ -159,6 +164,23 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
     }
     
+    
+    func firebaseMylistAdd(userID:String,mylist:MyList){
+        let ref = Database.database().reference()
+        let key = ref.child("mylist").childByAutoId().key
+        
+        let update = ["/userMyList/\(key)/":["title":mylist.titleNameString,"detail":mylist.detail,"url":mylist.urlString]]
+        ref.updateChildValues(update)
+    }
+    
+    func uid() -> String{
+        return Auth.auth().currentUser!.uid
+    }
+    
+    
+    func addmylist(uid:String,mylist:MyList){
+        firebaseMylistAdd(userID: userID, mylist: MyList(titleName: titleName, detail: detail, urlString: urlString, key: userID ))
+    }
     
     
     
