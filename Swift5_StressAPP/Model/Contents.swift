@@ -68,12 +68,5 @@ extension Contents{
 
 
 
-class Mylist: Object {
-
-    @objc dynamic var titleName: String = ""
-    @objc dynamic var detail: String = ""
-    @objc dynamic var urlString: String = ""
-    
-}
 
 

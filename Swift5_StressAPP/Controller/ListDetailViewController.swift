@@ -40,15 +40,6 @@ class ListDetailViewController: UIViewController {
     }
     
     
-    func list(){
-        // Realmのインスタンスを取得
-        let realm = try! Realm()
-        
-        let mylistArray = realm.objects(Mylist.self)
-        mylistArray.first?.titleName = name
-
-    }
-    
 
     /*
     // MARK: - Navigation

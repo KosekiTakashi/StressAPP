@@ -30,7 +30,7 @@ class SearchDetailViewController: UIViewController {
     var searchNameArray = [Contents]()
     var number = 0
     var count = Int()
-    var tapcount = Int()
+    var tapupcount = Int()
     var content:Contents!
     var userID = String()
     
@@ -44,14 +44,15 @@ class SearchDetailViewController: UIViewController {
         countLabel.text = "ダウンロード数：\(count)"
         
         addLabel.isHidden = true
-        print(tapcount)
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print(tapupcount)
         userID = (Auth.auth().currentUser?.uid)!
-        if tapcount == 1{
+        if tapupcount == 1{
             addButton.isEnabled = false
         }
     }
@@ -76,10 +77,10 @@ class SearchDetailViewController: UIViewController {
     
     func tap(){
     
-        if tapcount == 0 {
+        if tapupcount == 0 {
             content.pluslike()
             countLabel.text = "ダウンロード数：\(count)"
-            tapcount = 1
+            tapupcount = 1
         
         }
         

@@ -13,7 +13,7 @@ import RealmSwift
 class SerchTabViewCell: UITableViewCell {
     
    
-    var tapupcount = 0
+    var tapcount = 0
     var tapdowncount = 0
     
     var userID = (Auth.auth().currentUser?.uid)!
@@ -42,11 +42,11 @@ class SerchTabViewCell: UITableViewCell {
     
     
     func tap(){
-        if tapupcount == 0 {
+        if tapcount == 0 {
             content.pluslike()
             countLabel.text = String(content.count)
             mylistAdd()
-            tapupcount = 1
+            tapcount = 1
             
             addButton.isEnabled = false
       

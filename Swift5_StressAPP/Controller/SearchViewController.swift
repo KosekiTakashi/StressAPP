@@ -20,7 +20,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var titleName = String()
     var count = Int()
     var urlString = String()
-    var tapcount = Int()
+    var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
         
         
@@ -55,7 +55,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 self.searchNameArray.insert(content, at: 0)
                     
             }
-            print(self.tapcount)
+            
             self.tableView.reloadData()
         }
             
@@ -79,8 +79,8 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
             let content = searchNameArray[indexPath.row]
             cell.content = content
-            tapcount = cell.tapupcount
-            
+            tapupcount = cell.tapcount
+            print(tapupcount)
             return cell
             
             /*
@@ -112,7 +112,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             nextVC.count = searchNameArray[indexPath.row].count
             nextVC.searchNameArray = searchNameArray
             nextVC.number = indexPath.row
-            nextVC.tapcount = tapcount
+            nextVC.tapupcount = tapupcount
             
             navigationController?.pushViewController(nextVC, animated: true)
             

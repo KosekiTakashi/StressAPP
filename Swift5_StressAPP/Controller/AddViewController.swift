@@ -145,9 +145,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     func mylistAdd(){
         
         let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
-        let mylistInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
+        let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
         myListDB.updateChildValues(mylistInfo)
-        
     }
     
 

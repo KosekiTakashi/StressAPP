@@ -19,7 +19,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var urlString = String()
     
     var realm : Realm!
-    var mylistArray: Results<Mylist>!
+    
     
     var MyList = [FireMyList]()
     var userID  =  ""
@@ -60,20 +60,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        var token: NotificationToken!
-        realm = try! Realm()
-        mylistArray = realm.objects(Mylist.self)
-        
-        
-
-        token = mylistArray.observe { [weak self] _ in
-            self?.reload()
-          }
-
-    }
-
+    
     func reload() {
       tableView.reloadData()
     }
