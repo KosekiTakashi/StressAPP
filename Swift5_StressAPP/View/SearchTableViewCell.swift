@@ -15,7 +15,7 @@ class SerchTabViewCell: UITableViewCell {
    
     var tapcount = 0
     var tapdowncount = 0
-    
+    var timeuserID = ""
     var userID = (Auth.auth().currentUser?.uid)!
     
     @IBOutlet weak var userNameLabel: UILabel!
@@ -31,17 +31,31 @@ class SerchTabViewCell: UITableViewCell {
             userNameLabel.text = content.userNameString
             titleNameLabel.text = content.titleNameString
             countLabel.text = String(content.count)
+            timeuserID = content.userID
+            if timeuserID == userID{
+                print("NOT")
+                addButton.isEnabled = false
+            }
+            
         }
     }
+    
+
     
     
     
     @IBAction func addAciton(_ sender: Any) {
+        
+        
         tap()
     }
     
     
     func tap(){
+        if timeuserID == userID{
+            
+        }
+        
         if tapcount == 0 {
             content.pluslike()
             countLabel.text = String(content.count)

@@ -20,7 +20,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var titleName = String()
     var count = Int()
     var urlString = String()
-    var tapupcount = Int()
+    //var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
         
         
@@ -29,13 +29,14 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
         tableView.delegate = self
         tableView.dataSource = self
-        print(searchNameArray)
+       
+        
             
         if UserDefaults.standard.object(forKey: "userName") != nil{
             userName = UserDefaults.standard.object(forKey: "userName") as! String
         }
             
-        title = "timeLine"
+        title = "TimeLine"
         
         }
         
@@ -79,18 +80,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
             let content = searchNameArray[indexPath.row]
             cell.content = content
-            tapupcount = cell.tapcount
-            print(tapupcount)
+            //tapupcount = cell.tapcount
+            //print(tapupcount)
             return cell
-            
-            /*
-            let userName = cell.viewWithTag(1) as! UILabel
-            userName.text = searchNameArray[indexPath.row].userNameString
-            
-            let titleName = cell.viewWithTag(2) as! UILabel
-            titleName.text = searchNameArray[indexPath.row].titleNameString
-            return cell
-            */
         }
         
         //セルの高さ
@@ -112,7 +104,8 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             nextVC.count = searchNameArray[indexPath.row].count
             nextVC.searchNameArray = searchNameArray
             nextVC.number = indexPath.row
-            nextVC.tapupcount = tapupcount
+            nextVC.timeuserID = searchNameArray[indexPath.row].userID
+            //nextVC.tapupcount = tapupcount
             
             navigationController?.pushViewController(nextVC, animated: true)
             
@@ -120,6 +113,8 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
         
     //もう使ってない
+    
+    /*
     func fetchData(){
             let ref = Database.database().reference().child("timeLine").queryLimited(toLast: 20).queryOrdered(byChild: "postDate").observe(.value) { (snapShot) in
                 
@@ -143,7 +138,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                                 postDate = postedDate
                             }
                         
-                            self.searchNameArray.append(Contents.init(userName: userName! , titleName: titleName!, detail: detail!, urlString: urlstring!,count: count!))
+                            //self.searchNameArray.append(Contents.init(userName: userName! , titleName: titleName!, detail: detail!, urlString: urlstring!,count: count!))
                         }
                     }
                 }
@@ -158,7 +153,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
         
 
-        /*
+
         // MARK: - Navigation
 
         // In a storyboard-based application, you will often want to do a little preparation before navigation

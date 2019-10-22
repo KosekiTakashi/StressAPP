@@ -41,7 +41,11 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         print(userID)
         self.navigationController?.title = String(MyList.count)
         userID = (Auth.auth().currentUser?.uid)!
-        userName = (Auth.auth().currentUser?.displayName)!
+        //userName = (Auth.auth().currentUser?.displayName)!
+        
+        if UserDefaults.standard.object(forKey: "userName") != nil{
+            userName = UserDefaults.standard.object(forKey: "userName") as! String
+        }
         print(userID)
         MyListref.child(userID).observe(.value) { (snapshot) in
             self.MyList.removeAll()
@@ -89,7 +93,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return view.frame.size.height/5
+        return view.frame.size.height/6
     }
     
     

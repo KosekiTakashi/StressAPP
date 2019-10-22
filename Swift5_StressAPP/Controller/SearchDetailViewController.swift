@@ -33,6 +33,7 @@ class SearchDetailViewController: UIViewController {
     var tapupcount = Int()
     var content:Contents!
     var userID = String()
+    var timeuserID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,10 @@ class SearchDetailViewController: UIViewController {
         print(tapupcount)
         userID = (Auth.auth().currentUser?.uid)!
         if tapupcount == 1{
+            addButton.isEnabled = false
+        }
+        
+        if timeuserID == userID{
             addButton.isEnabled = false
         }
     }

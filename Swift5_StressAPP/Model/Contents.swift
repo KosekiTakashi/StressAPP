@@ -16,14 +16,16 @@ class Contents {
     var detail:String = ""
     var urlString:String = ""
     var count:Int = 0
+    var userID :String = ""
     let ref:DatabaseReference!
     
-    init(userName:String,titleName:String,detail:String,urlString:String,count:Int) {
+    init(userName:String,titleName:String,detail:String,urlString:String,count:Int,userID:String) {
         self.userNameString = userName
         self.titleNameString = titleName
         self.detail = detail
         self.urlString = urlString
         self.count = count
+        self.userID = userID
         
         ref = Database.database().reference().child("timeLines").childByAutoId()
         
@@ -37,6 +39,7 @@ class Contents {
             detail = value["detail"] as! String
             urlString = value["URL"] as! String
             count = value["count"] as! Int
+            userID = value["userID"] as! String
             
         }
     }
@@ -47,7 +50,7 @@ class Contents {
     
     func toDictionary() ->[String:Any]{
         
-        return["userName":userNameString,"titleName":titleNameString,"detail":detail,"URL":urlString,"count":count]
+        return["userName":userNameString,"titleName":titleNameString,"detail":detail,"URL":urlString,"count":count,"userID":userID]
     }
 }
 

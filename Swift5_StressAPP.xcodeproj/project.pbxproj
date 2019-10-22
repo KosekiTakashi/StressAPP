@@ -10,6 +10,7 @@
 		14AEEC138735407862C307A3 /* Pods_Swift5_StressAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */; };
 		B41781AC235B11B7002149F9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */; };
 		B41781AE235CA2DA002149F9 /* Mylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AD235CA2DA002149F9 /* Mylist.swift */; };
+		B41781B2235DE669002149F9 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781B1235DE669002149F9 /* NewViewController.swift */; };
 		B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C3234758DF00D3210C /* AppDelegate.swift */; };
 		B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C5234758DF00D3210C /* SceneDelegate.swift */; };
 		B41C46CA234758DF00D3210C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C9234758DF00D3210C /* SecondViewController.swift */; };
@@ -30,6 +31,7 @@
 		07BBD21DEA52D753BD682DFF /* Pods-Swift5_StressAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.debug.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.debug.xcconfig"; sourceTree = "<group>"; };
 		B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B41781AD235CA2DA002149F9 /* Mylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mylist.swift; sourceTree = "<group>"; };
+		B41781B1235DE669002149F9 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		B41C46C0234758DF00D3210C /* Swift5_StressAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift5_StressAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41C46C3234758DF00D3210C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B41C46C5234758DF00D3210C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
 				B41C46E6234B553300D3210C /* AddViewController.swift */,
 				B4F198FB234CE40200E1230D /* LoginViewController.swift */,
+				B41781B1235DE669002149F9 /* NewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				B41C46E7234B553300D3210C /* AddViewController.swift in Sources */,
 				B41C46CA234758DF00D3210C /* SecondViewController.swift in Sources */,
 				B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */,
+				B41781B2235DE669002149F9 /* NewViewController.swift in Sources */,
 				B41C46DD23475CF500D3210C /* ListViewController.swift in Sources */,
 				B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */,
 				B41C46DF2347726C00D3210C /* ListDetailViewController.swift in Sources */,
