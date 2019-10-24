@@ -27,6 +27,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var urlString = String()
     var mylistArray = [String]()
     var count = Int()
+    var goodUser = [String]()
     
     var mylist_fire : FireMyList!
     
@@ -40,8 +41,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         userName = (Auth.auth().currentUser?.displayName)!
         userID = (Auth.auth().currentUser?.uid)!
         
-        print(userID)
-        
         UserNameLabel.text = userName
         
         titleTextField.delegate = self
@@ -52,8 +51,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-       
         
         addButton.isHidden = true
         addButton.isEnabled = false
@@ -82,6 +79,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         detail = detailTextView.text!
         urlString = URLTextField.text!
         
+        
+        
         if titleName == "" || detail == ""{
             addButton.isHidden = true
             addButton.isEnabled = false
@@ -107,7 +106,11 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
+            //goodUserに一応入れておく
+            self.goodUser.append(self.userID)
             self.timeLineAndmyListAdd()
+            
+            self.goodUser.removeAll()
             self.titleTextField.text = ""
             self.detailTextView.text = ""
             self.URLTextField.text = ""
@@ -125,13 +128,13 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
-        
+        //goodUser.removeAll()
     }
     
     func timeLineAndmyListAdd(){
         //タイムライン
         let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
-        let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID] as [String:Any]
+        let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser] as [String:Any]
         timeLineDB.updateChildValues(timeLineInfo)
     
         //自分のリスト

@@ -32,7 +32,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.delegate = self
         tableView.dataSource = self
         
-        let user = Auth.auth().currentUser?.displayName
+        
         
     }
     
@@ -42,10 +42,17 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.navigationController?.title = String(MyList.count)
         userID = (Auth.auth().currentUser?.uid)!
         //userName = (Auth.auth().currentUser?.displayName)!
+        //let user_name = Auth.auth().currentUser!.displayName
         
+        if Auth.auth().currentUser?.displayName != nil{
+            userName = (Auth.auth().currentUser?.displayName)!
+        }
+        /*
         if UserDefaults.standard.object(forKey: "userName") != nil{
             userName = UserDefaults.standard.object(forKey: "userName") as! String
         }
+        */
+        
         print(userID)
         MyListref.child(userID).observe(.value) { (snapshot) in
             self.MyList.removeAll()
@@ -56,7 +63,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
             }
             self.tableView.reloadData()
-            print(self.MyList)
             
         }
         

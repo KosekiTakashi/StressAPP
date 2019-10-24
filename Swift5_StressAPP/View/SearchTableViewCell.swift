@@ -17,6 +17,8 @@ class SerchTabViewCell: UITableViewCell {
     var tapdowncount = 0
     var timeuserID = ""
     var userID = (Auth.auth().currentUser?.uid)!
+    var goodUser = [String]()
+    var good = 0
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleNameLabel: UILabel!
@@ -32,46 +34,52 @@ class SerchTabViewCell: UITableViewCell {
             titleNameLabel.text = content.titleNameString
             countLabel.text = String(content.count)
             timeuserID = content.userID
-            if timeuserID == userID{
+            goodUser = content.goodUser
+            
+            print("---------------")
+            print("title_\(content.titleNameString)")
+            print("userID_\(userID)")
+            print("goodUsers_\(goodUser)")
+        
+            
+            //比較してみる
+            
+            for i in goodUser{
+                if i == userID{
+                    good = 1
+                }
+            }
+            print("good_\(good)")
+            
+            
+            if timeuserID == userID {
                 print("NOT")
                 addButton.isEnabled = false
+            }
+            if good == 1{
+                print("NOT")
+                addButton.isEnabled = false
+            }else{
+                print("YES")
+                addButton.isEnabled = true
             }
             
         }
     }
-    
-
-    
-    
+ 
     
     @IBAction func addAciton(_ sender: Any) {
-        
-        
         tap()
     }
     
     
     func tap(){
-        if timeuserID == userID{
-            
-        }
-        
-        if tapcount == 0 {
-            content.pluslike()
-            countLabel.text = String(content.count)
-            mylistAdd()
-            tapcount = 1
-            
-            addButton.isEnabled = false
-      
-        }
-        
-
+        content.pluslike()
+        countLabel.text = String(content.count)
+        mylistAdd()
     }
     
     func mylistAdd(){
-        
-        
         let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
         
         let mylistInfo = ["titleName":content.titleNameString as Any,"detail": content.detail as Any,"URL":content.urlString as Any,"postDate":ServerValue.timestamp(),"count":content.count as Any] as [String:Any]

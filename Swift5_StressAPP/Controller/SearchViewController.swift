@@ -20,6 +20,8 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var titleName = String()
     var count = Int()
     var urlString = String()
+    var goodUser = [String]()
+    
     //var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
         
@@ -105,6 +107,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             nextVC.searchNameArray = searchNameArray
             nextVC.number = indexPath.row
             nextVC.timeuserID = searchNameArray[indexPath.row].userID
+            nextVC.goodUser = searchNameArray[indexPath.row].goodUser
             //nextVC.tapupcount = tapupcount
             
             navigationController?.pushViewController(nextVC, animated: true)

@@ -504,6 +504,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1zV-bP-l9w"/>
                     <connections>
+                        <outlet property="addButton" destination="9tH-jd-NQH" id="rWb-uU-yCK"/>
                         <outlet property="emailTextField" destination="u2g-tW-DTP" id="8Ti-lp-kOv"/>
                         <outlet property="passwordTextField" destination="UM5-P5-e49" id="WEF-IU-x6A"/>
                         <outlet property="userNameTextField" destination="m27-Pu-Okg" id="5Gr-AN-KLi"/>

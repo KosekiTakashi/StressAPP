@@ -17,15 +17,18 @@ class Contents {
     var urlString:String = ""
     var count:Int = 0
     var userID :String = ""
+    var goodUser = [String]()
+    
     let ref:DatabaseReference!
     
-    init(userName:String,titleName:String,detail:String,urlString:String,count:Int,userID:String) {
+    init(userName:String,titleName:String,detail:String,urlString:String,count:Int,userID:String,goodUser:[String]) {
         self.userNameString = userName
         self.titleNameString = titleName
         self.detail = detail
         self.urlString = urlString
         self.count = count
         self.userID = userID
+        self.goodUser = goodUser
         
         ref = Database.database().reference().child("timeLines").childByAutoId()
         
@@ -40,6 +43,7 @@ class Contents {
             urlString = value["URL"] as! String
             count = value["count"] as! Int
             userID = value["userID"] as! String
+            goodUser = value["goodUser"] as! [String]
             
         }
     }
@@ -50,7 +54,7 @@ class Contents {
     
     func toDictionary() ->[String:Any]{
         
-        return["userName":userNameString,"titleName":titleNameString,"detail":detail,"URL":urlString,"count":count,"userID":userID]
+        return["userName":userNameString,"titleName":titleNameString,"detail":detail,"URL":urlString,"count":count,"userID":userID,"goodUser":goodUser]
     }
 }
 
@@ -59,6 +63,10 @@ extension Contents{
     func pluslike(){
         count += 1
         ref.child("count").setValue(count)
+        
+        let gooduserID = (Auth.auth().currentUser?.uid)!
+        goodUser.append(gooduserID)
+        ref.child("goodUser").setValue(goodUser)
     }
     
     func minuslike(){

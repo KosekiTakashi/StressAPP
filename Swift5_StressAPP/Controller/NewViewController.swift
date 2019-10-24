@@ -19,6 +19,8 @@ class NewViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var userNameTextField: KaedeTextField!
     
+    @IBOutlet weak var addButton: UIButton!
+    
     var username : String = ""
     
     override func viewDidLoad() {
@@ -29,13 +31,22 @@ class NewViewController: UIViewController,UITextFieldDelegate {
         userNameTextField.delegate = self
         // Do any additional setup after loading the view.
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+        
+           addButton.isHidden = true
+           addButton.isEnabled = false
+           
+       }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        
+    
         username = userNameTextField.text!
-        UserDefaults.standard.set(username, forKey: "userName")
-        
+        if username != nil{
+            addButton.isHidden = false
+            addButton.isEnabled = true
+        }
         userNameTextField.resignFirstResponder()
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -49,10 +60,7 @@ class NewViewController: UIViewController,UITextFieldDelegate {
         
         UserDefaults.standard.set(username, forKey: "userName")
         
-        if username == ""{
-            print("not")
-            return
-        }
+        
         
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil{
@@ -63,7 +71,7 @@ class NewViewController: UIViewController,UITextFieldDelegate {
                 
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 
-                changeRequest?.displayName = self.userNameTextField.text!
+                changeRequest?.displayName = self.username
                 changeRequest?.commitChanges(completion: { (error) in
                     print(error as Any)
                     return

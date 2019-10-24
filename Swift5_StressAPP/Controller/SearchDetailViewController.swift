@@ -34,6 +34,8 @@ class SearchDetailViewController: UIViewController {
     var content:Contents!
     var userID = String()
     var timeuserID = ""
+    var good = 0
+    var goodUser = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +55,30 @@ class SearchDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         print(tapupcount)
         userID = (Auth.auth().currentUser?.uid)!
-        if tapupcount == 1{
-            addButton.isEnabled = false
-        }
+       
         
         if timeuserID == userID{
             addButton.isEnabled = false
+        }
+        
+        for i in goodUser{
+            if i == userID{
+                good = 1
+            }
+        }
+        print("good_\(good)")
+        
+        
+        if timeuserID == userID {
+            print("NOT")
+            addButton.isEnabled = false
+        }
+        if good == 1{
+            print("NOT")
+            addButton.isEnabled = false
+        }else{
+            print("YES")
+            addButton.isEnabled = true
         }
     }
     
