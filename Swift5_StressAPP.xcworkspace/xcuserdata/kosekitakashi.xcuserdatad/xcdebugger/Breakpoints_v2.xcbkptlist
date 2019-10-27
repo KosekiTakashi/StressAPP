@@ -5,111 +5,33 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB"
-            shouldBeEnabled = "No"
+            uuid = "B1DE1555-DD66-4A0A-8E1A-6ED42C3FFED1"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "SearchDetailViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB - 8e6326fa97f2086e"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swift5_StressAPP.SearchDetailViewController.timeuserID.getter : Swift.String"
-                  moduleName = "Swift5_StressAPP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "139">
-               </Location>
-               <Location
-                  uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB - c028681e9fe4b99a"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swift5_StressAPP.SearchDetailViewController.timeuserID.setter : Swift.String"
-                  moduleName = "Swift5_StressAPP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "150">
-               </Location>
-               <Location
-                  uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB - b946f574981dac6b"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swift5_StressAPP.SearchDetailViewController.timeuserID.modify : Swift.String"
-                  moduleName = "Swift5_StressAPP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB - 655e5c08e7c256c3"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swift5_StressAPP.SearchDetailViewController.timeuserID.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Swift5_StressAPP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB - b01a484c6f4454c6"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swift5_StressAPP.SearchDetailViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Swift5_StressAPP.SearchDetailViewController"
-                  moduleName = "Swift5_StressAPP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "2036">
-               </Location>
-               <Location
-                  uuid = "75C9F88C-7287-45D2-ACAB-2309DFDBFBDB - cdea0adb72acda3a"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Swift5_StressAPP.SearchDetailViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Swift5_StressAPP.SearchDetailViewController&gt;"
-                  moduleName = "Swift5_StressAPP"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Controller/SearchDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "1968">
-               </Location>
-            </Locations>
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "A849BCFD-DB2B-422E-BAA9-C7A3B81C3925"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "1"
+            stopOnStyle = "0">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -26,16 +26,32 @@ class SearchDetailViewController: UIViewController {
     var titleName :String = ""
     var detail :String = ""
     var urlString :String = ""
-
-    var searchNameArray = [Contents]()
-    var number = 0
     var count = Int()
-    var tapupcount = Int()
+    
+    var searchNameArray = [Contents]()
+    
+    
+    
     var content:Contents!
     var userID = String()
     var timeuserID = ""
     var good = 0
-    var goodUser = [String]()
+    var goodUsers = [String]()
+    
+    var contents:Contents!{
+           didSet{
+               userName = contents.userNameString
+               count = contents.count
+               titleName = contents.titleNameString
+               detail = contents.detail
+               timeuserID = contents.userID
+               goodUsers = contents.goodUser
+            
+            
+           }
+       }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,23 +61,17 @@ class SearchDetailViewController: UIViewController {
         deatailLabel.text = detail
         urlLabel.text = urlString
         countLabel.text = "ダウンロード数：\(count)"
-        
+
         addLabel.isHidden = true
-        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(tapupcount)
+        
         userID = (Auth.auth().currentUser?.uid)!
        
-        
-        if timeuserID == userID{
-            addButton.isEnabled = false
-        }
-        
-        for i in goodUser{
+        for i in goodUsers{
             if i == userID{
                 good = 1
             }
@@ -69,11 +79,7 @@ class SearchDetailViewController: UIViewController {
         print("good_\(good)")
         
         
-        if timeuserID == userID {
-            print("NOT")
-            addButton.isEnabled = false
-        }
-        if good == 1{
+        if good == 1 || timeuserID == userID{
             print("NOT")
             addButton.isEnabled = false
         }else{
@@ -91,23 +97,18 @@ class SearchDetailViewController: UIViewController {
         
         myListDB.updateChildValues(mylistInfo)
         
-        
-        
         addButton.isEnabled = false
         addLabel.isHidden = false
         
-        
+        tap()
         
     }
     
     func tap(){
-    
-        if tapupcount == 0 {
-            content.pluslike()
-            countLabel.text = "ダウンロード数：\(count)"
-            tapupcount = 1
-        
-        }
+
+        contents.pluslike()
+        countLabel.text = "ダウンロード数：\(count)"
+            
         
     }
     

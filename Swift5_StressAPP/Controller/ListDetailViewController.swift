@@ -12,24 +12,24 @@ import RealmSwift
 class ListDetailViewController: UIViewController {
     
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var detailTextView: UITextView!
-    @IBOutlet weak var URLTextField: UITextField!
+    @IBOutlet weak var titlenameLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var urlStringLabel: UILabel!
     
     
-    var name : String = ""
+    var titleName : String = ""
     var detail : String = ""
     var urlString : String = ""
-    var number : Int = 0
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleTextField.text = name
-        detailTextView.text = detail
-        URLTextField.text = urlString
-        print(number)
+        titlenameLabel.text = titleName
+        detailLabel.text = detail
+        urlStringLabel.text = urlString
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -38,6 +38,19 @@ class ListDetailViewController: UIViewController {
         
        
     }
+    
+    
+    @IBAction func change(_ sender: Any) {
+        
+        let nextVC = storyboard?.instantiateViewController(identifier: "ListChange") as! ListChangeViewController
+        nextVC.titleName = titleName
+        nextVC.detail = detail
+        nextVC.urlString = urlString
+    
+        navigationController?.pushViewController(nextVC, animated: true)
+        
+    }
+    
     
     
 

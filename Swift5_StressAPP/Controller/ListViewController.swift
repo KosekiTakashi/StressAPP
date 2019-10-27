@@ -107,11 +107,10 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        let number = indexPath.row
-        nextVC.name = MyList[indexPath.row].titleNameString
+        nextVC.titleName = MyList[indexPath.row].titleNameString
         nextVC.detail = MyList[indexPath.row].detail
         nextVC.urlString = MyList[indexPath.row].urlString
-        nextVC.number = number
+        
         
         navigationController?.pushViewController(nextVC, animated: true)
         
