@@ -47,3 +47,13 @@ class FireMyList{
     
     
 }
+
+extension FireMyList{
+    
+    func changeList(titleName:String,detail:String,urlString:String){
+        ref.child("titleName").setValue(titleName)
+        ref.child("detail").setValue(detail)
+        ref.child("URL").setValue(urlString)
+    }
+    
+}
