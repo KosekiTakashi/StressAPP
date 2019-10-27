@@ -22,6 +22,7 @@
 		B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E02348A68B00D3210C /* SearchViewController.swift */; };
 		B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E22348A74600D3210C /* SearchDetailViewController.swift */; };
 		B41C46E7234B553300D3210C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E6234B553300D3210C /* AddViewController.swift */; };
+		B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43F295C236328B000B14757 /* ListChangeViewController.swift */; };
 		B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FB234CE40200E1230D /* LoginViewController.swift */; };
 		B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* Contents.swift */; };
 		B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4F198FF234D70B100E1230D /* GoogleService-Info.plist */; };
@@ -45,6 +46,7 @@
 		B41C46E02348A68B00D3210C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B41C46E22348A74600D3210C /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		B41C46E6234B553300D3210C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		B43F295C236328B000B14757 /* ListChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChangeViewController.swift; sourceTree = "<group>"; };
 		B4F198FB234CE40200E1230D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B4F198FD234CE9DB00E1230D /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		B4F198FF234D70B100E1230D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -126,13 +128,14 @@
 				B41C46C3234758DF00D3210C /* AppDelegate.swift */,
 				B41C46C5234758DF00D3210C /* SceneDelegate.swift */,
 				B41C46C9234758DF00D3210C /* SecondViewController.swift */,
-				B41C46DC23475CF500D3210C /* ListViewController.swift */,
-				B41C46DE2347726C00D3210C /* ListDetailViewController.swift */,
-				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
-				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
-				B41C46E6234B553300D3210C /* AddViewController.swift */,
 				B4F198FB234CE40200E1230D /* LoginViewController.swift */,
 				B41781B1235DE669002149F9 /* NewViewController.swift */,
+				B41C46DC23475CF500D3210C /* ListViewController.swift */,
+				B41C46DE2347726C00D3210C /* ListDetailViewController.swift */,
+				B43F295C236328B000B14757 /* ListChangeViewController.swift */,
+				B41C46E6234B553300D3210C /* AddViewController.swift */,
+				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
+				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				B41C46CA234758DF00D3210C /* SecondViewController.swift in Sources */,
 				B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */,
 				B41781B2235DE669002149F9 /* NewViewController.swift in Sources */,
+				B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */,
 				B41C46DD23475CF500D3210C /* ListViewController.swift in Sources */,
 				B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */,
 				B41C46DF2347726C00D3210C /* ListDetailViewController.swift in Sources */,

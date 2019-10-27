@@ -37,8 +37,10 @@ class SerchTabViewCell: UITableViewCell {
             goodUser = content.goodUser
             
             print("---------------")
+            print("username_\(content.userNameString)")
             print("title_\(content.titleNameString)")
             print("userID_\(userID)")
+            print("timeuserID_\(timeuserID)")
             print("goodUsers_\(goodUser)")
         
             
@@ -49,19 +51,16 @@ class SerchTabViewCell: UITableViewCell {
                     good = 1
                 }
             }
+            
             print("good_\(good)")
             
-            
-            if timeuserID == userID {
-                print("NOT")
-                addButton.isEnabled = false
-            }
-            if good == 1{
+            if good == 1 {
                 print("NOT")
                 addButton.isEnabled = false
             }else{
                 print("YES")
                 addButton.isEnabled = true
+                //|| timeuserID == userID
             }
             
         }
@@ -69,11 +68,6 @@ class SerchTabViewCell: UITableViewCell {
  
     
     @IBAction func addAciton(_ sender: Any) {
-        tap()
-    }
-    
-    
-    func tap(){
         content.pluslike()
         countLabel.text = String(content.count)
         mylistAdd()

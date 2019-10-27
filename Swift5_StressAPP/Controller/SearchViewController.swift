@@ -99,15 +99,16 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             let nextVC = storyboard?.instantiateViewController(identifier: "SearchDetail") as! SearchDetailViewController
             
-            nextVC.userName = searchNameArray[indexPath.row].userNameString
-            nextVC.titleName = searchNameArray[indexPath.row].titleNameString
-            nextVC.detail = searchNameArray[indexPath.row].detail
-            nextVC.urlString = searchNameArray[indexPath.row].urlString
-            nextVC.count = searchNameArray[indexPath.row].count
+            //nextVC.userName = searchNameArray[indexPath.row].userNameString
+            //nextVC.titleName = searchNameArray[indexPath.row].titleNameString
+            //nextVC.detail = searchNameArray[indexPath.row].detail
+            //nextVC.urlString = searchNameArray[indexPath.row].urlString
+            //nextVC.count = searchNameArray[indexPath.row].count
             nextVC.searchNameArray = searchNameArray
-            nextVC.number = indexPath.row
             nextVC.timeuserID = searchNameArray[indexPath.row].userID
-            nextVC.goodUser = searchNameArray[indexPath.row].goodUser
+            //nextVC.goodUsers = searchNameArray[indexPath.row].goodUser
+            let content = searchNameArray[indexPath.row]
+            nextVC.contents = content
             //nextVC.tapupcount = tapupcount
             
             navigationController?.pushViewController(nextVC, animated: true)
