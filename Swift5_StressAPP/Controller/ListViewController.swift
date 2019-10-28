@@ -41,8 +41,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         print(userID)
         self.navigationController?.title = String(MyList.count)
         userID = (Auth.auth().currentUser?.uid)!
-        //userName = (Auth.auth().currentUser?.displayName)!
-        //let user_name = Auth.auth().currentUser!.displayName
         
         if Auth.auth().currentUser?.displayName != nil{
             userName = (Auth.auth().currentUser?.displayName)!
@@ -107,9 +105,10 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        nextVC.titleName = MyList[indexPath.row].titleNameString
-        nextVC.detail = MyList[indexPath.row].detail
-        nextVC.urlString = MyList[indexPath.row].urlString
+        
+        let mylist = MyList[indexPath.row]
+        nextVC.myLists = mylist
+        nextVC.indexNumber = indexPath.row
         
         
         navigationController?.pushViewController(nextVC, animated: true)

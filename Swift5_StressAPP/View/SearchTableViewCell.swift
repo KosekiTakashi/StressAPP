@@ -22,7 +22,7 @@ class SerchTabViewCell: UITableViewCell {
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleNameLabel: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    
     @IBOutlet weak var countLabel: UILabel!
     
     
@@ -32,7 +32,7 @@ class SerchTabViewCell: UITableViewCell {
         didSet{
             userNameLabel.text = content.userNameString
             titleNameLabel.text = content.titleNameString
-            countLabel.text = String(content.count)
+            countLabel.text = ("ダウンロード数：\(content.count)")
             timeuserID = content.userID
             goodUser = content.goodUser
             
@@ -56,22 +56,16 @@ class SerchTabViewCell: UITableViewCell {
             
             if good == 1 {
                 print("NOT")
-                addButton.isEnabled = false
+               
             }else{
                 print("YES")
-                addButton.isEnabled = true
+                
                 //|| timeuserID == userID
             }
             
         }
     }
  
-    
-    @IBAction func addAciton(_ sender: Any) {
-        content.pluslike()
-        countLabel.text = String(content.count)
-        mylistAdd()
-    }
     
     func mylistAdd(){
         let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()

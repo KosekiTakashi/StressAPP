@@ -99,11 +99,6 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             let nextVC = storyboard?.instantiateViewController(identifier: "SearchDetail") as! SearchDetailViewController
             
-            //nextVC.userName = searchNameArray[indexPath.row].userNameString
-            //nextVC.titleName = searchNameArray[indexPath.row].titleNameString
-            //nextVC.detail = searchNameArray[indexPath.row].detail
-            //nextVC.urlString = searchNameArray[indexPath.row].urlString
-            //nextVC.count = searchNameArray[indexPath.row].count
             nextVC.searchNameArray = searchNameArray
             nextVC.timeuserID = searchNameArray[indexPath.row].userID
             //nextVC.goodUsers = searchNameArray[indexPath.row].goodUser

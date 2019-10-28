@@ -82,6 +82,9 @@ class SearchDetailViewController: UIViewController {
         if good == 1 || timeuserID == userID{
             print("NOT")
             addButton.isEnabled = false
+            //addLabel.isHidden = false
+            addLabel.text = "追加済み"
+            addButton.title = "追加済み"
         }else{
             print("YES")
             addButton.isEnabled = true
@@ -98,8 +101,9 @@ class SearchDetailViewController: UIViewController {
         myListDB.updateChildValues(mylistInfo)
         
         addButton.isEnabled = false
-        addLabel.isHidden = false
-        
+        //addLabel.isHidden = false
+        addLabel.text = "追加しました！！！"
+        addButton.title = "追加済み"
         tap()
         
     }

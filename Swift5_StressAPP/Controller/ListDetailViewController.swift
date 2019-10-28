@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RealmSwift
+import Firebase
 
 class ListDetailViewController: UIViewController {
     
@@ -20,7 +20,17 @@ class ListDetailViewController: UIViewController {
     var titleName : String = ""
     var detail : String = ""
     var urlString : String = ""
-   
+    var MyList = [FireMyList]()
+    let MyListref = Database.database().reference().child("MyList")
+    var indexNumber = 0
+    
+    var myLists:FireMyList!{
+        didSet{
+            titleName = myLists.titleNameString
+            detail = myLists.detail
+            urlString = myLists.urlString
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,40 +38,41 @@ class ListDetailViewController: UIViewController {
         titlenameLabel.text = titleName
         detailLabel.text = detail
         urlStringLabel.text = urlString
-        
-        
-        // Do any additional setup after loading the view.
+
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-       
+        let userID = (Auth.auth().currentUser?.uid)!
+        MyListref.child(userID).observe(.value) { (snapshot) in
+           self.MyList.removeAll()
+           for child in snapshot.children{
+               let childSnapshoto = child as! DataSnapshot
+               let content = FireMyList(snapshot: childSnapshoto)
+               self.MyList.insert(content, at: 0)
+           }
+            
+        self.titlenameLabel.text = self.MyList[self.indexNumber].titleNameString
+        self.detailLabel.text = self.MyList[self.indexNumber].detail
+        self.urlStringLabel.text = self.MyList[self.indexNumber].urlString
+            
+        }
+        
     }
     
     
     @IBAction func change(_ sender: Any) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "ListChange") as! ListChangeViewController
-        nextVC.titleName = titleName
-        nextVC.detail = detail
-        nextVC.urlString = urlString
+        
+        let mylist = MyList[indexNumber]
+        nextVC.myLists = mylist
+        
     
         navigationController?.pushViewController(nextVC, animated: true)
         
     }
     
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

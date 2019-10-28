@@ -18,6 +18,14 @@ class ListChangeViewController: UIViewController,UITextFieldDelegate,UITextViewD
     var titleName : String = ""
     var detail : String = ""
     var urlString : String = ""
+    
+    var myLists:FireMyList!{
+        didSet{
+            titleName = myLists.titleNameString
+            detail = myLists.detail
+            urlString = myLists.urlString
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,13 @@ class ListChangeViewController: UIViewController,UITextFieldDelegate,UITextViewD
         titleNameTextField.resignFirstResponder()
         detailTextView.resignFirstResponder()
         urlStringTextField.resignFirstResponder()
+    }
+    
+    
+    @IBAction func change(_ sender: Any) {
+        myLists.changeList(titleName: titleName, detail: detail, urlString: urlString)
+        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popToRootViewController(animated: true)
     }
     
 
