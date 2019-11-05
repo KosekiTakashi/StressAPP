@@ -1,4 +1,5 @@
 PODS:
+  - CalculateCalendarLogic (0.3.0)
   - Firebase (6.8.1):
     - Firebase/Core (= 6.8.1)
   - Firebase/Auth (6.8.1):
@@ -112,6 +113,7 @@ PODS:
   - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
+  - CalculateCalendarLogic
   - Firebase
   - Firebase/Auth
   - Firebase/Core
@@ -124,6 +126,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - CalculateCalendarLogic
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -150,6 +153,7 @@ SPEC REPOS:
     - TextFieldEffects
 
 SPEC CHECKSUMS:
+  CalculateCalendarLogic: cd5b2c706a8628bb924c5ee9d05c4f61bdbaf390
   Firebase: 9cbe4e5b5eaafa05dc932be58b7c8c3820d71e88
   FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
   FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
@@ -175,6 +179,6 @@ SPEC CHECKSUMS:
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 125d1d5faf583a592456bb352ac7030038cc04b8
+PODFILE CHECKSUM: bc97ca0c02e00fa0b9a4a667b8319a84cf1bf01d
 
 COCOAPODS: 1.8.4

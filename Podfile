@@ -15,5 +15,6 @@ pod 'Firebase/Auth'
 pod 'RealmSwift'
 pod 'TextFieldEffects'
 pod 'FSCalendar'
+pod 'CalculateCalendarLogic'
 
 end

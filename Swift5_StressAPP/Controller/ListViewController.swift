@@ -32,7 +32,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.delegate = self
         tableView.dataSource = self
         
-        
+        title = "\(userName)'sリスト (\(MyList.count))"
         
     }
     
