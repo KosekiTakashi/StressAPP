@@ -25,6 +25,7 @@
 		B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FB234CE40200E1230D /* LoginViewController.swift */; };
 		B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* Contents.swift */; };
 		B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4F198FF234D70B100E1230D /* GoogleService-Info.plist */; };
+		B4FD11692371A1A900D3171E /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */; };
 		B4FEE280236C66FB002D1A1F /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FEE27F236C66FB002D1A1F /* CalenderViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		B4F198FB234CE40200E1230D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B4F198FD234CE9DB00E1230D /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		B4F198FF234D70B100E1230D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
 		B4FEE27F236C66FB002D1A1F /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift5_StressAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB80D451DDBA31C9049F5B1C /* Pods-Swift5_StressAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.release.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				B41C46E6234B553300D3210C /* AddViewController.swift */,
 				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
+				B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */,
 				B41781AC235B11B7002149F9 /* SearchTableViewCell.swift in Sources */,
 				B41C46E7234B553300D3210C /* AddViewController.swift in Sources */,
+				B4FD11692371A1A900D3171E /* CalendarAddViewController.swift in Sources */,
 				B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */,
 				B41781B2235DE669002149F9 /* NewViewController.swift in Sources */,
 				B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */,

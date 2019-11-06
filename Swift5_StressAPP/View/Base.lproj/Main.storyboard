@@ -243,10 +243,10 @@
             </objects>
             <point key="canvasLocation" x="1657.9710144927537" y="359.59821428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar Add View Controller-->
         <scene sceneID="zBz-Dw-ljc">
             <objects>
-                <viewController id="Qcg-WL-pvx" sceneMemberID="viewController">
+                <viewController id="Qcg-WL-pvx" customClass="CalendarAddViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k2B-Wz-sMv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,6 +270,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="RIR-Kb-RZn">
                                 <rect key="frame" x="108" y="275" width="236" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="stressSlider:" destination="Qcg-WL-pvx" eventType="valueChanged" id="QOx-Xk-B6V"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="試したもの" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgr-YH-WtF">
                                 <rect key="frame" x="0.0" y="342" width="102" height="53"/>
@@ -334,6 +337,10 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="YuP-kT-g5T">
                                 <rect key="frame" x="108" y="701" width="236" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="evaluationSlider:" destination="Qcg-WL-pvx" eventType="valueChanged" id="CzQ-oZ-9q3"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad8-vz-wUK">
                                 <rect key="frame" x="350" y="691" width="49" height="53"/>
@@ -348,15 +355,38 @@
                                 <rect key="frame" x="154" y="772" width="106" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="決定"/>
+                                <connections>
+                                    <action selector="getData:" destination="Qcg-WL-pvx" eventType="touchUpInside" id="wiO-Uw-Oxw"/>
+                                </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uy0-VV-grf">
-                                <rect key="frame" x="0.0" y="34" width="414" height="77"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日付" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJm-yX-MSi">
+                                <rect key="frame" x="0.0" y="30" width="88" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77653300759999999" green="0.77631735800000001" blue="0.78431582450000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="選択してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hze-UL-gx6">
+                                <rect key="frame" x="96" y="39" width="318" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hj7-a1-cg4"/>
                     </view>
+                    <connections>
+                        <outlet property="addButton" destination="T33-17-cdS" id="xCP-PT-61g"/>
+                        <outlet property="dateTextField" destination="hze-UL-gx6" id="Zmo-SR-6hF"/>
+                        <outlet property="evaluationLabel" destination="ad8-vz-wUK" id="QZr-CX-B8g"/>
+                        <outlet property="eventNameTextView" destination="jeU-62-zRp" id="cVq-7S-k8q"/>
+                        <outlet property="myListNameLabel" destination="XTk-bh-t7D" id="A1d-Ei-nJi"/>
+                        <outlet property="myListPicker" destination="FKP-rj-J44" id="csY-1k-P2H"/>
+                        <outlet property="resultTextView" destination="Dql-Qw-G5d" id="v5f-jD-XTi"/>
+                        <outlet property="stressLabel" destination="WS3-ys-cbM" id="lB9-4s-5ZD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="th5-gg-fv0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

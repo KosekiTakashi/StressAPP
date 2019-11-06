@@ -18,13 +18,13 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     
     @IBOutlet weak var DateLabel: UILabel!
     
-    var testArray = ["a","b","c"]
+    
     var currentDataTime: Date!
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy-MM-dd  HH:mm"
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
         return formatter
