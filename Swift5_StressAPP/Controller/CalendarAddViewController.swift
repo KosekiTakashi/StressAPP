@@ -8,33 +8,34 @@
 
 import UIKit
 import Firebase
+import Lottie
 
 class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate {
     
-    
     @IBOutlet weak var dateTextField: UITextField!
-    
     @IBOutlet weak var eventNameTextView: UITextView!
     @IBOutlet weak var stressLabel: UILabel!
     @IBOutlet weak var myListPicker: UIPickerView!
     @IBOutlet weak var resultTextView: UITextView!
-    @IBOutlet weak var evaluationLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var myListNameLabel: UILabel!
+    @IBOutlet weak var animationView: AnimationView!
+    @IBOutlet weak var animationView2: AnimationView!
+    @IBOutlet weak var animationView3: AnimationView!
+    @IBOutlet weak var animationView4: AnimationView!
+    @IBOutlet weak var animationView5: AnimationView!
+    
+    let animation = Animation.named("star1")
     
     var titleName = String()
+    var stresscount = Int()
+    var selectedList = String()
+    var result = String()
+    var evaluation = Int()
+    
     var MyList = [FireMyList]()
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
-    
-    fileprivate lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeStyle = .none
-        formatter.dateStyle = .medium
-        return formatter
-    }()
-    
     var myLists:FireMyList!{
         didSet{
             titleName = myLists.titleNameString
@@ -55,7 +56,13 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         dp.addTarget(self, action: #selector(datechange), for: .valueChanged)
         dateTextField.inputView = dp
         dateTextField.inputView = dp
-    
+        
+        animationView.animation = animation
+        animationView2.animation = animation
+        animationView3.animation = animation
+        animationView4.animation = animation
+        animationView5.animation = animation
+        
     }
     
     @objc func datechange(sender:UIDatePicker){
@@ -95,36 +102,17 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
    
     @IBAction func stressSlider(_ sender: UISlider) {
         
-        let count = Int(sender.value)
-        stressLabel.text = String(count)
+        stresscount = Int(sender.value)
         
-        switch count {
+        stressLabel.text = String(stresscount)
+        
+        switch stresscount {
         case 0...3:
             sender.tintColor = .yellow
         case 4...7:
             sender.tintColor = .orange
         case 8...10:
             sender.tintColor = .red
-        default:
-            print("error")
-        }
-    }
-    
-    
-    @IBAction func evaluationSlider(_ sender: UISlider) {
-        
-        let count = Int(sender.value)
-        
-        sender.tintColor = .yellow
-        evaluationLabel.text = String(count)
-        
-        switch count {
-        case 0...1:
-            sender.alpha = 0.3
-        case 2...3:
-            sender.alpha = 0.7
-        case 4...5:
-            sender.alpha = 1
         default:
             print("error")
         }
@@ -155,26 +143,60 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
                     didSelectRow row: Int,
                     inComponent component: Int) {
         
-        let text = MyList[row].titleNameString
-        //let text = testArray[row]
-        myListNameLabel.text = text
+        selectedList = MyList[row].titleNameString
+        myListNameLabel.text = selectedList
         
     }
     
-    @IBAction func getData(_ sender: Any) {
+   
+  
+
+    @IBAction func star(_ sender: UIButton) {
+        
+        let starcount =  sender.currentTitle!
+        switch starcount {
+        case "1":
+            evaluation = 1
+            animationView.play()
+            animationView2.animation = animation
+            animationView3.animation = animation
+            animationView4.animation = animation
+            animationView5.animation = animation
+        case "2":
+            evaluation = 2
+            animationView.play()
+            animationView2.play()
+            animationView3.animation = animation
+            animationView4.animation = animation
+            animationView5.animation = animation
+        case "3":
+            evaluation = 3
+            animationView.play()
+            animationView2.play()
+            animationView3.play()
+            animationView4.animation = animation
+            animationView5.animation = animation
+        case "4":
+            evaluation = 4
+            animationView.play()
+            animationView2.play()
+            animationView3.play()
+            animationView4.play()
+            animationView5.animation = animation
+        case "5":
+            evaluation = 5
+            animationView.play()
+            animationView2.play()
+            animationView3.play()
+            animationView4.play()
+            animationView5.play()
+        default:
+            print("error")
+        }
        
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    @IBAction func getData(_ sender: Any) {
+          
+       }
 }

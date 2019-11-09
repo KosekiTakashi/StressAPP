@@ -26,6 +26,11 @@
 		B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* Contents.swift */; };
 		B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4F198FF234D70B100E1230D /* GoogleService-Info.plist */; };
 		B4FD11692371A1A900D3171E /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */; };
+		B4FD116B2375959F00D3171E /* star1.json in Resources */ = {isa = PBXBuildFile; fileRef = B4FD116A2375959F00D3171E /* star1.json */; };
+		B4FD116D2375A6A000D3171E /* star2.json in Resources */ = {isa = PBXBuildFile; fileRef = B4FD116C2375A6A000D3171E /* star2.json */; };
+		B4FD116F2375A6AF00D3171E /* star3.json in Resources */ = {isa = PBXBuildFile; fileRef = B4FD116E2375A6AF00D3171E /* star3.json */; };
+		B4FD11712375A6BD00D3171E /* star4.json in Resources */ = {isa = PBXBuildFile; fileRef = B4FD11702375A6BD00D3171E /* star4.json */; };
+		B4FD11732375A6D400D3171E /* star5.json in Resources */ = {isa = PBXBuildFile; fileRef = B4FD11722375A6D400D3171E /* star5.json */; };
 		B4FEE280236C66FB002D1A1F /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FEE27F236C66FB002D1A1F /* CalenderViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +56,11 @@
 		B4F198FD234CE9DB00E1230D /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		B4F198FF234D70B100E1230D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
+		B4FD116A2375959F00D3171E /* star1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star1.json; sourceTree = "<group>"; };
+		B4FD116C2375A6A000D3171E /* star2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star2.json; sourceTree = "<group>"; };
+		B4FD116E2375A6AF00D3171E /* star3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star3.json; sourceTree = "<group>"; };
+		B4FD11702375A6BD00D3171E /* star4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star4.json; sourceTree = "<group>"; };
+		B4FD11722375A6D400D3171E /* star5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star5.json; sourceTree = "<group>"; };
 		B4FEE27F236C66FB002D1A1F /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift5_StressAPP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB80D451DDBA31C9049F5B1C /* Pods-Swift5_StressAPP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.release.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,6 +121,11 @@
 				B41C46DA23475B9000D3210C /* Controller */,
 				B41C46D3234758E200D3210C /* Info.plist */,
 				B4F198FF234D70B100E1230D /* GoogleService-Info.plist */,
+				B4FD116A2375959F00D3171E /* star1.json */,
+				B4FD116C2375A6A000D3171E /* star2.json */,
+				B4FD116E2375A6AF00D3171E /* star3.json */,
+				B4FD11702375A6BD00D3171E /* star4.json */,
+				B4FD11722375A6D400D3171E /* star5.json */,
 			);
 			path = Swift5_StressAPP;
 			sourceTree = "<group>";
@@ -135,10 +150,10 @@
 				B41C46DE2347726C00D3210C /* ListDetailViewController.swift */,
 				B43F295C236328B000B14757 /* ListChangeViewController.swift */,
 				B4FEE27F236C66FB002D1A1F /* CalenderViewController.swift */,
+				B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */,
 				B41C46E6234B553300D3210C /* AddViewController.swift */,
 				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
-				B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -214,9 +229,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4FD11712375A6BD00D3171E /* star4.json in Resources */,
+				B4FD116B2375959F00D3171E /* star1.json in Resources */,
 				B41C46D2234758E200D3210C /* LaunchScreen.storyboard in Resources */,
 				B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */,
 				B41C46CF234758E200D3210C /* Assets.xcassets in Resources */,
+				B4FD116F2375A6AF00D3171E /* star3.json in Resources */,
+				B4FD116D2375A6A000D3171E /* star2.json in Resources */,
+				B4FD11732375A6D400D3171E /* star5.json in Resources */,
 				B41C46CD234758DF00D3210C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

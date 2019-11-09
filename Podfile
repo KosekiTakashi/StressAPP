@@ -16,5 +16,6 @@ pod 'RealmSwift'
 pod 'TextFieldEffects'
 pod 'FSCalendar'
 pod 'CalculateCalendarLogic'
+pod 'lottie-ios'
 
 end
