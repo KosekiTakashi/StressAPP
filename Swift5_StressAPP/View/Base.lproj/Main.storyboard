@@ -703,7 +703,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZHY-Fd-bvx" customClass="KaedeTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="218" width="374" height="34"/>
+                                <rect key="frame" x="20" y="193" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -728,19 +728,27 @@
                                     <segue destination="tVK-bT-Srb" kind="show" id="mfi-Kz-Ngf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="メールかパスワードが間違っています" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHF-v8-Vk9">
+                                <rect key="frame" x="20" y="235" width="354" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="loj-6I-Dvo"/>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="dr0-US-FNt" id="B4v-Mu-Cc5"/>
+                        <outlet property="messageLabel" destination="iHF-v8-Vk9" id="QmJ-Uf-V5v"/>
                         <outlet property="passwordTextField" destination="ZHY-Fd-bvx" id="UE4-u3-WXf"/>
                         <segue destination="49e-Tb-3d3" kind="presentation" identifier="tab" modalPresentationStyle="fullScreen" id="aGp-WM-AWM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dW8-0c-UxO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2630" y="-193"/>
+            <point key="canvasLocation" x="-2630.434782608696" y="-193.52678571428569"/>
         </scene>
         <!--New View Controller-->
         <scene sceneID="vU3-dh-57i">
@@ -889,6 +897,6 @@
         <image name="plus.circle" catalog="system" width="64" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oKH-hL-K0x"/>
+        <segue reference="aGp-WM-AWM"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,6 +15,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailTextField: KaedeTextField!
     @IBOutlet weak var passwordTextField: KaedeTextField!
     
+    @IBOutlet weak var messageLabel: UILabel!
     var username : String = ""
     
     override func viewDidLoad() {
@@ -22,7 +23,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-    
+        
+        messageLabel.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -38,6 +40,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil{
                 print(error as Any)
+                self.messageLabel.isHidden = false
             }else{
                 print("succees")
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
