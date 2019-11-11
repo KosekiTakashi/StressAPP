@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Lottie
 
-class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate {
+class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate,UITextViewDelegate {
     
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventNameTextView: UITextView!
@@ -57,6 +57,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         dateTextField.inputView = dp
         dateTextField.inputView = dp
         
+        eventNameTextView.delegate = self
+        resultTextView.delegate = self
+        
         animationView.animation = animation
         animationView2.animation = animation
         animationView3.animation = animation
@@ -79,7 +82,12 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        titleName = eventNameTextView.text!
+        result = resultTextView.text!
+        
         dateTextField.resignFirstResponder()
+        eventNameTextView.resignFirstResponder()
+        resultTextView.resignFirstResponder()
     }
     
     
