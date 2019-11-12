@@ -16,16 +16,17 @@ class FireMyList{
     var urlString:String = ""
     var userID:String = ""
     var usedCount = 0
+    var evaluation = 0
 //    var usedCount:Int = 0
     let ref:DatabaseReference!
     
-    init(titleName:String,detail:String,urlString:String,useID:String,usedCount:Int) {
+    init(titleName:String,detail:String,urlString:String,useID:String,usedCount:Int,evaluation:Int) {
        
         self.titleNameString = titleName
         self.detail = detail
         self.urlString = urlString
         self.usedCount = usedCount
-        
+        self.evaluation = evaluation
         self.userID = useID
         
         ref = Database.database().reference().child("MyList").child(String(userID)).child("List").childByAutoId()
@@ -37,7 +38,9 @@ class FireMyList{
             titleNameString = value["titleName"] as! String
             detail = value["detail"] as! String
             urlString = value["URL"] as! String
-            usedCount = value["count"] as! Int
+            usedCount = value["usedcount"] as! Int
+            evaluation = value["evaluation"] as! Int
+            
         }
     }
     
@@ -59,6 +62,15 @@ extension FireMyList{
         ref.child("titleName").setValue(titleName)
         ref.child("detail").setValue(detail)
         ref.child("URL").setValue(urlString)
+    }
+    
+    func usedEvaluation(){
+        usedCount += 1
+        ref.child("usedcount").setValue(usedCount)
+        
+        evaluation += 1
+        ref.child("evaluation").setValue(usedCount)
+        
     }
     
 }
