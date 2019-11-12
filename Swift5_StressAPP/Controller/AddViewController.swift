@@ -108,9 +108,11 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
             //goodUserに一応入れておく
             self.goodUser.append(self.userID)
-            self.timeLineAndmyListAdd()
+            self.timeLineAdd()
+            self.mylistAdd()
             
             self.goodUser.removeAll()
+            
             self.titleTextField.text = ""
             self.detailTextView.text = ""
             self.URLTextField.text = ""
@@ -131,23 +133,19 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         //goodUser.removeAll()
     }
     
-    func timeLineAndmyListAdd(){
+    func timeLineAdd(){
         //タイムライン
         let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
         let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser] as [String:Any]
         timeLineDB.updateChildValues(timeLineInfo)
     
-        //自分のリスト
-        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
-        let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
-        myListDB.updateChildValues(mylistInfo)
         
     }
     
     
     func mylistAdd(){
         
-        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
+        let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("List").childByAutoId()
         let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
         myListDB.updateChildValues(mylistInfo)
     }

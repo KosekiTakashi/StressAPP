@@ -26,22 +26,20 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     @IBOutlet weak var animationView5: AnimationView!
     
     let animation = Animation.named("star1")
-    
+    var dateString = ""
+    var timeString = ""
     var titleName = String()
     var stresscount = Int()
     var selectedList = String()
     var result = String()
     var evaluation = Int()
+    var userID = (Auth.auth().currentUser?.uid)!
     
     var MyList = [FireMyList]()
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
-    var myLists:FireMyList!{
-        didSet{
-            titleName = myLists.titleNameString
-        }
-    }
     
+    var diary: Diary!
     let dp = UIDatePicker()
     
     override func viewDidLoad() {
@@ -69,8 +67,16 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     @objc func datechange(sender:UIDatePicker){
+        let dateformatter = DateFormatter()
+        let timeformatter1 = DateFormatter()
         let formatter = DateFormatter()
+        
+        timeformatter1.dateFormat = "hh:mm"
+        dateformatter.dateFormat = "yyyy-MM-dd"
         formatter.dateFormat = "yyyy-MM-dd hh:mm"
+        
+        dateString = "\(dateformatter.string(from: sender.date))"
+        timeString = "\(timeformatter1.string(from: sender.date))"
         dateTextField.text = "\(formatter.string(from: sender.date))"
     }
     
@@ -95,8 +101,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //MyListを追加
         let userID = (Auth.auth().currentUser?.uid)!
-        MyListref.child(userID).observe(.value) { (snapshot) in
+        MyListref.child(userID).child("List").observe(.value) { (snapshot) in
            self.MyList.removeAll()
            for child in snapshot.children{
                let childSnapshoto = child as! DataSnapshot
@@ -111,9 +118,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     @IBAction func stressSlider(_ sender: UISlider) {
         
         stresscount = Int(sender.value)
-        
         stressLabel.text = String(stresscount)
         
+        //colorChange
         switch stresscount {
         case 0...3:
             sender.tintColor = .yellow
@@ -126,7 +133,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         }
     }
     
-    
+    //Pickerの設定
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -207,6 +214,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     }
     
     @IBAction func getData(_ sender: Any) {
-          
-       }
+        let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("Diary").child(dateString).childByAutoId()
+        
+        let mylistInfo = ["titleName":self.titleName as Any, "stressCount": stresscount  as Any,"selectedList":selectedList as Any,"result":result as Any, "evaluation":evaluation as Any,"timeString":timeString as Any] as [String:Any]
+        myListDB.updateChildValues(mylistInfo)
+    }
 }

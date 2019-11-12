@@ -46,7 +46,7 @@ class ListDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let userID = (Auth.auth().currentUser?.uid)!
-        MyListref.child(userID).observe(.value) { (snapshot) in
+        MyListref.child(userID).child("List").observe(.value) { (snapshot) in
            self.MyList.removeAll()
            for child in snapshot.children{
                let childSnapshoto = child as! DataSnapshot

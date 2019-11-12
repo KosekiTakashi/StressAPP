@@ -9,6 +9,7 @@
 import UIKit
 import FSCalendar
 import CalculateCalendarLogic
+import Firebase
 
 class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance {
 
@@ -20,16 +21,20 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     var test = ["a", "b", "c","d"]
     
     var currentDataTime: Date!
+    var diary = [Diary]()
+    var userID = (Auth.auth().currentUser?.uid)!
+    let MyListref = Database.database().reference().child("MyList")
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd  HH:mm"
+        formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeStyle = .none
         formatter.dateStyle = .medium
         return formatter
     }()
     
+    var selectday = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +50,7 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let year = tmpDate.component(.year, from: Date())
         let month = tmpDate.component(.month, from: Date())
         let day = tmpDate.component(.day, from: Date())
-        let selectday = "\(year)-\(month)-\(day)"
+        selectday = "\(year)-\(month)-\(day)"
         DateLabel.text = selectday
         
         
@@ -53,6 +58,21 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
+            self.diary.removeAll()
+            for child in snapshot.children{
+                let childSnapshoto = child as! DataSnapshot
+                let content = Diary(snapshot: childSnapshoto)
+                self.diary.insert(content, at: 0)
+                    
+            }
+            self.tableView.reloadData()
+            print("====================================")
+            print(self.diary)
+            print("====================================")
+            
+        }
         tableView.reloadData()
     }
     
@@ -68,9 +88,24 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let year = tmpDate.component(.year, from: date)
         let month = tmpDate.component(.month, from: date)
         let day = tmpDate.component(.day, from: date)
-        print("day\(day)")
+        
         let selectday = "\(year)-\(month)-\(day)"
-        DateLabel.text = selectday
+        MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
+            self.diary.removeAll()
+            for child in snapshot.children{
+                let childSnapshoto = child as! DataSnapshot
+                let content = Diary(snapshot: childSnapshoto)
+                self.diary.insert(content, at: 0)
+                    
+            }
+            self.tableView.reloadData()
+            print("====================================")
+            print(self.diary)
+            print("====================================")
+            
+        }
+        tableView.reloadData()
+        DateLabel.text = "\(year)-\(month)-\(day) の出来事"
     }
     
    
@@ -145,14 +180,14 @@ extension CalenderViewController:UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.count
+        return diary.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-        cell.textLabel?.text = test[indexPath.row]
+        cell.textLabel?.text = diary[indexPath.row].timeString
         
         return cell
     }

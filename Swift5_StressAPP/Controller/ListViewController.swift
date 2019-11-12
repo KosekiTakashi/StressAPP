@@ -17,6 +17,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var titleName = String()
     var detail = String()
     var urlString = String()
+    var usedcount = Int()
     
     var realm : Realm!
     
@@ -38,15 +39,16 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         print(userID)
-        self.navigationController?.title = String(MyList.count)
+        
         userID = (Auth.auth().currentUser?.uid)!
         
         if Auth.auth().currentUser?.displayName != nil{
             userName = (Auth.auth().currentUser?.displayName)!
         }
         
-        MyListref.child(userID).observe(.value) { (snapshot) in
+        MyListref.child(userID).child("List").observe(.value) { (snapshot) in
             self.MyList.removeAll()
             for child in snapshot.children{
                 let childSnapshoto = child as! DataSnapshot
@@ -55,7 +57,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
             }
             self.tableView.reloadData()
-            
+            self.navigationController?.title = String(self.MyList.count)
         }
         
         title = "\(userName)'sリスト (\(MyList.count))"
