@@ -14,10 +14,10 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
 
     
     @IBOutlet weak var Calender: FSCalendar!
-    
-    
     @IBOutlet weak var DateLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
+    var test = ["a", "b", "c","d"]
     
     var currentDataTime: Date!
     
@@ -36,6 +36,10 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         Calender.delegate = self
         Calender.dataSource = self
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        
         
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: Date())
@@ -43,6 +47,13 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let day = tmpDate.component(.day, from: Date())
         let selectday = "\(year)-\(month)-\(day)"
         DateLabel.text = selectday
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     
@@ -114,10 +125,6 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let day = tmpCalendar.component(.day, from: date)
         return (year,month,day)
     }
-    
-  
-    
-    
     /*
     // MARK: - Navigation
 
@@ -128,4 +135,32 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     }
     */
 
+}
+
+extension CalenderViewController:UITableViewDelegate,UITableViewDataSource{
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return test.count
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        cell.textLabel?.text = test[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
+    }
+    
+    
+    
 }

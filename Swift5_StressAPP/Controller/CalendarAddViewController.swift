@@ -162,6 +162,8 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     @IBAction func star(_ sender: UIButton) {
         
         let starcount =  sender.currentTitle!
+        
+        //もっと綺麗に書きたい
         switch starcount {
         case "1":
             evaluation = 1
