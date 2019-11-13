@@ -38,6 +38,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     var MyList = [FireMyList]()
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
+    var select : FireMyList?
     
     var diary: Diary!
     let dp = UIDatePicker()
@@ -159,6 +160,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
                     inComponent component: Int) {
         
         selectedList = MyList[row].titleNameString
+        select = MyList[row]
         myListNameLabel.text = selectedList
         
     }
@@ -218,5 +220,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         
         let mylistInfo = ["titleName":self.titleName as Any, "stressCount": stresscount  as Any,"selectedList":selectedList as Any,"result":result as Any, "evaluation":evaluation as Any,"timeString":timeString as Any] as [String:Any]
         myListDB.updateChildValues(mylistInfo)
+        
+        select?.usedEvaluation(eva: evaluation)
+    
+        
     }
 }

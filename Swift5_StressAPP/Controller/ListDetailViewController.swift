@@ -15,11 +15,15 @@ class ListDetailViewController: UIViewController {
     @IBOutlet weak var titlenameLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var urlStringLabel: UILabel!
+    @IBOutlet weak var evaluationLabel: UILabel!
     
     
     var titleName : String = ""
     var detail : String = ""
     var urlString : String = ""
+    var usedCount = 0
+    var evaluation = 0
+    
     var MyList = [FireMyList]()
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
@@ -29,6 +33,9 @@ class ListDetailViewController: UIViewController {
             titleName = myLists.titleNameString
             detail = myLists.detail
             urlString = myLists.urlString
+            usedCount = myLists.usedCount
+            evaluation = myLists.evaluation
+            
         }
     }
     
@@ -38,7 +45,10 @@ class ListDetailViewController: UIViewController {
         titlenameLabel.text = titleName
         detailLabel.text = detail
         urlStringLabel.text = urlString
-
+        
+        let ave:Int = evaluation / 2
+        evaluationLabel.text = "\(ave)"
+        
     }
     
     

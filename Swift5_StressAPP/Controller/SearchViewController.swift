@@ -111,48 +111,7 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         }
     
         
-    //もう使ってない
-    
-    /*
-    func fetchData(){
-            let ref = Database.database().reference().child("timeLine").queryLimited(toLast: 20).queryOrdered(byChild: "postDate").observe(.value) { (snapShot) in
-                
-                self.searchNameArray.removeAll()
-                
-                if let snapShot = snapShot.children.allObjects as? [DataSnapshot]{
-                    
-                    for snap in snapShot{
-                        
-                        if let postData = snap.value as? [String:Any]{
-                            print("--------------------")
-                            let userName = postData["userName"] as? String
-                            let titleName = postData["titleName"] as? String
-                            let detail = postData["detail"] as? String
-                            let urlstring = postData["URL"] as? String
-                            let count = postData["count"] as? Int
-                            
-                            var postDate:CLong?
-                            
-                            if let postedDate = postData["postData"] as? CLong{
-                                postDate = postedDate
-                            }
-                        
-                            //self.searchNameArray.append(Contents.init(userName: userName! , titleName: titleName!, detail: detail!, urlString: urlstring!,count: count!))
-                        }
-                    }
-                }
-                
-                self.tableView.reloadData()
-                
-                let indexPath = IndexPath(row: self.searchNameArray.count - 1, section: 0)
-                if self.searchNameArray.count >= 5{
-                    self.tableView.scrollToRow(at: indexPath , at: .bottom, animated: true)
-                }
-            }
-        }
-        
-
-
+        /*
         // MARK: - Navigation
 
         // In a storyboard-based application, you will often want to do a little preparation before navigation

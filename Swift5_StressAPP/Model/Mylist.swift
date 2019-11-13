@@ -64,12 +64,12 @@ extension FireMyList{
         ref.child("URL").setValue(urlString)
     }
     
-    func usedEvaluation(){
+    func usedEvaluation(eva:Int){
         usedCount += 1
         ref.child("usedcount").setValue(usedCount)
         
-        evaluation += 1
-        ref.child("evaluation").setValue(usedCount)
+        evaluation += eva
+        ref.child("evaluation").setValue(evaluation)
         
     }
     
