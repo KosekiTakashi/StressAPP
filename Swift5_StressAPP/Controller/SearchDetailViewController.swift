@@ -44,6 +44,7 @@ class SearchDetailViewController: UIViewController {
                count = contents.count
                titleName = contents.titleNameString
                detail = contents.detail
+               urlString = contents.urlString
                timeuserID = contents.userID
                goodUsers = contents.goodUser
             

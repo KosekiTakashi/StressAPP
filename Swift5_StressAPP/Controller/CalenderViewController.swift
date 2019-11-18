@@ -25,12 +25,14 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     var userID = (Auth.auth().currentUser?.uid)!
     let MyListref = Database.database().reference().child("MyList")
     
+    var eventCount = 0
+    
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeStyle = .none
-        formatter.dateStyle = .medium
+//        formatter.timeStyle = .none
+//        formatter.dateStyle = .medium
         return formatter
     }()
     
@@ -54,6 +56,8 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         DateLabel.text = selectday
         
         
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,18 +72,19 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
                     
             }
             self.tableView.reloadData()
-            print("====================================")
-            print(self.diary)
-            print("====================================")
-            
         }
+    
         tableView.reloadData()
     }
     
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let dateString = self.dateFormatter.string(from: date)
+        
+        return 0
     }
    
     
@@ -102,6 +107,8 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
             print("====================================")
             print(self.diary)
             print("====================================")
+            self.eventCount = self.diary.count
+            self.Calender.reloadData()
             
         }
         tableView.reloadData()
@@ -160,6 +167,8 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         let day = tmpCalendar.component(.day, from: date)
         return (year,month,day)
     }
+    
+   
     /*
     // MARK: - Navigation
 
@@ -194,6 +203,16 @@ extension CalenderViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let nextVC = storyboard?.instantiateViewController(identifier: "Diary") as! DiarDetailViewController
+        let contents = diary[indexPath.row]
+        nextVC.diary = contents
+        
+        navigationController?.pushViewController(nextVC, animated: true)
+        
     }
     
     

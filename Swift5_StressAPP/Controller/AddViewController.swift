@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import RealmSwift
+import Lottie
 
 class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
@@ -16,7 +17,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var URLTextField: UITextField!
-    
     @IBOutlet weak var addButton: UIButton!
     
    
@@ -28,8 +28,9 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var mylistArray = [String]()
     var count = Int()
     var goodUser = [String]()
-    
     var mylist_fire : FireMyList!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +80,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         detail = detailTextView.text!
         urlString = URLTextField.text!
         
-        
-        
         if titleName == "" || detail == ""{
             addButton.isHidden = true
             addButton.isEnabled = false
@@ -112,17 +111,19 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             self.mylistAdd()
             
             self.goodUser.removeAll()
-            
             self.titleTextField.text = ""
             self.detailTextView.text = ""
             self.URLTextField.text = ""
+           
         }
         
         let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
             self.mylistAdd()
+            
             self.titleTextField.text = ""
             self.detailTextView.text = ""
             self.URLTextField.text = ""
+            
         }
         
         alertController.addAction(OK)
@@ -130,6 +131,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
+        
+        
         //goodUser.removeAll()
     }
     
@@ -145,10 +148,14 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     func mylistAdd(){
         
+        
         let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("List").childByAutoId()
         let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"usedcount":count as Any,"evaluation":count as Any] as [String:Any]
         myListDB.updateChildValues(mylistInfo)
     }
+    
+    
+    
     
 
     /*

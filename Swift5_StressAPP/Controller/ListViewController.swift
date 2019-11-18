@@ -58,9 +58,8 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
             self.tableView.reloadData()
             self.navigationController?.title = String(self.MyList.count)
+            self.title = "\(self.userName)'sリスト (\(self.MyList.count))"
         }
-        
-        title = "\(userName)'sリスト (\(MyList.count))"
         
     }
     

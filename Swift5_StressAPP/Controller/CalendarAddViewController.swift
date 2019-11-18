@@ -29,10 +29,10 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     var dateString = ""
     var timeString = ""
     var titleName = String()
-    var stresscount = Int()
+    var stresscount:Int = 0
     var selectedList = String()
     var result = String()
-    var evaluation = Int()
+    var evaluation:Int = 0
     var userID = (Auth.auth().currentUser?.uid)!
     
     var MyList = [FireMyList]()
@@ -222,6 +222,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         myListDB.updateChildValues(mylistInfo)
         
         select?.usedEvaluation(eva: evaluation)
+        
+        dismiss(animated: true, completion: nil)
+        
     
         
     }
