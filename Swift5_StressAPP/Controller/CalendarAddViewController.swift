@@ -29,7 +29,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     var dateString = ""
     var timeString = ""
     var titleName = String()
-    var stresscount:Int = 0
+    var stresscount:Int = 5
     var selectedList = String()
     var result = String()
     var evaluation:Int = 0
