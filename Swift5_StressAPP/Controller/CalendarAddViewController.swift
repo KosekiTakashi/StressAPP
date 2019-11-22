@@ -29,7 +29,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     var dateString = ""
     var timeString = ""
     var titleName = String()
-    var stresscount:Int = 0
+    var stresscount:Int = 5
     var selectedList = String()
     var result = String()
     var evaluation:Int = 0
@@ -39,7 +39,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
     var select : FireMyList?
-    
+    let screenSize = UIScreen.main.bounds.size
     var diary: Diary!
     let dp = UIDatePicker()
     
@@ -65,6 +65,28 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         animationView4.animation = animation
         animationView5.animation = animation
         
+        
+        
+    }
+    
+    @objc func keyboardWillShow(_ notification:NSNotification){
+        let keyboardHeight = ((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as Any) as AnyObject).cgRectValue.height
+           
+        resultTextView.frame.origin.y = screenSize.height - keyboardHeight - resultTextView.frame.height
+           
+    }
+       
+    @objc func keyboardWillHide(_ notification:NSNotification){
+           
+        resultTextView.frame.origin.y = 483
+           
+        guard let rect = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+        //durationは下げる時間
+        UIView.animate(withDuration: duration){
+            let transform = CGAffineTransform(translationX: 0, y: 0)
+            self.view.transform = transform
+        }
     }
     
     @objc func datechange(sender:UIDatePicker){
@@ -81,11 +103,6 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         dateTextField.text = "\(formatter.string(from: sender.date))"
     }
     
-    func textField(_ textField: UITextField,
-                   shouldChangeCharactersIn range: NSRange,
-                   replacementString string: String) -> Bool {
-        return false
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -97,6 +114,15 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         resultTextView.resignFirstResponder()
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print("--------judge----------")
+        if textView == resultTextView{
+            print("result")
+            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+            
+        }
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,9 +191,6 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         
     }
     
-   
-  
-
     @IBAction func star(_ sender: UIButton) {
         
         let starcount =  sender.currentTitle!

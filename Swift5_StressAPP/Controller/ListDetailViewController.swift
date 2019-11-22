@@ -45,9 +45,12 @@ class ListDetailViewController: UIViewController {
         titlenameLabel.text = titleName
         detailLabel.text = detail
         urlStringLabel.text = urlString
-        
-        let ave:Int = evaluation / 2
-        evaluationLabel.text = "\(ave)"
+        if usedCount != 0{
+            let ave:Int = evaluation / usedCount
+            evaluationLabel.text = "\(ave) (使用回数：\(usedCount))"
+        }else{
+            evaluationLabel.text = "未使用です"
+        }
         
     }
     
