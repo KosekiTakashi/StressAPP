@@ -44,6 +44,9 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        searchBar.isHidden = true
+        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
+        
         userID = (Auth.auth().currentUser?.uid)!
         if Auth.auth().currentUser?.displayName != nil{
             userName = (Auth.auth().currentUser?.displayName)!
@@ -105,7 +108,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return view.frame.size.height/6
+        return view.frame.size.height/7
     }
     
     
@@ -148,6 +151,8 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        myListArray.removeAll()
         
         self.tableView.reloadData()
+        searchBar.isHidden = true
+        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
     }
     
     
@@ -167,6 +172,14 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         self.tableView.reloadData()
     }
+    
+    @IBAction func searchPressed(_ sender: Any) {
+        searchBar.isHidden = false
+        tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+    }
+    
+    
+    
     
     /*
     // MARK: - Navigation

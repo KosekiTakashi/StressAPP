@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 
-class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate {
     
     
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     
     var searchNameArray = [Contents]()
     var userName = String()
@@ -21,6 +24,9 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var count = Int()
     var urlString = String()
     var goodUser = [String]()
+    
+    var searchResults:[String] = []
+    var myListArray:[String] = []
     
     //var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
@@ -31,22 +37,16 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
 
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
        
-        
-            
-        if UserDefaults.standard.object(forKey: "userName") != nil{
-            userName = UserDefaults.standard.object(forKey: "userName") as! String
-        }
-            
         title = "TimeLine"
-        
-        }
+    }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //fetchData()
-            
+        searchBar.isHidden = true
+        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
             
         //新しい受け取り
         timeLinesref.observe(.value) { (snapshot) in
@@ -54,61 +54,104 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 
             for child in snapshot.children{
                 let childSnapshoto = child as! DataSnapshot
+                
                 let content = Contents(snapshot: childSnapshoto)
                 self.searchNameArray.insert(content, at: 0)
+                
+                let content1 = Contents(snapshot: childSnapshoto).titleNameString
+                self.myListArray.insert(content1, at: 0)
                     
             }
-            
             self.tableView.reloadData()
         }
-            
-        }
+    }
         
         //セクションの数
-        func numberOfSections(in tableView: UITableView) -> Int {
-            return 1
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+        
+        
+    //セルの数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        if searchBar.text != "" {
+//            return searchResults.count
+//        } else {
+//            return searchNameArray.count
+//        }
+        return searchNameArray.count
+            
+    }
+        
+    //cellの設定
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
+//
+//        if searchBar.text != "" {
+//            cell.textLabel!.text = "\(searchResults[indexPath.row])"
+//        } else {
+//            let content = searchNameArray[indexPath.row]
+//            cell.content = content
+//        }
+        
+        let content = searchNameArray[indexPath.row]
+        cell.content = content
+        return cell
+    }
+        
+    //セルの高さ
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 170
+    }
+        
+        
+    //セルをタッチで画面遷移（ListDetailViewController）
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+        let nextVC = storyboard?.instantiateViewController(identifier: "SearchDetail") as! SearchDetailViewController
+            
+        nextVC.searchNameArray = searchNameArray
+        nextVC.timeuserID = searchNameArray[indexPath.row].userID
+        //nextVC.goodUsers = searchNameArray[indexPath.row].goodUser
+        let content = searchNameArray[indexPath.row]
+        nextVC.contents = content
+        //nextVC.tapupcount = tapupcount
+            
+        navigationController?.pushViewController(nextVC, animated: true)
+            
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.view.endEditing(true)
+       
+        self.tableView.reloadData()
+        searchBar.isHidden = true
+        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
+    }
+            
+            
+    //検索機能の実施(まだ未使用)
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+                
+        self.view.endEditing(true)
+                
+        searchResults = myListArray.filter{
+            $0.lowercased().contains(searchBar.text!.lowercased())
+                    
         }
+        print("---------------------------------------")
+        print(searchResults)
+        self.tableView.reloadData()
+    }
         
-        
-        //セルの数
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return searchNameArray.count
-        }
-        
-        //cellの設定
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
-            let content = searchNameArray[indexPath.row]
-            cell.content = content
-            //tapupcount = cell.tapcount
-            //print(tapupcount)
-            return cell
-        }
-        
-        //セルの高さ
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            
-            return 170
-        }
-        
-        
-        //セルをタッチで画面遷移（ListDetailViewController）
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-            let nextVC = storyboard?.instantiateViewController(identifier: "SearchDetail") as! SearchDetailViewController
-            
-            nextVC.searchNameArray = searchNameArray
-            nextVC.timeuserID = searchNameArray[indexPath.row].userID
-            //nextVC.goodUsers = searchNameArray[indexPath.row].goodUser
-            let content = searchNameArray[indexPath.row]
-            nextVC.contents = content
-            //nextVC.tapupcount = tapupcount
-            
-            navigationController?.pushViewController(nextVC, animated: true)
-            
-        }
+    @IBAction func searchPressed(_ sender: Any) {
+        searchBar.isHidden = false
+        searchBar.text = "まだ使えない"
+        tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+    }
     
         
         /*
@@ -122,3 +165,5 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         */
 
     }
+
+
