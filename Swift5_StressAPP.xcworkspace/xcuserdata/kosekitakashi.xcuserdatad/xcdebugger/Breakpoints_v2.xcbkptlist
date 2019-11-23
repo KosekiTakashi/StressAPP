@@ -154,14 +154,10 @@
             filePath = "Swift5_StressAPP/Controller/SearchViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-<<<<<<< HEAD
-            endingLineNumber = "160">
-=======
-            endingLineNumber = "160"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "SearchViewController"
             landmarkType = "3">
->>>>>>> searchBar
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

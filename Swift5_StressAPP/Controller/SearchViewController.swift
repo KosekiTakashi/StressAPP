@@ -25,8 +25,11 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
     var urlString = String()
     var goodUser = [String]()
     
-    var searchResults:[String] = []
-    var myListArray:[String] = []
+    var searchNameResults:[String] = []
+    var searchUserIDResults:[String] = []
+    var nameArray:[String] = []
+    var userIDArray:[String] = []
+    var number = 0
     
     //var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
@@ -59,7 +62,10 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 self.searchNameArray.insert(content, at: 0)
                 
                 let content1 = Contents(snapshot: childSnapshoto).titleNameString
-                self.myListArray.insert(content1, at: 0)
+                self.nameArray.insert(content1, at: 0)
+                
+                let content2 = Contents(snapshot: childSnapshoto).userID
+                self.userIDArray.insert(content1, at: 0)
                     
             }
             self.tableView.reloadData()
@@ -118,6 +124,19 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         let content = searchNameArray[indexPath.row]
         nextVC.contents = content
         //nextVC.tapupcount = tapupcount
+        
+        for i in 0...searchNameArray.count - 1{
+            let name = searchNameResults[indexPath.row]
+            let userID = searchUserIDResults[indexPath.row]
+            
+            if  searchNameArray[i].titleNameString.contains(name) && searchNameArray[i].userID.contains(userID)  {
+                number = i
+                print(i)
+            }else{
+                print("一致なし")
+            }
+        }
+        
             
         navigationController?.pushViewController(nextVC, animated: true)
             
@@ -138,13 +157,16 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 
         self.view.endEditing(true)
                 
-        searchResults = myListArray.filter{
+        searchNameResults = nameArray.filter{
             $0.lowercased().contains(searchBar.text!.lowercased())
-                    
         }
-        print("---------------------------------------")
-        print(searchResults)
+        
+        searchUserIDResults = nameArray.filter{
+            $0.lowercased().contains(searchBar.text!.lowercased())
+        }
+        
         self.tableView.reloadData()
+        
     }
         
     @IBAction func searchPressed(_ sender: Any) {
