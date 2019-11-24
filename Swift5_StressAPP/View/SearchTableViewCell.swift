@@ -19,52 +19,37 @@ class SerchTabViewCell: UITableViewCell {
     var userID = (Auth.auth().currentUser?.uid)!
     var goodUser = [String]()
     var good = 0
+    var test = ""
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleNameLabel: UILabel!
     
     @IBOutlet weak var countLabel: UILabel!
-    
-    
-    
-    
     var content:Contents!{
         didSet{
             userNameLabel.text = content.userNameString
             titleNameLabel.text = content.titleNameString
             countLabel.text = ("ダウンロード数：\(content.count)")
-            timeuserID = content.userID
-            goodUser = content.goodUser
+            userNameLabel.text = test
             
-            print("---------------")
-            print("username_\(content.userNameString)")
-            print("title_\(content.titleNameString)")
-            print("userID_\(userID)")
-            print("timeuserID_\(timeuserID)")
-            print("goodUsers_\(goodUser)")
-        
             
             //比較してみる
             
-            for i in goodUser{
-                if i == userID{
-                    good = 1
-                }
-            }
-            
-            print("good_\(good)")
-            
-            if good == 1 {
-                print("NOT")
-               
-            }else{
-                print("YES")
-                
-                //|| timeuserID == userID
-            }
-            
-        }
+//            for i in goodUser{
+//                if i == userID{
+//                    good = 1
+//                }
+//            }
+//            if good == 1 {
+//                print("NOT")
+//            }else{
+//                print("YES")
+//                //|| timeuserID == userID
+//            }
+//
+       }
     }
+    
  
     
     func mylistAdd(){

@@ -28,7 +28,8 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var userID  =  ""
     var userName = ""
     let MyListref = Database.database().reference().child("MyList")
-    
+    var numberArray = [Int]()
+    var number = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -96,8 +97,9 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
-        if searchBar.text != "" {
-            cell.textLabel!.text = "\(searchResults[indexPath.row])"
+        if searchBar.text != "" &&  numberArray != [] {
+            number = numberArray[indexPath.row]
+            cell.textLabel!.text = MyList[number].titleNameString
         } else {
             cell.textLabel?.text = MyList[indexPath.row].titleNameString
         }
@@ -119,23 +121,13 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let mylist = MyList[indexPath.row]
         
-        var number = 0
-        if searchBar.text != "" {
-            print(indexPath.row)
-            for i in 0...MyList.count - 1{
-                let search = searchResults[indexPath.row]
-                if  MyList[i].titleNameString.contains(search){
-                    number = i
-                    print(i)
-                }
-            }
-            print(MyList[number].titleNameString)
-        }
-        if number == 0{
+        
+        if searchBar.text == "" && numberArray == []{
             nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
         }else{
             //仮の値
+            number = numberArray[indexPath.row]
             nextVC.myLists = MyList[number]
             nextVC.indexNumber = number
         }
@@ -148,8 +140,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.view.endEditing(true)
-//        myListArray.removeAll()
-        
         self.tableView.reloadData()
         searchBar.isHidden = true
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
@@ -163,18 +153,22 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         searchResults = myListArray.filter{
             $0.lowercased().contains(searchBar.text!.lowercased())
-            
         }
-        print("---------------------------------------")
-        print(searchResults)
         
-//        searchBar.text = ""
-        
+        numberArray.removeAll()
+        for i in 0...MyList.count - 1{
+            if  MyList[i].titleNameString.contains(searchBar.text!){
+                number = i
+                numberArray.append(i)
+                print(i)
+            }
+        }
         self.tableView.reloadData()
     }
     
     @IBAction func searchPressed(_ sender: Any) {
         searchBar.isHidden = false
+        searchBar.placeholder = "タイトル名を入力してください"
         tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
     }
     

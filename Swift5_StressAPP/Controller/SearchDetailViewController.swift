@@ -77,17 +77,14 @@ class SearchDetailViewController: UIViewController {
                 good = 1
             }
         }
-        print("good_\(good)")
-        
-        
         if good == 1 || timeuserID == userID{
-            print("NOT")
+            
             addButton.isEnabled = false
             //addLabel.isHidden = false
             addLabel.text = "追加済み"
             addButton.title = "追加済み"
         }else{
-            print("YES")
+            
             addButton.isEnabled = true
         }
     }

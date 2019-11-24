@@ -24,6 +24,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        emailTextField.text = "aaaa1113@gmail.com"
+        passwordTextField.text = "12345678"
+        
         messageLabel.isHidden = true
         // Do any additional setup after loading the view.
     }
