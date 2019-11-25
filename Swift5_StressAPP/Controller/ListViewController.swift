@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Firebase
 
-class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
+class ListViewController: UIViewController,UISearchBarDelegate {
     
     
     
@@ -73,11 +73,59 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
-    
-    func reload() {
-        tableView.reloadData()
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        self.view.endEditing(true)
+        self.tableView.reloadData()
+        searchBar.isHidden = true
+        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
     }
+    
+    
+    //検索機能の実施
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        self.view.endEditing(true)
+        
+        searchResults = myListArray.filter{
+            $0.lowercased().contains(searchBar.text!.lowercased())
+        }
+        
+        numberArray.removeAll()
+        for i in 0...MyList.count - 1{
+            if  MyList[i].titleNameString.contains(searchBar.text!){
+                number = i
+                numberArray.append(i)
+                print(i)
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func searchPressed(_ sender: Any) {
+        searchBar.isHidden = false
+        searchBar.placeholder = "タイトル名を入力してください"
+        tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+    }
+    
+    
+    
+    
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+//MARK: - TableView
+
+extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -136,53 +184,15 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
     
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.text = ""
-        self.view.endEditing(true)
-        self.tableView.reloadData()
-        searchBar.isHidden = true
-        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
-    }
-    
-    
-    //検索機能の実施
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        self.view.endEditing(true)
         
-        searchResults = myListArray.filter{
-            $0.lowercased().contains(searchBar.text!.lowercased())
-        }
+        MyList.remove(at: indexPath.row)
         
-        numberArray.removeAll()
-        for i in 0...MyList.count - 1{
-            if  MyList[i].titleNameString.contains(searchBar.text!){
-                number = i
-                numberArray.append(i)
-                print(i)
-            }
-        }
-        self.tableView.reloadData()
-    }
-    
-    @IBAction func searchPressed(_ sender: Any) {
-        searchBar.isHidden = false
-        searchBar.placeholder = "タイトル名を入力してください"
-        tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        
     }
     
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
