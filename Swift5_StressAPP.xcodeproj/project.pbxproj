@@ -24,6 +24,7 @@
 		B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43F295C236328B000B14757 /* ListChangeViewController.swift */; };
 		B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */; };
 		B45FF0EE2381858B005F36F7 /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = B45FF0ED2381858B005F36F7 /* checkmark.json */; };
+		B4931AA2238C2491006C5952 /* MyListFeatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA1238C2491006C5952 /* MyListFeatch.swift */; };
 		B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FB234CE40200E1230D /* LoginViewController.swift */; };
 		B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* Contents.swift */; };
 		B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4F198FF234D70B100E1230D /* GoogleService-Info.plist */; };
@@ -53,6 +54,7 @@
 		B43F295C236328B000B14757 /* ListChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChangeViewController.swift; sourceTree = "<group>"; };
 		B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarDetailViewController.swift; sourceTree = "<group>"; };
 		B45FF0ED2381858B005F36F7 /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
+		B4931AA1238C2491006C5952 /* MyListFeatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListFeatch.swift; sourceTree = "<group>"; };
 		B4F198FB234CE40200E1230D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B4F198FD234CE9DB00E1230D /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
 		B4F198FF234D70B100E1230D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				B4F198FD234CE9DB00E1230D /* Contents.swift */,
 				B41781AD235CA2DA002149F9 /* Mylist.swift */,
+				B4931AA1238C2491006C5952 /* MyListFeatch.swift */,
 				B4FD117C237AC98800D3171E /* Diary.swift */,
 			);
 			path = Model;
@@ -288,6 +291,7 @@
 				B41781AE235CA2DA002149F9 /* Mylist.swift in Sources */,
 				B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */,
 				B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */,
+				B4931AA2238C2491006C5952 /* MyListFeatch.swift in Sources */,
 				B4FD117D237AC98800D3171E /* Diary.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
 				B4FEE280236C66FB002D1A1F /* CalenderViewController.swift in Sources */,

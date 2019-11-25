@@ -78,6 +78,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         self.view.endEditing(true)
         self.tableView.reloadData()
         searchBar.isHidden = true
+        numberArray.removeAll()
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
     }
     
@@ -107,20 +108,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.placeholder = "タイトル名を入力してください"
         tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
     }
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 //MARK: - TableView
@@ -128,8 +115,8 @@ class ListViewController: UIViewController,UISearchBarDelegate {
 extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
-
     }
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -161,38 +148,54 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         return view.frame.size.height/7
     }
     
-    
     //セルをタッチで画面遷移（ListDetailViewController）
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        
         let mylist = MyList[indexPath.row]
         
-        
-        if searchBar.text == "" && numberArray == []{
+        if searchBar.isHidden && numberArray == []{
             nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
         }else{
-            //仮の値
             number = numberArray[indexPath.row]
             nextVC.myLists = MyList[number]
             nextVC.indexNumber = number
         }
     
         navigationController?.pushViewController(nextVC, animated: true)
-        
     }
     
+    //削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        
+        //List削除
         MyList.remove(at: indexPath.row)
         
+        //Firebase削除
+        let listTitleName = MyList[indexPath.row].titleNameString
+        let listDetail = MyList[indexPath.row].detail
+        let ref = MyListref.child(userID).child("List")
+        //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
+        //titlename && detail みたいなのないかな
+        ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+            
+            //detailで比較（同じものがあったら消えちゃう）
+            ref.queryOrdered(byChild: "detail").queryEqual(toValue: listDetail).observe(.childAdded) { (snapshot) in
+                print("detail")
+                print(snapshot)
+            
+                snapshot.ref.removeValue(completionBlock: { (error, reference) in
+                    if error != nil {
+                        print("There has been an error:\(String(describing: error))")
+                    }
+                })
+            }
+        }
+        
+        
+        //tableView削除
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        
-        
+        tableView.reloadData()
     }
-    
-    
 }

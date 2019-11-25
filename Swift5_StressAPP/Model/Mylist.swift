@@ -43,17 +43,6 @@ class FireMyList{
             
         }
     }
-    
-//    func save(){
-//        ref.setValue(toDictionary())
-//    }
-    
-    func toDictionary() ->[String:Any]{
-        
-        return["titleName":titleNameString,"detail":detail,"URL":urlString]
-    }
-    
-    
 }
 
 extension FireMyList{

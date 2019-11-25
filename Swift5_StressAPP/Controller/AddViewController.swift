@@ -84,8 +84,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
     }
     
-    
-    
     @IBAction func postAction(_ sender: Any) {
         
         titleName = titleTextField.text!
@@ -99,9 +97,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             return
         }
         
+        //アラート機能
         showeAlart()
         
-        
+        //ボタンの設定
         addButton.isHidden = true
         addButton.isEnabled = false
         
@@ -113,9 +112,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
        
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
         }
-        
-        
-        
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
             //goodUserに一応入れておく
             self.goodUser.append(self.userID)
@@ -143,23 +139,18 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
-        
-        
-        //goodUser.removeAll()
     }
     
+    //タイムライン追加
     func timeLineAdd(){
-        //タイムライン
+        
         let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
         let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser] as [String:Any]
         timeLineDB.updateChildValues(timeLineInfo)
-    
-        
     }
     
-    
+    //myList追加
     func mylistAdd(){
-        
         
         let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("List").childByAutoId()
         let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"usedcount":count as Any,"evaluation":count as Any] as [String:Any]

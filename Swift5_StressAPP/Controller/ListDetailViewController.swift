@@ -51,6 +51,9 @@ class ListDetailViewController: UIViewController {
         }else{
             evaluationLabel.text = "未使用です"
         }
+        self.titlenameLabel.text = titleName
+        self.detailLabel.text = detail
+        self.urlStringLabel.text = urlString
         
     }
     
@@ -66,11 +69,12 @@ class ListDetailViewController: UIViewController {
                let content = FireMyList(snapshot: childSnapshoto)
                self.MyList.insert(content, at: 0)
            }
+//        self.titlenameLabel.text = self.MyList[self.indexNumber].titleNameString
+//        self.detailLabel.text = self.MyList[self.indexNumber].detail
+//        self.urlStringLabel.text = self.MyList[self.indexNumber].urlString
+//        
         
-        
-            self.titlenameLabel.text = self.MyList[self.indexNumber].titleNameString
-            self.detailLabel.text = self.MyList[self.indexNumber].detail
-            self.urlStringLabel.text = self.MyList[self.indexNumber].urlString
+            
             
         }
         

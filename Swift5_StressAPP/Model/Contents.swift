@@ -48,14 +48,6 @@ class Contents {
         }
     }
     
-    func save(){
-        ref.setValue(toDictionary())
-    }
-    
-    func toDictionary() ->[String:Any]{
-        
-        return["userName":userNameString,"titleName":titleNameString,"detail":detail,"URL":urlString,"count":count,"userID":userID,"goodUser":goodUser]
-    }
 }
 
 extension Contents{
