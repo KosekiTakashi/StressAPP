@@ -30,12 +30,17 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     let MyListref = Database.database().reference().child("MyList")
     var numberArray = [Int]()
     var number = 0
+    
+    var featch = MylistFeatch()
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        featch.delegate = self
+        
         title = "\(userName)'sリスト (\(MyList.count))"
         
         
@@ -45,7 +50,11 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        
         searchBar.isHidden = true
+        self.view.endEditing(true)
+        numberArray.removeAll()
+        
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
         
         userID = (Auth.auth().currentUser?.uid)!
@@ -97,7 +106,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
             if  MyList[i].titleNameString.contains(searchBar.text!){
                 number = i
                 numberArray.append(i)
-                print(i)
             }
         }
         self.tableView.reloadData()
@@ -121,8 +129,9 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchBar.text != "" {
-            return searchResults.count
+        if numberArray != []  {
+           return searchResults.count
+            
         } else {
             return MyList.count
         }
@@ -132,7 +141,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
-        if searchBar.text != "" &&  numberArray != [] {
+        if  numberArray != [] {
             number = numberArray[indexPath.row]
             cell.textLabel!.text = MyList[number].titleNameString
         } else {
@@ -153,8 +162,8 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
         let mylist = MyList[indexPath.row]
-        
-        if searchBar.isHidden && numberArray == []{
+        print(numberArray)
+        if  numberArray == []{
             nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
         }else{
@@ -169,33 +178,74 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        //List削除
-        MyList.remove(at: indexPath.row)
-        
-        //Firebase削除
-        let listTitleName = MyList[indexPath.row].titleNameString
-        let listDetail = MyList[indexPath.row].detail
-        let ref = MyListref.child(userID).child("List")
-        //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
-        //titlename && detail みたいなのないかな
-        ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
-            
-            //detailで比較（同じものがあったら消えちゃう）
-            ref.queryOrdered(byChild: "detail").queryEqual(toValue: listDetail).observe(.childAdded) { (snapshot) in
-                print("detail")
-                print(snapshot)
-            
-                snapshot.ref.removeValue(completionBlock: { (error, reference) in
-                    if error != nil {
-                        print("There has been an error:\(String(describing: error))")
-                    }
-                })
+        if searchBar.text != "" && numberArray != []{
+            print("-------------------------test2")
+            print("searchResults.count_1_\(searchResults.count)")
+            searchResults.remove(at: indexPath.row)
+            //Firebase削除
+            let listTitleName = MyList[number].titleNameString
+            let listDetail = MyList[number].detail
+            let ref = MyListref.child(userID).child("List")
+            //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
+            //titlename && detail みたいなのないかな
+            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+                
+                //detailで比較（同じものがあったら消えちゃう）
+                ref.queryOrdered(byChild: "detail").queryEqual(toValue: listDetail).observe(.childAdded) { (snapshot) in
+                   
+                    snapshot.ref.removeValue(completionBlock: { (error, reference) in
+                        if error != nil {
+                            print("There has been an error:\(String(describing: error))")
+                        }
+                    })
+                }
             }
+            MyList.remove(at: number)
+            print("searchResults.count_2_\(searchResults.count)")
+        }else{
+            
+            //Firebase削除
+            let listTitleName = MyList[indexPath.row].titleNameString
+            let listDetail = MyList[indexPath.row].detail
+            let ref = MyListref.child(userID).child("List")
+            
+            
+            //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
+            //titlename && detail みたいなのないかな
+            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+                
+                //detailで比較（同じものがあったら消えちゃう）
+                ref.queryOrdered(byChild: "detail").queryEqual(toValue: listDetail).observe(.childAdded) { (snapshot) in
+                   
+                    snapshot.ref.removeValue(completionBlock: { (error, reference) in
+                        if error != nil {
+                            print("There has been an error:\(String(describing: error))")
+                        }
+                    })
+                }
+                
+            }
+            //List削除
+            MyList.remove(at: indexPath.row)
         }
         
         
         //tableView削除
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        tableView.reloadData()
     }
+    
+}
+
+
+extension ListViewController: MyListFeatchDelegate{
+    func didFeatch(_ ListManeger: MylistFeatch, List: FireMyList) {
+        print("test______________")
+        let testList = [FireMyList]()
+        for i in 0...testList.count-1{
+            print(testList[i].titleNameString)
+        }
+        
+    }
+    
+    
 }

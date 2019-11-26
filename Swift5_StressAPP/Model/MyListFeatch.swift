@@ -9,7 +9,14 @@
 import Foundation
 import Firebase
 
+protocol MyListFeatchDelegate {
+    func didFeatch(_ ListManeger: MylistFeatch, List: FireMyList)
+}
+
 struct MylistFeatch {
+    
+    var MyList = [FireMyList]()
+    var delegate:MyListFeatchDelegate?
     let userID = (Auth.auth().currentUser?.uid)!
     let MyListref = Database.database().reference().child("MyList")
     func featch() {
@@ -18,6 +25,7 @@ struct MylistFeatch {
             let childSnapshoto = child as! DataSnapshot
             
             let content = FireMyList(snapshot: childSnapshoto)
+            self.delegate?.didFeatch(self, List: content)
             
             let content1 = FireMyList(snapshot: childSnapshoto).titleNameString
             
