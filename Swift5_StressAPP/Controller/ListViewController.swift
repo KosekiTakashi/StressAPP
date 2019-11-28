@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import RealmSwift
+
 import Firebase
 
 class ListViewController: UIViewController,UISearchBarDelegate {
-    
-    
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,36 +19,37 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     var detail = String()
     var urlString = String()
     var usedcount = Int()
-    var searchResults:[String] = []
-    var myListArray:[String] = []
-    var realm : Realm!
     var MyList = [FireMyList]()
+    
     var userID  =  ""
     var userName = ""
-    let MyListref = Database.database().reference().child("MyList")
+    
+    var searchResults:[String] = []
     var numberArray = [Int]()
     var number = 0
+    var myListArray:[String] = []
     
+    let MyListref = Database.database().reference().child("MyList")
+        
     var featch = MylistFeatch()
+    var ListManeger = MylistFeatch()
+    
+    var testList = [FireMyList]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        ListManeger.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
         
-        featch.delegate = self
-        
+        print(testList)
         title = "\(userName)'sリスト (\(MyList.count))"
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
         searchBar.isHidden = true
         self.view.endEditing(true)
         numberArray.removeAll()
@@ -203,13 +202,10 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             MyList.remove(at: number)
             print("searchResults.count_2_\(searchResults.count)")
         }else{
-            
             //Firebase削除
             let listTitleName = MyList[indexPath.row].titleNameString
             let listDetail = MyList[indexPath.row].detail
             let ref = MyListref.child(userID).child("List")
-            
-            
             //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
             //titlename && detail みたいなのないかな
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
@@ -223,29 +219,20 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
                         }
                     })
                 }
-                
             }
             //List削除
             MyList.remove(at: indexPath.row)
         }
-        
-        
         //tableView削除
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
-    
 }
 
-
+//MARK: - Protcol
 extension ListViewController: MyListFeatchDelegate{
     func didFeatch(_ ListManeger: MylistFeatch, List: FireMyList) {
-        print("test______________")
-        let testList = [FireMyList]()
-        for i in 0...testList.count-1{
-            print(testList[i].titleNameString)
-        }
         
+        testList.insert(List, at: 0)
     }
-    
     
 }

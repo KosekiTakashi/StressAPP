@@ -31,22 +31,6 @@ class SerchTabViewCell: UITableViewCell {
             titleNameLabel.text = content.titleNameString
             countLabel.text = ("ダウンロード数：\(content.count)")
             userNameLabel.text = test
-            
-            
-            //比較してみる
-            
-//            for i in goodUser{
-//                if i == userID{
-//                    good = 1
-//                }
-//            }
-//            if good == 1 {
-//                print("NOT")
-//            }else{
-//                print("YES")
-//                //|| timeuserID == userID
-//            }
-//
        }
     }
     

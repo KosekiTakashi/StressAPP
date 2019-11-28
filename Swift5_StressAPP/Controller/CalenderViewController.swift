@@ -11,7 +11,7 @@ import FSCalendar
 import CalculateCalendarLogic
 import Firebase
 
-class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance {
+class CalenderViewController: UIViewController {
 
     
     @IBOutlet weak var Calender: FSCalendar!
@@ -37,7 +37,6 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     }()
     
     var selectday = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         Calender.delegate = self
@@ -46,18 +45,12 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
         tableView.delegate = self
         tableView.dataSource = self
         
-        
-        
         let tmpDate = Calendar(identifier: .gregorian)
         let year = tmpDate.component(.year, from: Date())
         let month = tmpDate.component(.month, from: Date())
         let day = tmpDate.component(.day, from: Date())
         selectday = "\(year)-\(month)-\(day)"
         DateLabel.text = selectday
-        
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,106 +62,11 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
                 let childSnapshoto = child as! DataSnapshot
                 let content = Diary(snapshot: childSnapshoto)
                 self.diary.insert(content, at: 0)
-                    
             }
             self.tableView.reloadData()
         }
-    
         tableView.reloadData()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let dateString = self.dateFormatter.string(from: date)
-        
-        return 0
-    }
-   
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: date)
-        let month = tmpDate.component(.month, from: date)
-        let day = tmpDate.component(.day, from: date)
-        
-        let selectday = "\(year)-\(month)-\(day)"
-        MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
-            self.diary.removeAll()
-            for child in snapshot.children{
-                let childSnapshoto = child as! DataSnapshot
-                let content = Diary(snapshot: childSnapshoto)
-                self.diary.insert(content, at: 0)
-                    
-            }
-            self.tableView.reloadData()
-            print("====================================")
-            print(self.diary)
-            print("====================================")
-            self.eventCount = self.diary.count
-            self.Calender.reloadData()
-            
-        }
-        tableView.reloadData()
-        DateLabel.text = "\(year)-\(month)-\(day) の出来事"
-    }
-    
-   
-    
-    
-    //曜日判定
-    func judgeWeek(_ date: Date) -> Int{
-        
-        let tmpCalender = Calendar(identifier: .gregorian)
-        return tmpCalender.component(.weekday, from: date)
-        
-    }
-    
-    //休日判定
-       func judgeHoliday(_ date: Date) -> Bool{
-           let tmpCalender = Calendar(identifier: .gregorian)
-           let year = tmpCalender.component(.year, from: date)
-           let month = tmpCalender.component(.month, from: date)
-           let day = tmpCalender.component(.day, from: date)
-           
-           let holiday = CalculateCalendarLogic()
-           
-           return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
-       }
-    
-    //休日の色変え
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        
-        //祝日
-        if self.judgeHoliday(date){
-            return UIColor.red
-        }
-        
-        //日曜　週始めだから
-        let weekday = self.judgeWeek(date)
-        if weekday == 1 {
-            return UIColor.red
-        //土曜
-        }else if weekday == 7{
-            return UIColor.blue
-        }
-        
-        return nil
-    }
-    
-    
-    
-    func getDay(_ date:Date) -> (Int,Int,Int){
-        let tmpCalendar = Calendar(identifier: .gregorian)
-        let year = tmpCalendar.component(.year, from: date)
-        let month = tmpCalendar.component(.month, from: date)
-        let day = tmpCalendar.component(.day, from: date)
-        return (year,month,day)
-    }
-    
-   
     /*
     // MARK: - Navigation
 
@@ -180,7 +78,7 @@ class CalenderViewController: UIViewController,FSCalendarDelegate,FSCalendarData
     */
 
 }
-
+//MARK: - tableView
 extension CalenderViewController:UITableViewDelegate,UITableViewDataSource{
     
     
@@ -214,7 +112,92 @@ extension CalenderViewController:UITableViewDelegate,UITableViewDataSource{
         navigationController?.pushViewController(nextVC, animated: true)
         
     }
+}
+
+//MARK: - Calendar
+extension CalenderViewController: FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance{
+    override func didReceiveMemoryWarning() {
+         super.didReceiveMemoryWarning()
+     }
+     
+     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+         let dateString = self.dateFormatter.string(from: date)
+         
+         return 0
+     }
     
-    
-    
+     
+     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+         let tmpDate = Calendar(identifier: .gregorian)
+         let year = tmpDate.component(.year, from: date)
+         let month = tmpDate.component(.month, from: date)
+         let day = tmpDate.component(.day, from: date)
+         
+         let selectday = "\(year)-\(month)-\(day)"
+         MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
+             self.diary.removeAll()
+             for child in snapshot.children{
+                 let childSnapshoto = child as! DataSnapshot
+                 let content = Diary(snapshot: childSnapshoto)
+                 self.diary.insert(content, at: 0)
+                     
+             }
+             self.tableView.reloadData()
+             print("====================================")
+             print(self.diary)
+             print("====================================")
+             self.eventCount = self.diary.count
+             self.Calender.reloadData()
+             
+         }
+         tableView.reloadData()
+         DateLabel.text = "\(year)-\(month)-\(day) の出来事"
+     }
+     //曜日判定
+     func judgeWeek(_ date: Date) -> Int{
+         
+         let tmpCalender = Calendar(identifier: .gregorian)
+         return tmpCalender.component(.weekday, from: date)
+         
+     }
+     
+     //休日判定
+        func judgeHoliday(_ date: Date) -> Bool{
+            let tmpCalender = Calendar(identifier: .gregorian)
+            let year = tmpCalender.component(.year, from: date)
+            let month = tmpCalender.component(.month, from: date)
+            let day = tmpCalender.component(.day, from: date)
+            
+            let holiday = CalculateCalendarLogic()
+            
+            return holiday.judgeJapaneseHoliday(year: year, month: month, day: day)
+        }
+     
+     //休日の色変え
+     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+         
+         //祝日
+         if self.judgeHoliday(date){
+             return UIColor.red
+         }
+         
+         //日曜　週始めだから
+         let weekday = self.judgeWeek(date)
+         if weekday == 1 {
+             return UIColor.red
+         //土曜
+         }else if weekday == 7{
+             return UIColor.blue
+         }
+         
+         return nil
+     }
+ 
+     func getDay(_ date:Date) -> (Int,Int,Int){
+         let tmpCalendar = Calendar(identifier: .gregorian)
+         let year = tmpCalendar.component(.year, from: date)
+         let month = tmpCalendar.component(.month, from: date)
+         let day = tmpCalendar.component(.day, from: date)
+         return (year,month,day)
+     }
 }

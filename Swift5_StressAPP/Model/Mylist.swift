@@ -62,4 +62,8 @@ extension FireMyList{
         
     }
     
+    func avearge(usedCount: Int, evaluation: Int) -> Int{
+        return  evaluation / usedCount
+        
+    }
 }

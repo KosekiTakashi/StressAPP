@@ -9,14 +9,10 @@
 import UIKit
 import Firebase
 
-class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate {
-    
-    
+class SearchViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    
     
     var searchNameArray = [Contents]()
     var userName = String()
@@ -78,13 +74,15 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             self.tableView.reloadData()
         }
     }
-        
-        //セクションの数
+}
+
+//MARK: - TableView
+extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
+    //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-        
-        
+        }
+            
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchBar.text != "" && numberArray != [] {
@@ -92,12 +90,10 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
         } else {
             return searchNameArray.count
         }
-//        return searchNameArray.count
     }
-        
+            
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
 
         if searchBar.text != "" &&  numberArray != []{
@@ -109,30 +105,25 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             contentTest = searchNameArray[number]
             cell.content = contentTest
             print("number_\(number)")
-            
         } else {
             let content = searchNameArray[indexPath.row]
             cell.content = content
         }
         return cell
     }
-        
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 170
     }
-        
-        
+            
     //セルをタッチで画面遷移（searchDetailViewController）
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = storyboard?.instantiateViewController(identifier: "SearchDetail") as! SearchDetailViewController
-        
+            
         let content = searchNameArray[indexPath.row]
         nextVC.contents = content
-      
+          
         if  searchBar.text == "" && numberArray == []{
-            print("no")
             let content = searchNameArray[indexPath.row]
             nextVC.contents = content
         } else {
@@ -140,67 +131,43 @@ class SearchViewController: UIViewController,UITableViewDataSource,UITableViewDe
             number = numberArray[indexPath.row]
             let contentNumber = searchNameArray[number]
             nextVC.contents = contentNumber
-            
-            
-            
         }
         
         navigationController?.pushViewController(nextVC, animated: true)
-            
     }
-    
+}
+//MARK: - SearchBar
+extension SearchViewController: UISearchBarDelegate{
+    //cancelの実施
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.view.endEditing(true)
-       
         self.tableView.reloadData()
         searchBar.isHidden = true
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
     }
-            
-            
-    //検索機能の実施
+    //searchの実施
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-                
         self.view.endEditing(true)
-        
         searchTitleNameResults = nameArray.filter{
             $0.lowercased().contains(searchBar.text!.lowercased())
         }
-        
         numberArray.removeAll()
         for i in 0...searchNameArray.count - 1{
             if  nameArray[i].lowercased().contains(searchBar.text!){
                 number = i
                 numberArray.append(number)
-                
             }
-            
         }
-        print("numberArray_\(numberArray)")
         self.tableView.reloadData()
-        
     }
-        
+    
+    //bottan
     @IBAction func searchPressed(_ sender: Any) {
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
         tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
         searchBar.text = ""
     }
-    
-        
-        /*
-        // MARK: - Navigation
-
-        // In a storyboard-based application, you will often want to do a little preparation before navigation
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            // Get the new view controller using segue.destination.
-            // Pass the selected object to the new view controller.
-        }
-        */
-
 }
-
-
 

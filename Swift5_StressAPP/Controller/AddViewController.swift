@@ -157,10 +157,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         myListDB.updateChildValues(mylistInfo)
     }
     
-    
-    
-    
-
     /*
     // MARK: - Navigation
 

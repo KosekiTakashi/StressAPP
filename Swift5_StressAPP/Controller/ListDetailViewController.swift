@@ -25,6 +25,8 @@ class ListDetailViewController: UIViewController {
     var evaluation = 0
     
     var MyList = [FireMyList]()
+    var myList: FireMyList!
+    
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
     
@@ -46,8 +48,9 @@ class ListDetailViewController: UIViewController {
         detailLabel.text = detail
         urlStringLabel.text = urlString
         if usedCount != 0{
-            let ave:Int = evaluation / usedCount
+            let ave = myList.avearge(usedCount: usedCount, evaluation: evaluation)
             evaluationLabel.text = "\(ave) (使用回数：\(usedCount))"
+            
         }else{
             evaluationLabel.text = "未使用です"
         }
@@ -68,14 +71,7 @@ class ListDetailViewController: UIViewController {
                let childSnapshoto = child as! DataSnapshot
                let content = FireMyList(snapshot: childSnapshoto)
                self.MyList.insert(content, at: 0)
-           }
-//        self.titlenameLabel.text = self.MyList[self.indexNumber].titleNameString
-//        self.detailLabel.text = self.MyList[self.indexNumber].detail
-//        self.urlStringLabel.text = self.MyList[self.indexNumber].urlString
-//        
-        
-            
-            
+           }      
         }
         
     }

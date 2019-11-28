@@ -64,9 +64,7 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         animationView3.animation = animation
         animationView4.animation = animation
         animationView5.animation = animation
-        
-        
-        
+
     }
     
     @objc func keyboardWillShow(_ notification:NSNotification){
@@ -247,8 +245,5 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         select?.usedEvaluation(eva: evaluation)
         
         dismiss(animated: true, completion: nil)
-        
-    
-        
     }
 }

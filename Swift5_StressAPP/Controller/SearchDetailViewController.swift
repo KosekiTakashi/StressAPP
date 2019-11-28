@@ -30,8 +30,6 @@ class SearchDetailViewController: UIViewController {
     
     var searchNameArray = [Contents]()
     
-    
-    
     var content:Contents!
     var userID = String()
     var timeuserID = ""
