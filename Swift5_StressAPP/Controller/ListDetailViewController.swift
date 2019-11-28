@@ -48,7 +48,7 @@ class ListDetailViewController: UIViewController {
         detailLabel.text = detail
         urlStringLabel.text = urlString
         if usedCount != 0{
-            let ave = myList.avearge(usedCount: usedCount, evaluation: evaluation)
+            let ave = evaluation / usedCount
             evaluationLabel.text = "\(ave) (使用回数：\(usedCount))"
             
         }else{

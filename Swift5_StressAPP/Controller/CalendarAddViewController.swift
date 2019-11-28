@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import Lottie
 
-class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate,UITextViewDelegate {
+class CalendarAddViewController: UIViewController {
     
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventNameTextView: UITextView!
@@ -66,63 +66,6 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         animationView5.animation = animation
 
     }
-    
-    @objc func keyboardWillShow(_ notification:NSNotification){
-        let keyboardHeight = ((notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as Any) as AnyObject).cgRectValue.height
-           
-        resultTextView.frame.origin.y = screenSize.height - keyboardHeight - resultTextView.frame.height
-           
-    }
-       
-    @objc func keyboardWillHide(_ notification:NSNotification){
-           
-        resultTextView.frame.origin.y = 483
-           
-        guard let rect = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
-        //durationは下げる時間
-        UIView.animate(withDuration: duration){
-            let transform = CGAffineTransform(translationX: 0, y: 0)
-            self.view.transform = transform
-        }
-    }
-    
-    @objc func datechange(sender:UIDatePicker){
-        let dateformatter = DateFormatter()
-        let timeformatter1 = DateFormatter()
-        let formatter = DateFormatter()
-        
-        timeformatter1.dateFormat = "hh:mm"
-        dateformatter.dateFormat = "yyyy-MM-dd"
-        formatter.dateFormat = "yyyy-MM-dd hh:mm"
-        
-        dateString = "\(dateformatter.string(from: sender.date))"
-        timeString = "\(timeformatter1.string(from: sender.date))"
-        dateTextField.text = "\(formatter.string(from: sender.date))"
-    }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        titleName = eventNameTextView.text!
-        result = resultTextView.text!
-        
-        dateTextField.resignFirstResponder()
-        eventNameTextView.resignFirstResponder()
-        resultTextView.resignFirstResponder()
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        print("--------judge----------")
-        if textView == resultTextView{
-            print("result")
-            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillShow(_ :)), name: UIResponder.keyboardWillShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
-            
-        }
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -158,41 +101,9 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         }
     }
     
-    //Pickerの設定
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return MyList.count
-        //return testArray.count
-    }
-    
-    //表示する文字列を指定する
-    //PickerViewに表示する配列の要素数を設定する
-    func pickerView(_ pickerView: UIPickerView,
-                    titleForRow row: Int,
-                    forComponent component: Int) -> String? {
-        
-        return MyList[row].titleNameString
-        //return testArray[row]
-    }
-    
-    // UIPickerViewのRowが選択された時の挙動
-    func pickerView(_ pickerView: UIPickerView,
-                    didSelectRow row: Int,
-                    inComponent component: Int) {
-        
-        selectedList = MyList[row].titleNameString
-        select = MyList[row]
-        myListNameLabel.text = selectedList
-        
-    }
-    
     @IBAction func star(_ sender: UIButton) {
         
         let starcount =  sender.currentTitle!
-        
         //もっと綺麗に書きたい
         switch starcount {
         case "1":
@@ -246,4 +157,91 @@ class CalendarAddViewController: UIViewController,UIPickerViewDelegate,UIPickerV
         
         dismiss(animated: true, completion: nil)
     }
+}
+
+//MARK: - UIPickerView
+extension CalendarAddViewController: UIPickerViewDelegate,UIPickerViewDataSource{
+    //Pickerの設定
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return MyList.count
+        //return testArray.count
+    }
+    
+    //表示する文字列を指定する
+    //PickerViewに表示する配列の要素数を設定する
+    func pickerView(_ pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int) -> String? {
+        
+        return MyList[row].titleNameString
+        //return testArray[row]
+    }
+    
+    // UIPickerViewのRowが選択された時の挙動
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
+        
+        selectedList = MyList[row].titleNameString
+        select = MyList[row]
+        myListNameLabel.text = selectedList
+        
+    }
+    
+}
+//MARK: - textField,textView
+extension CalendarAddViewController: UITextFieldDelegate,UITextViewDelegate{
+    
+    @objc func datechange(sender:UIDatePicker){
+        let dateformatter = DateFormatter()
+        let timeformatter1 = DateFormatter()
+        let formatter = DateFormatter()
+        
+        timeformatter1.dateFormat = "hh:mm"
+        dateformatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy-MM-dd hh:mm"
+        
+        dateString = "\(dateformatter.string(from: sender.date))"
+        timeString = "\(timeformatter1.string(from: sender.date))"
+        dateTextField.text = "\(formatter.string(from: sender.date))"
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        titleName = eventNameTextView.text!
+        result = resultTextView.text!
+        
+        dateTextField.resignFirstResponder()
+        eventNameTextView.resignFirstResponder()
+        resultTextView.resignFirstResponder()
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        print(textView.tag)
+        
+        if textView.tag == 2{
+            resultTextView.frame.origin.y = 400
+            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        }else{
+            return
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:NSNotification){
+        resultTextView.frame.origin.y = 483
+        guard let _ = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+        //durationは下げる時間
+        UIView.animate(withDuration: duration){
+            let transform = CGAffineTransform(translationX: 0, y: 0)
+            self.view.transform = transform
+        }
+    }
+    
+    
 }
