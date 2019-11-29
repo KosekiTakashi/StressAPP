@@ -11,15 +11,16 @@ import UIKit
 import Firebase
 
 class ListViewController: UIViewController,UISearchBarDelegate {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     
     var titleName = String()
     var detail = String()
     var urlString = String()
     var usedcount = Int()
-    var MyList = [FireMyList]()
+    var myList = [FireMyList]()
     
     var userID  =  ""
     var userName = ""
@@ -31,18 +32,15 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     
     let MyListref = Database.database().reference().child("MyList")
         
-    var testList = [FireMyList]()
+    var maneger = MyListManeger()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
-        print(testList)
-        title = "\(userName)'sリスト (\(MyList.count))"
+        maneger.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,37 +48,26 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.isHidden = true
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
         
+        //ユーザデータ取得
         userID = (Auth.auth().currentUser?.uid)!
         if Auth.auth().currentUser?.displayName != nil{
             userName = (Auth.auth().currentUser?.displayName)!
         }
         
-        MyListref.child(userID).child("List").observe(.value) { (snapshot) in
-            self.MyList.removeAll()
-            self.myListArray.removeAll()
-            for child in snapshot.children{
-                let childSnapshoto = child as! DataSnapshot
-                
-                let content = FireMyList(snapshot: childSnapshoto)
-                self.MyList.insert(content, at: 0)
-                
-                let content1 = FireMyList(snapshot: childSnapshoto).titleNameString
-                self.myListArray.insert(content1, at: 0)
-                
-            }
-
-            self.tableView.reloadData()
-            self.navigationController?.title = String(self.MyList.count)
-            self.title = "\(self.userName)'sリスト (\(self.MyList.count))"
-        }
+        //受け取り
+        myListArray.removeAll()
+        myList.removeAll()
+        self.maneger.fetch()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        self.view.endEditing(true)
-        self.tableView.reloadData()
-        searchBar.isHidden = true
+        view.endEditing(true)
         numberArray.removeAll()
+        tableView.reloadData()
+        
+        searchBar.isHidden = true
+        
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
     }
     
@@ -95,8 +82,8 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         }
         
         numberArray.removeAll()
-        for i in 0...MyList.count - 1{
-            if  MyList[i].titleNameString.contains(searchBar.text!){
+        for i in 0...myList.count - 1{
+            if  myList[i].titleNameString.contains(searchBar.text!){
                 number = i
                 numberArray.append(i)
             }
@@ -108,6 +95,19 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
         tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+    }
+}
+
+//MARK: - Fetch
+extension ListViewController: MyListFeatchDelegate{
+    func didFetch(List: FireMyList, titleNameList: String) {
+        
+        myList.insert(List, at: 0)
+        myListArray.insert(titleNameList, at: 0)
+        
+        self.tableView.reloadData()
+        self.navigationController?.title = String(self.myList.count)
+        self.title = "\(self.userName)'sリスト (\(self.myList.count))"
     }
 }
 
@@ -126,7 +126,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
            return searchResults.count
             
         } else {
-            return MyList.count
+            return myList.count
         }
     }
     
@@ -136,9 +136,9 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         
         if  numberArray != [] {
             number = numberArray[indexPath.row]
-            cell.textLabel!.text = MyList[number].titleNameString
+            cell.textLabel!.text = myList[number].titleNameString
         } else {
-            cell.textLabel?.text = MyList[indexPath.row].titleNameString
+            cell.textLabel?.text = myList[indexPath.row].titleNameString
         }
         
         return cell
@@ -154,14 +154,14 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        let mylist = MyList[indexPath.row]
+        let mylist = myList[indexPath.row]
         print(numberArray)
         if  numberArray == []{
             nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
         }else{
             number = numberArray[indexPath.row]
-            nextVC.myLists = MyList[number]
+            nextVC.myLists = myList[number]
             nextVC.indexNumber = number
         }
     
@@ -172,12 +172,10 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if searchBar.text != "" && numberArray != []{
-            print("-------------------------test2")
-            print("searchResults.count_1_\(searchResults.count)")
             searchResults.remove(at: indexPath.row)
             //Firebase削除
-            let listTitleName = MyList[number].titleNameString
-            let listDetail = MyList[number].detail
+            let listTitleName = myList[number].titleNameString
+            let listDetail = myList[number].detail
             let ref = MyListref.child(userID).child("List")
             
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
@@ -199,13 +197,12 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
             }
-            MyList.remove(at: number)
-            print("searchResults.count_2_\(searchResults.count)")
+            myList.remove(at: number)
             
         }else{
             //Firebase削除
-            let listTitleName = MyList[indexPath.row].titleNameString
-            let listDetail = MyList[indexPath.row].detail
+            let listTitleName = myList[indexPath.row].titleNameString
+            let listDetail = myList[indexPath.row].detail
             let ref = MyListref.child(userID).child("List")
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
                 print("====================")
@@ -227,7 +224,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
                 }
             }
             //List削除
-            MyList.remove(at: indexPath.row)
+            myList.remove(at: indexPath.row)
         }
         //tableView削除
         tableView.deleteRows(at: [indexPath], with: .automatic)

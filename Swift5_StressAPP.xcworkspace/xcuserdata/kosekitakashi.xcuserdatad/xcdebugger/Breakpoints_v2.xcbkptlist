@@ -128,5 +128,181 @@
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F638DB95-A5F8-4AEF-BA92-CB46270DEF59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Model/MyListManeger.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F638DB95-A5F8-4AEF-BA92-CB46270DEF59 - 2799d9404cd980a4"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift5_StressAPP.MyListManeger.fetch() -&gt; ()"
+                  moduleName = "Swift5_StressAPP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Model/MyListManeger.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  uuid = "F638DB95-A5F8-4AEF-BA92-CB46270DEF59 - e4b3cb70b4c32d5d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in Swift5_StressAPP.MyListManeger.fetch() -&gt; ()"
+                  moduleName = "Swift5_StressAPP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Model/MyListManeger.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D2F87C65-7925-4EEB-BF37-F15E4A54E760"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Model/MyListManeger.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "MyListManeger"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "D2F87C65-7925-4EEB-BF37-F15E4A54E760 - 9f12907338b09126"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift5_StressAPP.MyListManeger.init(MyList: Swift.Array&lt;Swift5_StressAPP.FireMyList&gt;, mylist: Swift.Optional&lt;Swift5_StressAPP.FireMyList&gt;, delegate: Swift.Optional&lt;Swift5_StressAPP.MyListFeatchDelegate&gt;) -&gt; Swift5_StressAPP.MyListManeger"
+                  moduleName = "Swift5_StressAPP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Model/MyListManeger.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "42">
+               </Location>
+               <Location
+                  uuid = "D2F87C65-7925-4EEB-BF37-F15E4A54E760 - 8882fad4634176ed"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift5_StressAPP.MyListManeger.init() -&gt; Swift5_StressAPP.MyListManeger"
+                  moduleName = "Swift5_StressAPP"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kosekitakashi/Dropbox/Swift5_StressAPP/Swift5_StressAPP/Model/MyListManeger.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "141">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3DB9142C-C6DA-4C7C-B1D2-530FF4A57A6E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Model/MyListManeger.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "MyListManeger"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C0D3889-AD10-4740-AFD7-13C74D47BD10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Model/MyListManeger.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C482AE33-9636-4BE8-8038-83B5F2FAB55D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Model/MyListManeger.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5962E89-C883-4BD8-B085-19A7355C3616"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Model/MyListManeger.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "fetch()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F5B3E80-58CC-4619-9BDB-D638EB00682C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift5_StressAPP/Controller/ListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

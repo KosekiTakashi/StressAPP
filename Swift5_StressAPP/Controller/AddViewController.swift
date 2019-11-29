@@ -29,7 +29,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var count = Int()
     var goodUser = [String]()
     var mylist_fire : FireMyList!
-    var fetch: MylistFetch!
+    
+   
     
     
     override func viewDidLoad() {

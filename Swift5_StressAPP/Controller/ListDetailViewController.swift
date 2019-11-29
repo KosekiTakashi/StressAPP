@@ -26,6 +26,7 @@ class ListDetailViewController: UIViewController {
     
     var MyList = [FireMyList]()
     var myList: FireMyList!
+    var maneger = MyListManeger()
     
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
@@ -64,15 +65,9 @@ class ListDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let userID = (Auth.auth().currentUser?.uid)!
-        MyListref.child(userID).child("List").observe(.value) { (snapshot) in
-           self.MyList.removeAll()
-           for child in snapshot.children{
-               let childSnapshoto = child as! DataSnapshot
-               let content = FireMyList(snapshot: childSnapshoto)
-               self.MyList.insert(content, at: 0)
-           }      
-        }
+        //受け取り
+        MyList.removeAll()
+        self.maneger.fetch()
         
     }
     
@@ -88,5 +83,15 @@ class ListDetailViewController: UIViewController {
         navigationController?.pushViewController(nextVC, animated: true)
         
     }
+    
+}
+
+extension ListDetailViewController : MyListFeatchDelegate{
+    func didFetch(List: FireMyList, titleNameList: String) {
+        self.MyList.insert(List, at: 0)
+        
+    }
+    
+    
     
 }

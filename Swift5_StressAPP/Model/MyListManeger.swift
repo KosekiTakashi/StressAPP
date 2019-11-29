@@ -10,10 +10,10 @@ import Foundation
 import Firebase
 
 protocol MyListFeatchDelegate {
-    func didFetch(_ ListManeger: MylistFetch, List: FireMyList)
+    func didFetch(List: FireMyList,titleNameList: String)
 }
 
-struct MylistFetch {
+struct MyListManeger {
     
     var MyList = [FireMyList]()
     var mylist : FireMyList!
@@ -27,10 +27,8 @@ struct MylistFetch {
                 let childSnapshoto = child as! DataSnapshot
             
                 let content = FireMyList(snapshot: childSnapshoto)
-                self.delegate?.didFetch(self, List: content)
-            
-                let content1 = FireMyList(snapshot: childSnapshoto).titleNameString
-            
+                let nameContent = FireMyList(snapshot: childSnapshoto).titleNameString
+                self.delegate?.didFetch(List: content,titleNameList: nameContent)
             }
         }
     }
