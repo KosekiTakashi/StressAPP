@@ -31,15 +31,12 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     
     let MyListref = Database.database().reference().child("MyList")
         
-    var featch = MylistFeatch()
-    var ListManeger = MylistFeatch()
-    
     var testList = [FireMyList]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        ListManeger.delegate = self
+       
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -51,9 +48,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchBar.isHidden = true
-        self.view.endEditing(true)
-        numberArray.removeAll()
-        
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
         
         userID = (Auth.auth().currentUser?.uid)!
@@ -185,39 +179,51 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             let listTitleName = MyList[number].titleNameString
             let listDetail = MyList[number].detail
             let ref = MyListref.child(userID).child("List")
-            //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
-            //titlename && detail みたいなのないかな
+            
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
-                
-                //detailで比較（同じものがあったら消えちゃう）
-                ref.queryOrdered(byChild: "detail").queryEqual(toValue: listDetail).observe(.childAdded) { (snapshot) in
-                   
-                    snapshot.ref.removeValue(completionBlock: { (error, reference) in
-                        if error != nil {
-                            print("There has been an error:\(String(describing: error))")
+                print("====================")
+                print(snapshot.children.allObjects)
+                if let result = snapshot.children.allObjects as? [DataSnapshot] {
+
+                    for child in result {
+
+                        let orderID = child.value as? String//get autoID
+                        if orderID == listDetail{
+                            print(orderID!)
+                            snapshot.ref.removeValue(completionBlock: { (error, reference) in
+                                if error != nil {
+                                    print("There has been an error:\(String(describing: error))")
+                                }
+                            })
                         }
-                    })
+                    }
                 }
             }
             MyList.remove(at: number)
             print("searchResults.count_2_\(searchResults.count)")
+            
         }else{
             //Firebase削除
             let listTitleName = MyList[indexPath.row].titleNameString
             let listDetail = MyList[indexPath.row].detail
             let ref = MyListref.child(userID).child("List")
-            //ホントはtitlenameとdetailで比較したいのにdetailだけで比較になってしまっている．
-            //titlename && detail みたいなのないかな
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
-                
-                //detailで比較（同じものがあったら消えちゃう）
-                ref.queryOrdered(byChild: "detail").queryEqual(toValue: listDetail).observe(.childAdded) { (snapshot) in
-                   
-                    snapshot.ref.removeValue(completionBlock: { (error, reference) in
-                        if error != nil {
-                            print("There has been an error:\(String(describing: error))")
+                print("====================")
+                print(snapshot.children.allObjects)
+                if let result = snapshot.children.allObjects as? [DataSnapshot] {
+
+                    for child in result {
+
+                        let orderID = child.value as? String//get autoID
+                        if orderID == listDetail{
+                            print(orderID!)
+                            snapshot.ref.removeValue(completionBlock: { (error, reference) in
+                                if error != nil {
+                                    print("There has been an error:\(String(describing: error))")
+                                }
+                            })
                         }
-                    })
+                    }
                 }
             }
             //List削除
@@ -228,11 +234,4 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     }
 }
 
-//MARK: - Protcol
-extension ListViewController: MyListFeatchDelegate{
-    func didFeatch(_ ListManeger: MylistFeatch, List: FireMyList) {
-        
-        testList.insert(List, at: 0)
-    }
-    
-}
+

@@ -10,10 +10,10 @@ import Foundation
 import Firebase
 
 protocol MyListFeatchDelegate {
-    func didFeatch(_ ListManeger: MylistFeatch, List: FireMyList)
+    func didFetch(_ ListManeger: MylistFetch, List: FireMyList)
 }
 
-struct MylistFeatch {
+struct MylistFetch {
     
     var MyList = [FireMyList]()
     var mylist : FireMyList!
@@ -21,18 +21,25 @@ struct MylistFeatch {
     let userID = (Auth.auth().currentUser?.uid)!
     let MyListref = Database.database().reference().child("MyList")
     
-    func featch() {
+    func fetch() {
         MyListref.child(userID).child("List").observe(.value) { (snapshot) in
             for child in snapshot.children{
                 let childSnapshoto = child as! DataSnapshot
             
                 let content = FireMyList(snapshot: childSnapshoto)
-                self.delegate?.didFeatch(self, List: content)
+                self.delegate?.didFetch(self, List: content)
             
                 let content1 = FireMyList(snapshot: childSnapshoto).titleNameString
             
+            }
         }
-        }
+    }
+    
+    func mylistAdd(userID:String, titleName: String, detail: String, urlString: String, count: Int){
+        
+        let myListDB = Database.database().reference().child("MyList").child(userID).child("List").childByAutoId()
+        let mylistInfo = ["titleName":titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"usedcount":count as Any,"evaluation":count as Any] as [String:Any]
+        myListDB.updateChildValues(mylistInfo)
     }
     
 }

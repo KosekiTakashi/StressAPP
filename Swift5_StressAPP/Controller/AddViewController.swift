@@ -29,7 +29,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var count = Int()
     var goodUser = [String]()
     var mylist_fire : FireMyList!
-    
+    var fetch: MylistFetch!
     
     
     override func viewDidLoad() {
@@ -127,7 +127,9 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
         let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
             self.mylistAdd()
-            
+
+//            self.fetch.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+//
             self.titleTextField.text = ""
             self.detailTextView.text = ""
             self.URLTextField.text = ""
