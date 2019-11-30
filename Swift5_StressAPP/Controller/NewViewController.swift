@@ -43,7 +43,7 @@ class NewViewController: UIViewController,UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     
         username = userNameTextField.text!
-        if username != nil{
+        if username != ""{
             addButton.isHidden = false
             addButton.isEnabled = true
         }

@@ -25,7 +25,7 @@ class SerchTabViewCell: UITableViewCell {
     @IBOutlet weak var titleNameLabel: UILabel!
     
     @IBOutlet weak var countLabel: UILabel!
-    var content:Contents!{
+    var content:TimeLineData!{
         didSet{
             userNameLabel.text = content.userNameString
             titleNameLabel.text = content.titleNameString

@@ -24,14 +24,14 @@ class ListDetailViewController: UIViewController {
     var usedCount = 0
     var evaluation = 0
     
-    var MyList = [FireMyList]()
-    var myList: FireMyList!
+    var myListArray = [MyListData]()
+    var myList: MyListData!
     var maneger = MyListManeger()
     
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
     
-    var myLists:FireMyList!{
+    var myLists:MyListData!{
         didSet{
             titleName = myLists.titleNameString
             detail = myLists.detail
@@ -66,7 +66,7 @@ class ListDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //受け取り
-        MyList.removeAll()
+        myListArray.removeAll()
         self.maneger.fetch()
         
     }
@@ -76,7 +76,7 @@ class ListDetailViewController: UIViewController {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "ListChange") as! ListChangeViewController
         
-        let mylist = MyList[indexNumber]
+        let mylist = myListArray[indexNumber]
         nextVC.myLists = mylist
         
     
@@ -87,8 +87,8 @@ class ListDetailViewController: UIViewController {
 }
 
 extension ListDetailViewController : MyListFeatchDelegate{
-    func didFetch(List: FireMyList, titleNameList: String) {
-        self.MyList.insert(List, at: 0)
+    func didFetch(List: MyListData, titleNameList: String) {
+        self.myListArray.insert(List, at: 0)
         
     }
     

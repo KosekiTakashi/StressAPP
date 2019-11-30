@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import Firebase
 
-class Contents {
+class TimeLineData {
     var userNameString:String = ""
     var titleNameString:String = ""
     var detail:String = ""
@@ -50,7 +50,7 @@ class Contents {
     
 }
 
-extension Contents{
+extension TimeLineData{
     
     func pluslike(){
         count += 1

@@ -28,15 +28,16 @@ class SearchDetailViewController: UIViewController {
     var urlString :String = ""
     var count = Int()
     
-    var searchNameArray = [Contents]()
+    var searchNameArray = [TimeLineData]()
     
-    var content:Contents!
+    var content:TimeLineData!
     var userID = String()
     var timeuserID = ""
     var good = 0
     var goodUsers = [String]()
+    var myListManeger = MyListManeger()
     
-    var contents:Contents!{
+    var contents:TimeLineData!{
            didSet{
                userName = contents.userNameString
                count = contents.count
@@ -49,8 +50,6 @@ class SearchDetailViewController: UIViewController {
             
            }
        }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,33 +89,15 @@ class SearchDetailViewController: UIViewController {
     
     
     @IBAction func addAction(_ sender: Any) {
-        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
         
-        let mylistInfo = ["titleName":titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any] as [String:Any]
-        
-        myListDB.updateChildValues(mylistInfo)
+        myListManeger.mylistAdd(userID: userID, titleName: titleName, detail: detail, urlString: urlString, count: count)
         
         addButton.isEnabled = false
-        //addLabel.isHidden = false
         addLabel.text = "追加しました！！！"
         addButton.title = "追加済み"
-        tap()
         
-    }
-    
-    func tap(){
-
         contents.pluslike()
         countLabel.text = "ダウンロード数：\(count)"
-            
-        
+    
     }
-    
-    
-    
-    
-    
-
-        
-
 }

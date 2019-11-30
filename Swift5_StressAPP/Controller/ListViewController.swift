@@ -20,7 +20,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     var detail = String()
     var urlString = String()
     var usedcount = Int()
-    var myList = [FireMyList]()
+    var myList = [MyListData]()
     
     var userID  =  ""
     var userName = ""
@@ -100,7 +100,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
 
 //MARK: - Fetch
 extension ListViewController: MyListFeatchDelegate{
-    func didFetch(List: FireMyList, titleNameList: String) {
+    func didFetch(List: MyListData, titleNameList: String) {
         
         myList.insert(List, at: 0)
         myListArray.insert(titleNameList, at: 0)

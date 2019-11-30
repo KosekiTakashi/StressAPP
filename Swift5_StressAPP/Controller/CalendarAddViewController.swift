@@ -35,10 +35,10 @@ class CalendarAddViewController: UIViewController {
     var evaluation:Int = 0
     var userID = (Auth.auth().currentUser?.uid)!
     
-    var MyList = [FireMyList]()
+    var MyList = [MyListData]()
     let MyListref = Database.database().reference().child("MyList")
     var indexNumber = 0
-    var select : FireMyList?
+    var select : MyListData?
     let screenSize = UIScreen.main.bounds.size
     var diary: Diary!
     let dp = UIDatePicker()
@@ -75,7 +75,7 @@ class CalendarAddViewController: UIViewController {
            self.MyList.removeAll()
            for child in snapshot.children{
                let childSnapshoto = child as! DataSnapshot
-               let content = FireMyList(snapshot: childSnapshoto)
+               let content = MyListData(snapshot: childSnapshoto)
                self.MyList.insert(content, at: 0)
            }
             print(self.MyList)

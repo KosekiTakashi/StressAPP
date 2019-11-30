@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 
-class FireMyList{
+class MyListData{
     var titleNameString:String = ""
     var detail:String = ""
     var urlString:String = ""
@@ -45,7 +45,7 @@ class FireMyList{
     }
 }
 
-extension FireMyList{
+extension MyListData{
     
     func changeList(titleName:String,detail:String,urlString:String){
         ref.child("titleName").setValue(titleName)

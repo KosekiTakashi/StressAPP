@@ -28,10 +28,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var mylistArray = [String]()
     var count = Int()
     var goodUser = [String]()
-    var mylist_fire : FireMyList!
+    var mylist_fire : MyListData!
     
-   
-    
+    var myListmaneger = MyListManeger()
+    var timeLineManeger = TimeLineManeger()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,10 +114,11 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         let cancel = UIAlertAction(title: "キャンセル", style: .cancel) { (alert) in
         }
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
-            //goodUserに一応入れておく
+            
+            
             self.goodUser.append(self.userID)
-            self.timeLineAdd()
-            self.mylistAdd()
+            self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser)
+            self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
             
             self.goodUser.removeAll()
             self.titleTextField.text = ""
@@ -127,10 +128,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
         
         let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
-            self.mylistAdd()
-
-//            self.fetch.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
-//
+            self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+            
             self.titleTextField.text = ""
             self.detailTextView.text = ""
             self.URLTextField.text = ""
@@ -142,22 +141,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    //タイムライン追加
-    func timeLineAdd(){
-        
-        let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
-        let timeLineInfo = ["userName":self.userName as Any , "titleName":self.titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser] as [String:Any]
-        timeLineDB.updateChildValues(timeLineInfo)
-    }
-    
-    //myList追加
-    func mylistAdd(){
-        
-        let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("List").childByAutoId()
-        let mylistInfo = ["titleName":self.titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"usedcount":count as Any,"evaluation":count as Any] as [String:Any]
-        myListDB.updateChildValues(mylistInfo)
     }
     
     /*

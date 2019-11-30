@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var searchNameArray = [Contents]()
+    var searchNameArray = [TimeLineData]()
     var userName = String()
     var titleName = String()
     var count = Int()
@@ -26,15 +26,14 @@ class SearchViewController: UIViewController {
     var searchCountResults:[String] = []
     
     var nameArray:[String] = []
-    var userNameArray:[String] = []
-    var userCountArray:[Int] = []
     var number = 0
     var numberArray = [Int]()
     
-    var content = [Contents]()
+    var content = [TimeLineData]()
     //var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
-    var contentTest: Contents!
+    var timeLineData: TimeLineData!
+    var maneger = TimeLineManeger()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +41,7 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        maneger.delegate = self
        
         title = "TimeLine"
     }
@@ -52,28 +52,21 @@ class SearchViewController: UIViewController {
         searchBar.isHidden = true
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
             
-        //新しい受け取り
-        timeLinesref.observe(.value) { (snapshot) in
-            self.searchNameArray.removeAll()
-                
-            for child in snapshot.children{
-                let childSnapshoto = child as! DataSnapshot
-                
-                let content = Contents(snapshot: childSnapshoto)
-                self.searchNameArray.insert(content, at: 0)
-                
-                let content1 = Contents(snapshot: childSnapshoto).titleNameString
-                self.nameArray.insert(content1, at: 0)
-                
-                let content2 = Contents(snapshot: childSnapshoto).userNameString
-                self.userNameArray.insert(content2, at: 0)
-                
-                let content3 = Contents(snapshot: childSnapshoto).count
-                self.userCountArray.insert(content3, at: 0)
-            }
-            self.tableView.reloadData()
-        }
+        searchNameArray.removeAll()
+        nameArray.removeAll()
+        maneger.fetch()
     }
+}
+//MARK: - DataFetch
+extension SearchViewController: TimeLineDataFetchDelegate{
+    func didFetch(List: TimeLineData, titleNameList: String) {
+        
+        self.searchNameArray.insert(List, at: 0)
+        self.nameArray.insert(titleNameList, at: 0)
+        self.tableView.reloadData()
+    }
+    
+    
 }
 
 //MARK: - TableView
@@ -100,10 +93,9 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             for j in 0...numberArray.count - 1{
                 number = numberArray[j]
             }
-            print("indexpath_cell_\(indexPath.row)")
             number = numberArray[indexPath.row]
-            contentTest = searchNameArray[number]
-            cell.content = contentTest
+            timeLineData = searchNameArray[number]
+            cell.content = timeLineData
             print("number_\(number)")
         } else {
             let content = searchNameArray[indexPath.row]
@@ -167,7 +159,7 @@ extension SearchViewController: UISearchBarDelegate{
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
         tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
-        searchBar.text = ""
+        
     }
 }
 

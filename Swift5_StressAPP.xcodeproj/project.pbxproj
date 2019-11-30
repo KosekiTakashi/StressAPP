@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		14AEEC138735407862C307A3 /* Pods_Swift5_StressAPP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01960B09209111EDAF39392 /* Pods_Swift5_StressAPP.framework */; };
 		B41781AC235B11B7002149F9 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */; };
-		B41781AE235CA2DA002149F9 /* Mylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AD235CA2DA002149F9 /* Mylist.swift */; };
+		B41781AE235CA2DA002149F9 /* MylistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781AD235CA2DA002149F9 /* MylistData.swift */; };
 		B41781B2235DE669002149F9 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41781B1235DE669002149F9 /* NewViewController.swift */; };
 		B41C46C4234758DF00D3210C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C3234758DF00D3210C /* AppDelegate.swift */; };
 		B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46C5234758DF00D3210C /* SceneDelegate.swift */; };
@@ -25,8 +25,10 @@
 		B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */; };
 		B45FF0EE2381858B005F36F7 /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = B45FF0ED2381858B005F36F7 /* checkmark.json */; };
 		B4931AA2238C2491006C5952 /* MyListManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA1238C2491006C5952 /* MyListManeger.swift */; };
+		B4931AA423926B6F006C5952 /* TimeLineManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA323926B6F006C5952 /* TimeLineManeger.swift */; };
+		B4931AA62392806C006C5952 /* DiaryManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA52392806C006C5952 /* DiaryManeger.swift */; };
 		B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FB234CE40200E1230D /* LoginViewController.swift */; };
-		B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* Contents.swift */; };
+		B4F198FE234CE9DB00E1230D /* TimeLineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F198FD234CE9DB00E1230D /* TimeLineData.swift */; };
 		B4F19900234D70B100E1230D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B4F198FF234D70B100E1230D /* GoogleService-Info.plist */; };
 		B4FD11692371A1A900D3171E /* CalendarAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */; };
 		B4FD116B2375959F00D3171E /* star1.json in Resources */ = {isa = PBXBuildFile; fileRef = B4FD116A2375959F00D3171E /* star1.json */; };
@@ -37,7 +39,7 @@
 /* Begin PBXFileReference section */
 		07BBD21DEA52D753BD682DFF /* Pods-Swift5_StressAPP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift5_StressAPP.debug.xcconfig"; path = "Target Support Files/Pods-Swift5_StressAPP/Pods-Swift5_StressAPP.debug.xcconfig"; sourceTree = "<group>"; };
 		B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		B41781AD235CA2DA002149F9 /* Mylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mylist.swift; sourceTree = "<group>"; };
+		B41781AD235CA2DA002149F9 /* MylistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MylistData.swift; sourceTree = "<group>"; };
 		B41781B1235DE669002149F9 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		B41C46C0234758DF00D3210C /* Swift5_StressAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swift5_StressAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41C46C3234758DF00D3210C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,8 +57,10 @@
 		B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarDetailViewController.swift; sourceTree = "<group>"; };
 		B45FF0ED2381858B005F36F7 /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		B4931AA1238C2491006C5952 /* MyListManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListManeger.swift; sourceTree = "<group>"; };
+		B4931AA323926B6F006C5952 /* TimeLineManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineManeger.swift; sourceTree = "<group>"; };
+		B4931AA52392806C006C5952 /* DiaryManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryManeger.swift; sourceTree = "<group>"; };
 		B4F198FB234CE40200E1230D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B4F198FD234CE9DB00E1230D /* Contents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contents.swift; sourceTree = "<group>"; };
+		B4F198FD234CE9DB00E1230D /* TimeLineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineData.swift; sourceTree = "<group>"; };
 		B4F198FF234D70B100E1230D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAddViewController.swift; sourceTree = "<group>"; };
 		B4FD116A2375959F00D3171E /* star1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = star1.json; sourceTree = "<group>"; };
@@ -130,10 +134,12 @@
 		B41C46D923475B8500D3210C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B4F198FD234CE9DB00E1230D /* Contents.swift */,
-				B41781AD235CA2DA002149F9 /* Mylist.swift */,
+				B41781AD235CA2DA002149F9 /* MylistData.swift */,
 				B4931AA1238C2491006C5952 /* MyListManeger.swift */,
+				B4F198FD234CE9DB00E1230D /* TimeLineData.swift */,
+				B4931AA323926B6F006C5952 /* TimeLineManeger.swift */,
 				B4FD117C237AC98800D3171E /* Diary.swift */,
+				B4931AA52392806C006C5952 /* DiaryManeger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,10 +154,10 @@
 				B41C46DC23475CF500D3210C /* ListViewController.swift */,
 				B41C46DE2347726C00D3210C /* ListDetailViewController.swift */,
 				B43F295C236328B000B14757 /* ListChangeViewController.swift */,
+				B41C46E6234B553300D3210C /* AddViewController.swift */,
 				B4FEE27F236C66FB002D1A1F /* CalenderViewController.swift */,
 				B4FD11682371A1A900D3171E /* CalendarAddViewController.swift */,
 				B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */,
-				B41C46E6234B553300D3210C /* AddViewController.swift */,
 				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
 			);
@@ -288,13 +294,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4F198FC234CE40200E1230D /* LoginViewController.swift in Sources */,
-				B41781AE235CA2DA002149F9 /* Mylist.swift in Sources */,
+				B41781AE235CA2DA002149F9 /* MylistData.swift in Sources */,
 				B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */,
-				B4F198FE234CE9DB00E1230D /* Contents.swift in Sources */,
+				B4F198FE234CE9DB00E1230D /* TimeLineData.swift in Sources */,
 				B4931AA2238C2491006C5952 /* MyListManeger.swift in Sources */,
 				B4FD117D237AC98800D3171E /* Diary.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
 				B4FEE280236C66FB002D1A1F /* CalenderViewController.swift in Sources */,
+				B4931AA423926B6F006C5952 /* TimeLineManeger.swift in Sources */,
 				B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */,
 				B41781AC235B11B7002149F9 /* SearchTableViewCell.swift in Sources */,
 				B41C46E7234B553300D3210C /* AddViewController.swift in Sources */,
@@ -303,6 +310,7 @@
 				B41781B2235DE669002149F9 /* NewViewController.swift in Sources */,
 				B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */,
 				B41C46DD23475CF500D3210C /* ListViewController.swift in Sources */,
+				B4931AA62392806C006C5952 /* DiaryManeger.swift in Sources */,
 				B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */,
 				B41C46DF2347726C00D3210C /* ListDetailViewController.swift in Sources */,
 			);

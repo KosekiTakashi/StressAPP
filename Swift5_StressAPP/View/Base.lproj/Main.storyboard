@@ -40,6 +40,11 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <navigationItem key="navigationItem" title="自分のリスト" id="g4f-kS-n0J">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="person" catalog="system" id="jHG-Ay-51S">
+                            <connections>
+                                <segue destination="xfD-sh-wbK" kind="show" id="IvI-i9-VHx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="search" image="magnifyingglass" catalog="system" id="6LX-pT-0ge">
                             <connections>
                                 <action selector="searchPressed:" destination="9pv-A4-QxB" id="n2P-5K-szg"/>
@@ -55,6 +60,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1659.4202898550725" y="-320.08928571428572"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YFz-qV-CIY">
+            <objects>
+                <viewController id="xfD-sh-wbK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bug-X3-Mkv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ユーザプロフィール" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzl-dn-v1c">
+                                <rect key="frame" x="67" y="88" width="280" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y7x-rg-Wmc" customClass="KaedeTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="19" y="154" width="377" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orN-Kb-5KH">
+                                <rect key="frame" x="339" y="98" width="55" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="変更">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="passward" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="75Y-EL-gwD" customClass="KaedeTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="196" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UserName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gt2-VF-WRh" customClass="KaedeTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="246" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="eoX-sI-FwV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1Zv-vA-sX1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbQ-xy-9va" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2589.8550724637685" y="-964.28571428571422"/>
         </scene>
         <!--List Detail View Controller-->
         <scene sceneID="M0j-I6-ZB3">
@@ -904,7 +960,7 @@
                                 <rect key="frame" x="20" y="193" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWM-vr-Xfe">
                                 <rect key="frame" x="114" y="318" width="186" height="51"/>
@@ -1104,10 +1160,11 @@
         <image name="calendar" catalog="system" width="64" height="52"/>
         <image name="list.number" catalog="system" width="64" height="48"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="person" catalog="system" width="64" height="58"/>
         <image name="plus.circle" catalog="system" width="64" height="60"/>
         <image name="water-1330252_1920" width="1920" height="1188"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oKH-hL-K0x"/>
+        <segue reference="aGp-WM-AWM"/>
     </inferredMetricsTieBreakers>
 </document>

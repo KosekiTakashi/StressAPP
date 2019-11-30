@@ -19,7 +19,7 @@ class ListChangeViewController: UIViewController,UITextFieldDelegate,UITextViewD
     var detail : String = ""
     var urlString : String = ""
     
-    var myLists:FireMyList!{
+    var myLists:MyListData!{
         didSet{
             titleName = myLists.titleNameString
             detail = myLists.detail
