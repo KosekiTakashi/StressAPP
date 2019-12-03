@@ -22,8 +22,8 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     var usedcount = Int()
     var myList = [MyListData]()
     
-    var userID  =  ""
-    var userName = ""
+    var userID  =  UserData.userID
+    var userName = UserData.userName
     
     var searchResults:[String] = []
     var numberArray = [Int]()
@@ -47,12 +47,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         super.viewWillAppear(animated)
         searchBar.isHidden = true
         tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
-        
-        //ユーザデータ取得
-        userID = (Auth.auth().currentUser?.uid)!
-        if Auth.auth().currentUser?.displayName != nil{
-            userName = (Auth.auth().currentUser?.displayName)!
-        }
         
         //受け取り
         myListArray.removeAll()
@@ -159,10 +153,12 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         if  numberArray == []{
             nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
+            
         }else{
             number = numberArray[indexPath.row]
             nextVC.myLists = myList[number]
             nextVC.indexNumber = number
+            
         }
     
         navigationController?.pushViewController(nextVC, animated: true)

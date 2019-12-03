@@ -22,6 +22,8 @@
 		B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E22348A74600D3210C /* SearchDetailViewController.swift */; };
 		B41C46E7234B553300D3210C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E6234B553300D3210C /* AddViewController.swift */; };
 		B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43F295C236328B000B14757 /* ListChangeViewController.swift */; };
+		B45E57A7239546F700C79337 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E57A6239546F700C79337 /* UserViewController.swift */; };
+		B45E57A92396AE3000C79337 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E57A82396AE3000C79337 /* UserData.swift */; };
 		B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */; };
 		B45FF0EE2381858B005F36F7 /* checkmark.json in Resources */ = {isa = PBXBuildFile; fileRef = B45FF0ED2381858B005F36F7 /* checkmark.json */; };
 		B4931AA2238C2491006C5952 /* MyListManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA1238C2491006C5952 /* MyListManeger.swift */; };
@@ -54,6 +56,8 @@
 		B41C46E22348A74600D3210C /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		B41C46E6234B553300D3210C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		B43F295C236328B000B14757 /* ListChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChangeViewController.swift; sourceTree = "<group>"; };
+		B45E57A6239546F700C79337 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		B45E57A82396AE3000C79337 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarDetailViewController.swift; sourceTree = "<group>"; };
 		B45FF0ED2381858B005F36F7 /* checkmark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkmark.json; sourceTree = "<group>"; };
 		B4931AA1238C2491006C5952 /* MyListManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListManeger.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				B4931AA323926B6F006C5952 /* TimeLineManeger.swift */,
 				B4FD117C237AC98800D3171E /* Diary.swift */,
 				B4931AA52392806C006C5952 /* DiaryManeger.swift */,
+				B45E57A82396AE3000C79337 /* UserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */,
 				B41C46E02348A68B00D3210C /* SearchViewController.swift */,
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
+				B45E57A6239546F700C79337 /* UserViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				B4931AA2238C2491006C5952 /* MyListManeger.swift in Sources */,
 				B4FD117D237AC98800D3171E /* Diary.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
+				B45E57A7239546F700C79337 /* UserViewController.swift in Sources */,
 				B4FEE280236C66FB002D1A1F /* CalenderViewController.swift in Sources */,
 				B4931AA423926B6F006C5952 /* TimeLineManeger.swift in Sources */,
 				B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */,
@@ -310,6 +317,7 @@
 				B41781B2235DE669002149F9 /* NewViewController.swift in Sources */,
 				B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */,
 				B41C46DD23475CF500D3210C /* ListViewController.swift in Sources */,
+				B45E57A92396AE3000C79337 /* UserData.swift in Sources */,
 				B4931AA62392806C006C5952 /* DiaryManeger.swift in Sources */,
 				B41C46C6234758DF00D3210C /* SceneDelegate.swift in Sources */,
 				B41C46DF2347726C00D3210C /* ListDetailViewController.swift in Sources */,

@@ -22,7 +22,7 @@ class CalenderViewController: UIViewController {
     
     var currentDataTime: Date!
     var diary = [Diary]()
-    var userID = (Auth.auth().currentUser?.uid)!
+    var userID = UserData.userID
     let MyListref = Database.database().reference().child("MyList")
     var eventCount = 0
     var maneger = DiaryManeger()
@@ -126,7 +126,6 @@ extension CalenderViewController: FSCalendarDelegate,FSCalendarDataSource,FSCale
      }
      
      func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-         let dateString = self.dateFormatter.string(from: date)
          return 0
      }
     

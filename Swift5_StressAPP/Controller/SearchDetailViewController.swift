@@ -31,7 +31,7 @@ class SearchDetailViewController: UIViewController {
     var searchNameArray = [TimeLineData]()
     
     var content:TimeLineData!
-    var userID = String()
+    var userID = UserData.userID
     var timeuserID = ""
     var good = 0
     var goodUsers = [String]()
@@ -67,7 +67,7 @@ class SearchDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        userID = (Auth.auth().currentUser?.uid)!
+        
        
         for i in goodUsers{
             if i == userID{
@@ -77,7 +77,7 @@ class SearchDetailViewController: UIViewController {
         if good == 1 || timeuserID == userID{
             
             addButton.isEnabled = false
-            //addLabel.isHidden = false
+            
             addLabel.text = "追加済み"
             addButton.title = "追加済み"
         }else{

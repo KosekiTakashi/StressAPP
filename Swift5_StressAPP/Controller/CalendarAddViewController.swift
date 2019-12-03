@@ -33,7 +33,7 @@ class CalendarAddViewController: UIViewController {
     var selectedList = String()
     var result = String()
     var evaluation:Int = 0
-    var userID = (Auth.auth().currentUser?.uid)!
+    var userID = UserData.userID
     
     var MyList = [MyListData]()
     let MyListref = Database.database().reference().child("MyList")
@@ -70,7 +70,6 @@ class CalendarAddViewController: UIViewController {
         super.viewWillAppear(animated)
         
         //MyListを追加
-        let userID = (Auth.auth().currentUser?.uid)!
         MyListref.child(userID).child("List").observe(.value) { (snapshot) in
            self.MyList.removeAll()
            for child in snapshot.children{

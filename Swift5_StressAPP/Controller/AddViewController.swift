@@ -20,8 +20,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     @IBOutlet weak var addButton: UIButton!
     
    
-    var userName = String()
-    var userID = String()
+    var userName = UserData.userName
+    var userID = UserData.userID
     var titleName = String()
     var detail = String()
     var urlString = String()
@@ -35,13 +35,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if UserDefaults.standard.object(forKey: "userName") != nil{
-            userName = UserDefaults.standard.object(forKey: "userName") as! String
-        }
         
-        userName = (Auth.auth().currentUser?.displayName)!
-        userID = (Auth.auth().currentUser?.uid)!
         
         UserNameLabel.text = userName
         

@@ -47,7 +47,8 @@ class ListDetailViewController: UIViewController {
         
         titlenameLabel.text = titleName
         detailLabel.text = detail
-        urlStringLabel.text = urlString
+        
+        
         if usedCount != 0{
             let ave = evaluation / usedCount
             evaluationLabel.text = "\(ave) (使用回数：\(usedCount))"
@@ -58,7 +59,7 @@ class ListDetailViewController: UIViewController {
         self.titlenameLabel.text = titleName
         self.detailLabel.text = detail
         self.urlStringLabel.text = urlString
-        
+        maneger.delegate = self
     }
     
     
@@ -89,6 +90,7 @@ class ListDetailViewController: UIViewController {
 extension ListDetailViewController : MyListFeatchDelegate{
     func didFetch(List: MyListData, titleNameList: String) {
         self.myListArray.insert(List, at: 0)
+        
         
     }
     

@@ -16,7 +16,7 @@ protocol MyListFeatchDelegate {
 struct MyListManeger {
     
     var delegate:MyListFeatchDelegate?
-    let userID = (Auth.auth().currentUser?.uid)!
+    let userID = UserData.userID
     let MyListref = Database.database().reference().child("MyList")
     
     func fetch() {
