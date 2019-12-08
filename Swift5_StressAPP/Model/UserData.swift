@@ -8,7 +8,6 @@
 
 import Firebase
 
-
 struct UserData {
     static let userID = (Auth.auth().currentUser?.uid)!
     static let userName = (Auth.auth().currentUser?.displayName)!

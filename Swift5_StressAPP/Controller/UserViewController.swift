@@ -12,15 +12,15 @@ import TextFieldEffects
 
 class UserViewController: UIViewController {
     @IBOutlet weak var userNameTextField: KaedeTextField!
-    @IBOutlet weak var emailTextField: KaedeTextField!
-    
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var createDayLabel: UILabel!
+    @IBOutlet weak var changeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        emailTextField.text = UserData.userEmail
+        changeButton.isHidden = true
         userNameTextField.text = UserData.userName
+        emailLabel.text = UserData.userEmail
         createDayLabel.text = "\(UserData.userCreateDay)"
         let ID = UserData.userID
         print(ID)
@@ -32,12 +32,13 @@ class UserViewController: UIViewController {
         if userNameTextField.text != UserData.userName{
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             
-            changeRequest?.displayName = UserData.userName
+            changeRequest?.displayName = userNameTextField.text
             changeRequest?.commitChanges(completion: { (error) in
                 print(error as Any)
                 return
             })
         }
+        print("------------")
         print(UserData.userName)
     }
     
