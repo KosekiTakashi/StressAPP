@@ -53,31 +53,31 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        titleName = titleTextField.text!
-        detail = detailTextView.text!
-        urlString = URLTextField.text!
-        
-       if titleName != "" && detail != ""{
-            addButton.isHidden = false
-            addButton.isEnabled = true
-        }
-        titleTextField.resignFirstResponder()
-        detailTextView.resignFirstResponder()
-        URLTextField.resignFirstResponder()
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        titleName = titleTextField.text!
+//        detail = detailTextView.text!
+//        urlString = URLTextField.text!
+//
+//       if titleName != "" && detail != ""{
+//            addButton.isHidden = false
+//            addButton.isEnabled = true
+//        }
+//        titleTextField.resignFirstResponder()
+//        detailTextView.resignFirstResponder()
+//        URLTextField.resignFirstResponder()
+//    }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.endEditing(true)
+//    }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != ""{
-            return true
-        }else{
-            return false
-        }
-    }
+//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+//        if textField.text != ""{
+//            return true
+//        }else{
+//            return false
+//        }
+//    }
     
     @IBAction func postAction(_ sender: Any) {
         

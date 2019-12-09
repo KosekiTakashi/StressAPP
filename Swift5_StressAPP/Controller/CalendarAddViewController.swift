@@ -147,6 +147,10 @@ class CalendarAddViewController: UIViewController {
     }
     
     @IBAction func getData(_ sender: Any) {
+        
+        titleName = eventNameTextView.text!
+        result = resultTextView.text!
+        
         let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("Diary").child(dateString).childByAutoId()
         
         let mylistInfo = ["titleName":self.titleName as Any, "stressCount": stresscount  as Any,"selectedList":selectedList as Any,"result":result as Any, "evaluation":evaluation as Any,"timeString":timeString as Any] as [String:Any]
@@ -209,38 +213,38 @@ extension CalendarAddViewController: UITextFieldDelegate,UITextViewDelegate{
         dateTextField.text = "\(formatter.string(from: sender.date))"
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        titleName = eventNameTextView.text!
-        result = resultTextView.text!
-        
-        dateTextField.resignFirstResponder()
-        eventNameTextView.resignFirstResponder()
-        resultTextView.resignFirstResponder()
-        
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        print(textView.tag)
-        
-        if textView.tag == 2{
-            resultTextView.frame.origin.y = 400
-            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        }else{
-            return
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification:NSNotification){
-        resultTextView.frame.origin.y = 483
-        guard let _ = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
-        //durationは下げる時間
-        UIView.animate(withDuration: duration){
-            let transform = CGAffineTransform(translationX: 0, y: 0)
-            self.view.transform = transform
-        }
-    }
-    
-    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//
+//        titleName = eventNameTextView.text!
+//        result = resultTextView.text!
+//
+//        dateTextField.resignFirstResponder()
+//        eventNameTextView.resignFirstResponder()
+//        resultTextView.resignFirstResponder()
+//
+//    }
+//
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        print(textView.tag)
+//
+//        if textView.tag == 2{
+//            resultTextView.frame.origin.y = 400
+//            NotificationCenter.default.addObserver(self, selector: #selector(CalendarAddViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        }else{
+//            return
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(_ notification:NSNotification){
+//        resultTextView.frame.origin.y = 483
+//        guard let _ = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+//        let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {return}
+//        //durationは下げる時間
+//        UIView.animate(withDuration: duration){
+//            let transform = CGAffineTransform(translationX: 0, y: 0)
+//            self.view.transform = transform
+//        }
+//    }
+//
+//
 }

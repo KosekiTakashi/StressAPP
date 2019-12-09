@@ -98,6 +98,7 @@ PODS:
   - GoogleUtilities/UserDefaults (6.2.5):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
+  - IQKeyboardManagerSwift (6.5.4)
   - leveldb-library (1.22)
   - lottie-ios (3.1.5)
   - nanopb (0.3.901):
@@ -122,6 +123,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - FSCalendar
+  - IQKeyboardManagerSwift
   - lottie-ios
   - RealmSwift
   - TextFieldEffects
@@ -147,6 +149,7 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - leveldb-library
     - lottie-ios
     - nanopb
@@ -175,6 +178,7 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: 51134d81fca795c60cc247d1cb6af63c3d67b8d8
   GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -183,6 +187,6 @@ SPEC CHECKSUMS:
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 8cf962c1fd38f17b13d6904457217e27fe7da5af
+PODFILE CHECKSUM: 9ce394810ddd5cf16ba63ef41ab7fe163f821730
 
 COCOAPODS: 1.8.4

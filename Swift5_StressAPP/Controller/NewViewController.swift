@@ -40,27 +40,25 @@ class NewViewController: UIViewController,UITextFieldDelegate {
            
        }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    
-        username = userNameTextField.text!
-        if username != ""{
-            addButton.isHidden = false
-            addButton.isEnabled = true
-        }
-        userNameTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        
-        
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//    
+//        
+//        userNameTextField.resignFirstResponder()
+//        emailTextField.resignFirstResponder()
+//        passwordTextField.resignFirstResponder()
+//        
+//        
+//    }
 
     
     
     @IBAction func NewCreate(_ sender: Any) {
         
-        UserDefaults.standard.set(username, forKey: "userName")
-        
-        
+        username = userNameTextField.text!
+        if username != ""{
+            addButton.isHidden = false
+            addButton.isEnabled = true
+        }
         
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil{
