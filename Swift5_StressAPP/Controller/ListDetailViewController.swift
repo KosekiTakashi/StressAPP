@@ -59,28 +59,35 @@ class ListDetailViewController: UIViewController {
         self.titlenameLabel.text = titleName
         self.detailLabel.text = detail
         self.urlStringLabel.text = urlString
-        maneger.delegate = self
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         //受け取り
         myListArray.removeAll()
         self.maneger.fetch()
+        print(myListArray)
+
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        print(myListArray)
+        
+
+
     }
     
     
     @IBAction func change(_ sender: Any) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "ListChange") as! ListChangeViewController
-        
         let mylist = myListArray[indexNumber]
         nextVC.myLists = mylist
         
-    
         navigationController?.pushViewController(nextVC, animated: true)
         
     }
@@ -90,7 +97,6 @@ class ListDetailViewController: UIViewController {
 extension ListDetailViewController : MyListFeatchDelegate{
     func didFetch(List: MyListData, titleNameList: String) {
         self.myListArray.insert(List, at: 0)
-        
         
     }
     

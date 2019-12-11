@@ -48,9 +48,9 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        addButton.isHidden = true
-        addButton.isEnabled = false
-        
+//        addButton.isHidden = true
+//        addButton.isEnabled = false
+//
     }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -96,8 +96,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         showeAlart()
         
         //ボタンの設定
-        addButton.isHidden = true
-        addButton.isEnabled = false
+//        addButton.isHidden = true
+//        addButton.isEnabled = false
         
         
     }

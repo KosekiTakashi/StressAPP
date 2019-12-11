@@ -50,11 +50,25 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
         
         searchBar.isHidden = true
-        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
+        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
+        
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20, width: 414, height: 725)
             
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+//        myListArray.removeAll()
+//        myList.removeAll()
+//        manegar.delegate = self
+//        self.manegar.fetch()
         searchNameArray.removeAll()
         nameArray.removeAll()
         maneger.fetch()
+        
+        
     }
 }
 //MARK: - DataFetch
@@ -89,7 +103,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
 
-        if searchBar.text != "" &&  numberArray != []{
+        if numberArray != []{
             for j in 0...numberArray.count - 1{
                 number = numberArray[j]
             }
@@ -98,7 +112,9 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             cell.content = timeLineData
             print("number_\(number)")
         } else {
+            print(searchNameArray[indexPath.row])
             let content = searchNameArray[indexPath.row]
+            
             cell.content = content
         }
         return cell
@@ -136,7 +152,9 @@ extension SearchViewController: UISearchBarDelegate{
         self.view.endEditing(true)
         self.tableView.reloadData()
         searchBar.isHidden = true
-        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
+        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
+        
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20 , width: 414, height: 725)
     }
     //searchの実施
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -158,7 +176,12 @@ extension SearchViewController: UISearchBarDelegate{
     @IBAction func searchPressed(_ sender: Any) {
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
-        tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+        
+        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
+        print(navigationBarHeight!)
+        let searchBarHeight = searchBar.frame.size.height
+        
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + 20 , width: 414, height: 681)
         
     }
 }

@@ -31,8 +31,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     var myListArray:[String] = []
     
     let MyListref = Database.database().reference().child("MyList")
-        
-    var maneger = MyListManeger()
+    var manegar = MyListManeger()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +41,30 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        maneger.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchBar.isHidden = true
-        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
         
+        let navigationBarHeight = navigationController?.navigationBar.frame.size.height
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
+        
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         //受け取り
         myListArray.removeAll()
         myList.removeAll()
-        self.maneger.fetch()
+        manegar.delegate = self
+        self.manegar.fetch()
+        
+        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -61,8 +74,8 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.reloadData()
         
         searchBar.isHidden = true
-        
-        tableView.frame = CGRect(x: 0, y: 88 , width: 414, height: 725)
+        let navigationBarHeight = navigationController?.navigationBar.frame.size.height
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
     }
     
     
@@ -88,20 +101,30 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     @IBAction func searchPressed(_ sender: Any) {
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
-        tableView.frame = CGRect(x: 0, y: 132 , width: 414, height: 681)
+        
+        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
+        let searchBarHeight = searchBar.frame.size.height
+//        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
+        
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + 20 , width: 414, height: 681)
     }
 }
 
 //MARK: - Fetch
 extension ListViewController: MyListFeatchDelegate{
+    
     func didFetch(List: MyListData, titleNameList: String) {
+        print("fetchhhhhhhhhhhhhhhhhhhhhh")
         
         myList.insert(List, at: 0)
         myListArray.insert(titleNameList, at: 0)
         
-        self.tableView.reloadData()
         self.navigationController?.title = String(self.myList.count)
         self.title = "\(self.userName)'sリスト (\(self.myList.count))"
+        
+        self.tableView.reloadData()
+        
     }
 }
 
@@ -132,6 +155,8 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             number = numberArray[indexPath.row]
             cell.textLabel!.text = myList[number].titleNameString
         } else {
+            print("testtttttt")
+            print(myList)
             cell.textLabel?.text = myList[indexPath.row].titleNameString
         }
         
@@ -149,7 +174,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
         let mylist = myList[indexPath.row]
-        print(numberArray)
         if  numberArray == []{
             nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
@@ -175,8 +199,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             let ref = MyListref.child(userID).child("List")
             
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
-                print("====================")
-                print(snapshot.children.allObjects)
                 if let result = snapshot.children.allObjects as? [DataSnapshot] {
 
                     for child in result {
@@ -201,8 +223,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             let listDetail = myList[indexPath.row].detail
             let ref = MyListref.child(userID).child("List")
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
-                print("====================")
-                print(snapshot.children.allObjects)
                 if let result = snapshot.children.allObjects as? [DataSnapshot] {
 
                     for child in result {

@@ -30,7 +30,7 @@ class SerchTabViewCell: UITableViewCell {
             userNameLabel.text = content.userNameString
             titleNameLabel.text = content.titleNameString
             countLabel.text = ("ダウンロード数：\(content.count)")
-            userNameLabel.text = test
+            
        }
     }
     
