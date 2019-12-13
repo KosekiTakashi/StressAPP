@@ -15,15 +15,20 @@ class UserViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var createDayLabel: UILabel!
     @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var logoImageView: UIImageView!
+    
+    let userData = UserData()
+    let userImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         changeButton.isHidden = true
-        userNameTextField.text = UserData.userName
+        userNameTextField.text = userData.userNameData()
         emailLabel.text = UserData.userEmail
         createDayLabel.text = "\(UserData.userCreateDay)"
-        let ID = UserData.userID
-        print(ID)
+//        let ID = UserData.userID
+        logoImageView.layer.cornerRadius = logoImageView.frame.height / 2
+        logoImageView.image = userData.ImageData()
         
     }
     

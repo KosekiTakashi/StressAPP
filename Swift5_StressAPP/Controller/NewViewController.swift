@@ -34,10 +34,7 @@ class NewViewController: UIViewController,UITextFieldDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
-        
-           addButton.isHidden = true
-           addButton.isEnabled = false
-           
+                   
        }
     
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -75,7 +72,7 @@ class NewViewController: UIViewController,UITextFieldDelegate {
                     return
                 })
                 
-                self.performSegue(withIdentifier: "tab", sender: nil)
+                self.performSegue(withIdentifier: "userInput", sender: nil)
             }
         }
     }

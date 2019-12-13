@@ -51,18 +51,17 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
         
-        
-        
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         //受け取り
         myListArray.removeAll()
         myList.removeAll()
         manegar.delegate = self
         self.manegar.fetch()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         
         
     }
@@ -120,8 +119,10 @@ extension ListViewController: MyListFeatchDelegate{
         myList.insert(List, at: 0)
         myListArray.insert(titleNameList, at: 0)
         
+        let userData = UserData()
+        let username = userData.userNameData()
         self.navigationController?.title = String(self.myList.count)
-        self.title = "\(self.userName)'sリスト (\(self.myList.count))"
+        self.title = "\(username)'sリスト (\(self.myList.count))"
         
         self.tableView.reloadData()
         
@@ -191,7 +192,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        if searchBar.text != "" && numberArray != []{
+        if numberArray != []{
             searchResults.remove(at: indexPath.row)
             //Firebase削除
             let listTitleName = myList[number].titleNameString
@@ -218,6 +219,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             myList.remove(at: number)
             
         }else{
+            
             //Firebase削除
             let listTitleName = myList[indexPath.row].titleNameString
             let listDetail = myList[indexPath.row].detail
@@ -239,8 +241,11 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
             }
+            
             //List削除
             myList.remove(at: indexPath.row)
+            print(myList.count)
+            
         }
         //tableView削除
         tableView.deleteRows(at: [indexPath], with: .automatic)
