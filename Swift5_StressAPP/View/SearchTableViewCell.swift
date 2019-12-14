@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import RealmSwift
 
 class SerchTabViewCell: UITableViewCell {
     
@@ -23,6 +22,7 @@ class SerchTabViewCell: UITableViewCell {
     
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleNameLabel: UILabel!
+    @IBOutlet weak var userLogoImageView: UIImageView!
     
     @IBOutlet weak var countLabel: UILabel!
     var content:TimeLineData!{

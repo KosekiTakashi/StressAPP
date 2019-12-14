@@ -89,7 +89,6 @@ class SearchDetailViewController: UIViewController {
     
     
     @IBAction func addAction(_ sender: Any) {
-        
         myListManeger.mylistAdd(userID: userID, titleName: titleName, detail: detail, urlString: urlString, count: count)
         
         addButton.isEnabled = false

@@ -18,6 +18,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var URLTextField: UITextField!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var logoImageView: UIImageView!
     
    
     var userName = UserData.userName
@@ -33,11 +34,17 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     var myListmaneger = MyListManeger()
     var timeLineManeger = TimeLineManeger()
     
+    let userData = UserData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        UserNameLabel.text = userName
+        UserNameLabel.text = userData.userNameData()
+        
+        logoImageView.layer.cornerRadius = logoImageView.frame.height/2
+        logoImageView.image = userData.ImageData()
+        
         
         titleTextField.delegate = self
         detailTextView.delegate = self
@@ -111,7 +118,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             
             
             self.goodUser.append(self.userID)
-            self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser)
+            self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
             self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
             
             self.goodUser.removeAll()
