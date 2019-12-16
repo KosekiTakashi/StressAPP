@@ -7,7 +7,7 @@ Overview
 ## Description
 Firebaseデータ管理を行っています．
 ## Demo  
-
+![sample](https://user-images.githubusercontent.com/53421334/70920720-62872b00-2066-11ea-80d0-ec640e2cc1a6.gif)
 
 ## Author
 
