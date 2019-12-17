@@ -39,7 +39,8 @@ struct TimeLineManeger {
         let userprofileImageData = (userImage.jpegData(compressionQuality: 0.01)!)
         data = userprofileImageData
         let storageRef = Storage.storage().reference()
-        let riversRef = storageRef.child("userImage").child("userlogo")
+        let key = timeLineDB.child("Users").childByAutoId().key
+        let riversRef = storageRef.child("userImage").child("userlogo").child("\(String(describing: key!)).jpg")
 
         // Upload the file to the path "images/rivers.jpg"
         let uploadTask = riversRef.putData(data, metadata: nil) { (metadata, error) in
@@ -55,13 +56,14 @@ struct TimeLineManeger {
                 print(error as Any)
               return
             }
-            print(downloadURL)
+            print(downloadURL.absoluteString)
             print("---------------------------")
-            let timeLineInfo = ["userName": userName as Any , "titleName":titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser,"userProfileImage":url?.absoluteString as Any] as [String:Any]
+            let timeLineInfo = ["userName": userName as Any , "titleName":titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser,"userProfileImage":downloadURL.absoluteString as Any] as [String:Any]
 
             timeLineDB.updateChildValues(timeLineInfo)
             }
         }
+        uploadTask.resume()
     }
         
 //        let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()

@@ -47,7 +47,7 @@ class ListDetailViewController: UIViewController {
         
         titlenameLabel.text = titleName
         detailLabel.text = detail
-        
+        maneger.delegate = self
         
         if usedCount != 0{
             let ave = evaluation / usedCount
@@ -69,15 +69,15 @@ class ListDetailViewController: UIViewController {
         //受け取り
         myListArray.removeAll()
         self.maneger.fetch()
-        print(myListArray)
 
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(myListArray)
-        
 
+        titlenameLabel.text = myListArray[indexNumber].titleNameString
+        detailLabel.text = myListArray[indexNumber].detail
+        urlStringLabel.text = myListArray[indexNumber].urlString
 
     }
     
@@ -97,7 +97,7 @@ class ListDetailViewController: UIViewController {
 extension ListDetailViewController : MyListFeatchDelegate{
     func didFetch(List: MyListData, titleNameList: String) {
         self.myListArray.insert(List, at: 0)
-        
+        print(myListArray)
     }
     
     

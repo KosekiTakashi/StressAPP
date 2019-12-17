@@ -74,9 +74,9 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
 //        URLTextField.resignFirstResponder()
 //    }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.endEditing(true)
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
     
 //    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 //        if textField.text != ""{
@@ -118,6 +118,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             
             
             self.goodUser.append(self.userID)
+            self.userName = self.userData.userNameData()
             self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
             self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
             

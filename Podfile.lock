@@ -112,6 +112,9 @@ PODS:
   - Realm/Headers (3.17.3)
   - RealmSwift (3.17.3):
     - Realm (= 3.17.3)
+  - SDWebImage (5.4.0):
+    - SDWebImage/Core (= 5.4.0)
+  - SDWebImage/Core (5.4.0)
   - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
@@ -126,6 +129,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - lottie-ios
   - RealmSwift
+  - SDWebImage
   - TextFieldEffects
 
 SPEC REPOS:
@@ -156,6 +160,7 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
+    - SDWebImage
     - TextFieldEffects
 
 SPEC CHECKSUMS:
@@ -185,8 +190,9 @@ SPEC CHECKSUMS:
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
   RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
+  SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 9ce394810ddd5cf16ba63ef41ab7fe163f821730
+PODFILE CHECKSUM: 8d209a2de3f9d5a1999f90fc62bb3450af0be037
 
 COCOAPODS: 1.8.4

@@ -37,15 +37,9 @@ class NewViewController: UIViewController,UITextFieldDelegate {
                    
        }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//    
-//        
-//        userNameTextField.resignFirstResponder()
-//        emailTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        
-//        
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
 
     
     

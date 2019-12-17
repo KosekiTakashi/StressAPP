@@ -37,31 +37,36 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        manegar.delegate = self
+//        self.manegar.fetch()
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        print("viewDidLoad")
+        print(self.myList)
+        
+        
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        manegar.fetch()
         searchBar.isHidden = true
         
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
         
-        //受け取り
-        myListArray.removeAll()
-        myList.removeAll()
-        manegar.delegate = self
-        self.manegar.fetch()
+        print("viewWillAppear")
+        print(myList)
+        
+
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         
         
     }
@@ -114,17 +119,29 @@ class ListViewController: UIViewController,UISearchBarDelegate {
 extension ListViewController: MyListFeatchDelegate{
     
     func didFetch(List: MyListData, titleNameList: String) {
-        print("fetchhhhhhhhhhhhhhhhhhhhhh")
         
-        myList.insert(List, at: 0)
-        myListArray.insert(titleNameList, at: 0)
+        myListArray.removeAll()
+        myList.removeAll()
         
-        let userData = UserData()
-        let username = userData.userNameData()
-        self.navigationController?.title = String(self.myList.count)
-        self.title = "\(username)'sリスト (\(self.myList.count))"
+        DispatchQueue.main.async{
+            self.myList.insert(List, at: 0)
+            self.myListArray.insert(titleNameList, at: 0)
+            let userData = UserData()
+            let username = userData.userNameData()
+            self.navigationController?.title = String(self.myList.count)
+            self.title = "\(username)'sリスト (\(self.myList.count))"
+        }
         
-        self.tableView.reloadData()
+        
+        DispatchQueue.main.async{
+            print("protcol")
+            print(self.myList)
+            
+            
+            
+            self.tableView.reloadData()
+            
+        }
         
     }
 }
@@ -156,8 +173,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             number = numberArray[indexPath.row]
             cell.textLabel!.text = myList[number].titleNameString
         } else {
-            print("testtttttt")
-            print(myList)
             cell.textLabel?.text = myList[indexPath.row].titleNameString
         }
         

@@ -45,6 +45,10 @@ class UserNameInputViewController: UIViewController {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
+    
 }
 
 extension UserNameInputViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{

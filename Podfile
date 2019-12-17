@@ -18,5 +18,6 @@ pod 'FSCalendar'
 pod 'CalculateCalendarLogic'
 pod 'lottie-ios'
 pod 'IQKeyboardManagerSwift'
+pod 'SDWebImage'
 
 end

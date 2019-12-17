@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import TextFieldEffects
+import SDWebImage
 
 class UserViewController: UIViewController {
     @IBOutlet weak var userNameTextField: KaedeTextField!
@@ -33,18 +34,9 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func changePressed(_ sender: Any) {
-        
-        if userNameTextField.text != UserData.userName{
-            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-            
-            changeRequest?.displayName = userNameTextField.text
-            changeRequest?.commitChanges(completion: { (error) in
-                print(error as Any)
-                return
-            })
+        if userNameTextField.text == userData.userNameData(){
+            UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(UserData.userID)")
         }
-        print("------------")
-        print(UserData.userName)
     }
     
     

@@ -48,36 +48,32 @@ class SearchViewController: UIViewController {
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        maneger.fetch()
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20, width: 414, height: 725)
-            
+        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-//        myListArray.removeAll()
-//        myList.removeAll()
-//        manegar.delegate = self
-//        self.manegar.fetch()
-        searchNameArray.removeAll()
-        nameArray.removeAll()
-        maneger.fetch()
-        
-        
     }
 }
 //MARK: - DataFetch
 extension SearchViewController: TimeLineDataFetchDelegate{
     func didFetch(List: TimeLineData, titleNameList: String) {
+        searchNameArray.removeAll()
+        nameArray.removeAll()
         
-        self.searchNameArray.insert(List, at: 0)
-        self.nameArray.insert(titleNameList, at: 0)
-        self.tableView.reloadData()
+        DispatchQueue.main.async{
+            self.searchNameArray.insert(List, at: 0)
+            self.nameArray.insert(titleNameList, at: 0)
+        }
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -110,7 +106,8 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             number = numberArray[indexPath.row]
             timeLineData = searchNameArray[number]
             cell.content = timeLineData
-            print("number_\(number)")
+            print(searchNameArray[indexPath.row].userProfileImage)
+            
         } else {
             print(searchNameArray[indexPath.row])
             let content = searchNameArray[indexPath.row]

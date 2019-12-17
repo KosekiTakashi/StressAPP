@@ -15,6 +15,7 @@ class CalendarAddViewController: UIViewController {
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var eventNameTextView: UITextView!
     @IBOutlet weak var stressLabel: UILabel!
+    @IBOutlet weak var stressCountLabel: UILabel!
     @IBOutlet weak var myListPicker: UIPickerView!
     @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var addButton: UIButton!
@@ -85,18 +86,29 @@ class CalendarAddViewController: UIViewController {
     @IBAction func stressSlider(_ sender: UISlider) {
         
         stresscount = Int(sender.value)
-        stressLabel.text = String(stresscount)
+        stressCountLabel.text = String(stresscount)
+        stressLabel.text = "🔥"
         
         //colorChange
         switch stresscount {
-        case 0...3:
+        case 0...1:
             sender.tintColor = .yellow
-        case 4...7:
+            stressLabel.font = UIFont.systemFont(ofSize: 20)
+        case 2...3:
+            sender.tintColor = .yellow
+            stressLabel.font = UIFont.systemFont(ofSize: 25)
+        case 4...5:
             sender.tintColor = .orange
-        case 8...10:
+            stressLabel.font = UIFont.systemFont(ofSize: 30)
+        case 6...7:
+            sender.tintColor = .orange
+            stressLabel.font = UIFont.systemFont(ofSize: 35)
+        case 8...9:
             sender.tintColor = .red
+            stressLabel.font = UIFont.systemFont(ofSize: 40)
         default:
-            print("error")
+            sender.tintColor = .red
+            stressLabel.font = UIFont.systemFont(ofSize: 45)
         }
     }
     

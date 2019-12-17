@@ -31,11 +31,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        
-//        emailTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+    }
 
     
 

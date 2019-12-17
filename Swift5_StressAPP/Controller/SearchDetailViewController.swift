@@ -20,13 +20,15 @@ class SearchDetailViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     
     @IBOutlet weak var addButton: UIBarButtonItem!
-    @IBOutlet weak var addLabel: UILabel!
+    @IBOutlet weak var userLogoImageView: UIImageView!
+    
     
     var userName :String = ""
     var titleName :String = ""
     var detail :String = ""
     var urlString :String = ""
     var count = Int()
+    var userLogoImageViewString = ""
     
     var searchNameArray = [TimeLineData]()
     
@@ -46,7 +48,7 @@ class SearchDetailViewController: UIViewController {
                urlString = contents.urlString
                timeuserID = contents.userID
                goodUsers = contents.goodUser
-            
+                userLogoImageViewString = contents.userProfileImage
             
            }
        }
@@ -59,16 +61,15 @@ class SearchDetailViewController: UIViewController {
         deatailLabel.text = detail
         urlLabel.text = urlString
         countLabel.text = "ダウンロード数：\(count)"
+        print(userLogoImageViewString)
+        userLogoImageView.layer.cornerRadius = userLogoImageView.frame.height/2
+        userLogoImageView.sd_setImage(with: URL(string: userLogoImageViewString), completed: nil)
 
-        addLabel.isHidden = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-       
         for i in goodUsers{
             if i == userID{
                 good = 1
@@ -77,11 +78,8 @@ class SearchDetailViewController: UIViewController {
         if good == 1 || timeuserID == userID{
             
             addButton.isEnabled = false
-            
-            addLabel.text = "追加済み"
             addButton.title = "追加済み"
         }else{
-            
             addButton.isEnabled = true
         }
     }
@@ -92,7 +90,6 @@ class SearchDetailViewController: UIViewController {
         myListManeger.mylistAdd(userID: userID, titleName: titleName, detail: detail, urlString: urlString, count: count)
         
         addButton.isEnabled = false
-        addLabel.text = "追加しました！！！"
         addButton.title = "追加済み"
         
         contents.pluslike()

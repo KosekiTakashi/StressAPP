@@ -18,10 +18,11 @@ class TimeLineData {
     var count:Int = 0
     var userID :String = ""
     var goodUser = [String]()
+    var userProfileImage = ""
     
     let ref:DatabaseReference!
     
-    init(userName:String,titleName:String,detail:String,urlString:String,count:Int,userID:String,goodUser:[String]) {
+    init(userName:String,titleName:String,detail:String,urlString:String,count:Int,userID:String,goodUser:[String],userProfileImage:String) {
         self.userNameString = userName
         self.titleNameString = titleName
         self.detail = detail
@@ -29,7 +30,7 @@ class TimeLineData {
         self.count = count
         self.userID = userID
         self.goodUser = goodUser
-        
+        self.userProfileImage = userProfileImage
         ref = Database.database().reference().child("timeLines").childByAutoId()
         
     }
@@ -44,6 +45,8 @@ class TimeLineData {
             count = value["count"] as! Int
             userID = value["userID"] as! String
             goodUser = value["goodUser"] as! [String]
+            userProfileImage = value["userProfileImage"] as! String
+            
             
         }
     }
