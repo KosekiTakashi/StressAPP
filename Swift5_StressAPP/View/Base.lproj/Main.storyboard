@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432" y="-1761"/>
+            <point key="canvasLocation" x="3342.0289855072465" y="-1761.1607142857142"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="YFz-qV-CIY">
@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbQ-xy-9va" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3349" y="-1761"/>
+            <point key="canvasLocation" x="4257.971014492754" y="-1761.1607142857142"/>
         </scene>
         <!--List Detail View Controller-->
         <scene sceneID="M0j-I6-ZB3">
@@ -199,12 +199,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkp-cv-3pq">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wkp-cv-3pq">
                                 <rect key="frame" x="20" y="489" width="374" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="W88-TJ-Vqt" appends="YES" id="y7O-rQ-iBW"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7A0-j8-DVE">
                                 <rect key="frame" x="20" y="149" width="374" height="65"/>
@@ -244,12 +248,19 @@
                         <outlet property="evaluationLabel" destination="beE-h7-zoN" id="7Ug-JZ-NNH"/>
                         <outlet property="titlenameLabel" destination="7A0-j8-DVE" id="CyS-cv-qck"/>
                         <outlet property="urlStringLabel" destination="Wkp-cv-3pq" id="wrY-GD-pwM"/>
+                        <outlet property="urlTapButton" destination="W88-TJ-Vqt" id="vu3-GS-lnF"/>
                         <segue destination="Rpc-jh-qde" kind="show" id="tUU-Mm-LlR"/>
+                        <segue destination="9EA-rG-M4D" kind="presentation" identifier="webView" id="oQa-hE-jJn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7vN-KR-0AG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="W88-TJ-Vqt">
+                    <connections>
+                        <action selector="webAction:" destination="B0L-2D-Vor" id="brV-C1-6bC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3348" y="-1005"/>
+            <point key="canvasLocation" x="4257.971014492754" y="-1005.1339285714286"/>
         </scene>
         <!--List Change View Controller-->
         <scene sceneID="Gmw-FO-1x6">
@@ -325,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dv-S3-kNJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4374" y="-1005"/>
+            <point key="canvasLocation" x="5277" y="-1254"/>
         </scene>
         <!--カレンダー-->
         <scene sceneID="wg7-f3-ORb">
@@ -842,12 +853,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t9-Yb-tS7">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6t9-Yb-tS7">
                                 <rect key="frame" x="20" y="578" width="374" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="bJ9-5s-Wv5" appends="YES" id="Cev-EC-PcI"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Get-LU-rAt">
                                 <rect key="frame" x="189" y="692" width="205" height="42"/>
@@ -885,10 +900,17 @@
                         <outlet property="nameLabel" destination="cS5-am-8nX" id="Svl-NX-tqt"/>
                         <outlet property="titleNameLabel" destination="W5W-Wn-d92" id="mTJ-BA-3lW"/>
                         <outlet property="urlLabel" destination="6t9-Yb-tS7" id="U3x-vq-9cw"/>
+                        <outlet property="urlTapButton" destination="bJ9-5s-Wv5" id="Oaa-DL-m3Y"/>
                         <outlet property="userLogoImageView" destination="Waw-eI-Xym" id="XOW-aN-SXs"/>
+                        <segue destination="9EA-rG-M4D" kind="presentation" identifier="webView" id="CN0-Sk-i8H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ool-Jy-HvY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bJ9-5s-Wv5">
+                    <connections>
+                        <action selector="webAction:" destination="6lQ-0P-L99" id="L8E-Ei-0P4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3641" y="1434"/>
         </scene>
@@ -1060,6 +1082,22 @@
             </objects>
             <point key="canvasLocation" x="-3428" y="-54"/>
         </scene>
+        <!--Web View Controller-->
+        <scene sceneID="5A5-LF-wwN">
+            <objects>
+                <viewController id="9EA-rG-M4D" customClass="WebViewController" customModule="Swift5_StressAPP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3VF-08-O1F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Yhm-Ei-SjS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qic-S6-Cwo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5EV-fy-Rmd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5277" y="-556"/>
+        </scene>
         <!--New View Controller-->
         <scene sceneID="vU3-dh-57i">
             <objects>
@@ -1219,7 +1257,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UF-A1-0Ms" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="-1761"/>
+            <point key="canvasLocation" x="2452.1739130434785" y="-1761.1607142857142"/>
         </scene>
         <!--カレンダー-->
         <scene sceneID="hF1-Tw-YRO">
@@ -1275,5 +1313,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vLz-tL-pXx"/>
+        <segue reference="CN0-Sk-i8H"/>
     </inferredMetricsTieBreakers>
 </document>
