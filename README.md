@@ -7,8 +7,9 @@ Overview
 ## Description
 Firebaseデータ管理を行っています．
 ## Demo  
-![sample](https://user-images.githubusercontent.com/53421334/70920720-62872b00-2066-11ea-80d0-ec640e2cc1a6.gif)
-
+Firebaseを用いたログイン画面とデータ管理  
+自分のリストに追加する時，タイムラインにも追加するかしないか選べるようになっています．
+![myList](https://user-images.githubusercontent.com/53421334/71446218-35243680-2764-11ea-9eaf-9452b198d38c.gif)
 ## Author
 
 [KosekiTakashi](https://github.com/KosekiTakashi)
