@@ -64,6 +64,7 @@ struct TimeLineManeger {
             }
         }
         uploadTask.resume()
+        
     }
         
 //        let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()

@@ -37,33 +37,32 @@ class SearchViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        maneger.delegate = self
 
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        maneger.delegate = self
+        
        
         title = "TimeLine"
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        searchNameArray.removeAll()
         maneger.fetch()
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
-        
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20, width: 414, height: 725)
-        
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+
     }
 }
 //MARK: - DataFetch
 extension SearchViewController: TimeLineDataFetchDelegate{
+    
     func didFetch(List: TimeLineData, titleNameList: String) {
+        
         searchNameArray.removeAll()
         nameArray.removeAll()
         
@@ -71,12 +70,11 @@ extension SearchViewController: TimeLineDataFetchDelegate{
             self.searchNameArray.insert(List, at: 0)
             self.nameArray.insert(titleNameList, at: 0)
         }
+        
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
     }
-    
-    
 }
 
 //MARK: - TableView
@@ -84,7 +82,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-        }
+    }
             
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,12 +104,10 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             number = numberArray[indexPath.row]
             timeLineData = searchNameArray[number]
             cell.content = timeLineData
-            print(searchNameArray[indexPath.row].userProfileImage)
             
         } else {
-            print(searchNameArray[indexPath.row])
-            let content = searchNameArray[indexPath.row]
             
+            let content = searchNameArray[indexPath.row]
             cell.content = content
         }
         return cell
@@ -175,7 +171,6 @@ extension SearchViewController: UISearchBarDelegate{
         searchBar.placeholder = "タイトル名を入力してください"
         
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
-        print(navigationBarHeight!)
         let searchBarHeight = searchBar.frame.size.height
         
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + 20 , width: 414, height: 681)
