@@ -21,6 +21,7 @@
 		B41C46E12348A68B00D3210C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E02348A68B00D3210C /* SearchViewController.swift */; };
 		B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E22348A74600D3210C /* SearchDetailViewController.swift */; };
 		B41C46E7234B553300D3210C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41C46E6234B553300D3210C /* AddViewController.swift */; };
+		B43B599C23AA511C0086E051 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43B599B23AA511C0086E051 /* WebViewController.swift */; };
 		B43F295D236328B000B14757 /* ListChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43F295C236328B000B14757 /* ListChangeViewController.swift */; };
 		B45E57A7239546F700C79337 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E57A6239546F700C79337 /* UserViewController.swift */; };
 		B45E57A92396AE3000C79337 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E57A82396AE3000C79337 /* UserData.swift */; };
@@ -56,6 +57,7 @@
 		B41C46E02348A68B00D3210C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B41C46E22348A74600D3210C /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		B41C46E6234B553300D3210C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		B43B599B23AA511C0086E051 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B43F295C236328B000B14757 /* ListChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListChangeViewController.swift; sourceTree = "<group>"; };
 		B45E57A6239546F700C79337 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B45E57A82396AE3000C79337 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				B41C46E22348A74600D3210C /* SearchDetailViewController.swift */,
 				B45E57A6239546F700C79337 /* UserViewController.swift */,
 				B47E393923A1FF3A00F27017 /* UserNameInputViewController.swift */,
+				B43B599B23AA511C0086E051 /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				B4931AA2238C2491006C5952 /* MyListManager.swift in Sources */,
 				B4FD117D237AC98800D3171E /* Diary.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
+				B43B599C23AA511C0086E051 /* WebViewController.swift in Sources */,
 				B45E57A7239546F700C79337 /* UserViewController.swift in Sources */,
 				B4FEE280236C66FB002D1A1F /* CalenderViewController.swift in Sources */,
 				B4931AA423926B6F006C5952 /* TimeLineManager.swift in Sources */,

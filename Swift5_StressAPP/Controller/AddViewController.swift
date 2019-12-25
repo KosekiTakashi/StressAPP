@@ -116,17 +116,17 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
             
+            DispatchQueue.main.async{
+                self.goodUser.append(self.userID)
+                self.userName = self.userData.userNameData()
+                self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
+                self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+                self.goodUser.removeAll()
+            }
             
-            self.goodUser.append(self.userID)
-            self.userName = self.userData.userNameData()
-            self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
-            self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
-            
-            self.goodUser.removeAll()
-            self.titleTextField.text = ""
-            self.detailTextView.text = ""
-            self.URLTextField.text = ""
-           
+        
+        
+       
         }
         
         let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
@@ -143,6 +143,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
+        
+        self.titleTextField.text = ""
+        self.detailTextView.text = ""
+        self.URLTextField.text = ""
     }
     
     /*

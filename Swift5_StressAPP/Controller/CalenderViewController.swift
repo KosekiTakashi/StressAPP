@@ -58,7 +58,7 @@ class CalenderViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        diary.removeAll()
+        
         maneger.fetch(userID: userID, selectday: selectday)
         tableView.reloadData()
     }
@@ -76,8 +76,14 @@ class CalenderViewController: UIViewController {
 //MARK: - DataFetch
 extension CalenderViewController: DiaryDataFetchDelegate{
     func didFetch(List: Diary, titleNameList: String) {
-        self.diary.insert(List, at: 0)
-        tableView.reloadData()
+        
+        diary.removeAll()
+        DispatchQueue.main.async{
+            self.diary.insert(List, at: 0)
+        }
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
     }
     
     

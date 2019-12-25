@@ -22,6 +22,7 @@ class SearchDetailViewController: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var userLogoImageView: UIImageView!
     
+    @IBOutlet var urlTapButton: UITapGestureRecognizer!
     
     var userName :String = ""
     var titleName :String = ""
@@ -64,6 +65,14 @@ class SearchDetailViewController: UIViewController {
         print(userLogoImageViewString)
         userLogoImageView.layer.cornerRadius = userLogoImageView.frame.height/2
         userLogoImageView.sd_setImage(with: URL(string: userLogoImageViewString), completed: nil)
+        
+        let name = "https"
+        if name.prefix(4) != urlString.prefix(4){
+            urlTapButton.isEnabled = false
+        }else{
+            urlTapButton.isEnabled = true
+            urlLabel.textColor = .systemBlue
+        }
 
     }
     
@@ -96,4 +105,16 @@ class SearchDetailViewController: UIViewController {
         countLabel.text = "ダウンロード数：\(count)"
     
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let nextVC = segue.destination as! WebViewController
+        nextVC.urlString = urlString
+    }
+    
+    @IBAction func webAction(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "webView", sender: nil)
+    }
+    
 }

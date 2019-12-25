@@ -16,6 +16,7 @@ class ListDetailViewController: UIViewController {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var urlStringLabel: UILabel!
     @IBOutlet weak var evaluationLabel: UILabel!
+    @IBOutlet var urlTapButton: UITapGestureRecognizer!
     
     
     var titleName : String = ""
@@ -78,7 +79,14 @@ class ListDetailViewController: UIViewController {
         titlenameLabel.text = myListArray[indexNumber].titleNameString
         detailLabel.text = myListArray[indexNumber].detail
         urlStringLabel.text = myListArray[indexNumber].urlString
-
+        let name = "https"
+        urlString = myListArray[indexNumber].urlString
+        if name.prefix(4) != urlString.prefix(4){
+            urlTapButton.isEnabled = false
+        }else{
+            urlTapButton.isEnabled = true
+            urlStringLabel.textColor = .systemBlue
+        }
     }
     
     
@@ -90,6 +98,25 @@ class ListDetailViewController: UIViewController {
         
         navigationController?.pushViewController(nextVC, animated: true)
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let nextVC = segue.destination as! WebViewController
+        nextVC.urlString = "https://www.apple.com"
+        let mylist = myListArray[indexNumber]
+        nextVC.urlString = mylist.urlString
+    }
+
+    
+    
+    @IBAction func webAction(_ sender: Any) {
+//        let nextVC = storyboard?.instantiateViewController(identifier: "webView") as! WebViewController
+//        let mylist = myListArray[indexNumber]
+//
+//        nextVC.urlString = mylist.urlString
+//        nextVC.urlString = "https://www.apple.com"
+        
+        self.performSegue(withIdentifier: "webView", sender: nil)
     }
     
 }
