@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import RealmSwift
 import Lottie
 
 class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate {
@@ -55,36 +54,11 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        addButton.isHidden = true
-//        addButton.isEnabled = false
-//
     }
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        titleName = titleTextField.text!
-//        detail = detailTextView.text!
-//        urlString = URLTextField.text!
-//
-//       if titleName != "" && detail != ""{
-//            addButton.isHidden = false
-//            addButton.isEnabled = true
-//        }
-//        titleTextField.resignFirstResponder()
-//        detailTextView.resignFirstResponder()
-//        URLTextField.resignFirstResponder()
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }
-    
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        if textField.text != ""{
-//            return true
-//        }else{
-//            return false
-//        }
-//    }
     
     @IBAction func postAction(_ sender: Any) {
         
@@ -102,11 +76,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         //アラート機能
         showeAlart()
         
-        //ボタンの設定
-//        addButton.isHidden = true
-//        addButton.isEnabled = false
-        
-        
     }
     
     func showeAlart(){
@@ -116,26 +85,26 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
             
-            DispatchQueue.main.async{
-                self.goodUser.append(self.userID)
-                self.userName = self.userData.userNameData()
-                self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
-                self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
-                self.goodUser.removeAll()
-            }
+            self.goodUser.append(self.userID)
+            self.userName = self.userData.userNameData()
+            self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
+            self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
             
-        
-        
-       
+            DispatchQueue.main.async{
+                self.goodUser.removeAll()
+                self.titleTextField.text = ""
+                self.detailTextView.text = ""
+                self.URLTextField.text = ""
+            }
         }
         
         let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
             self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
-            
-            self.titleTextField.text = ""
-            self.detailTextView.text = ""
-            self.URLTextField.text = ""
-            
+            DispatchQueue.main.async {
+                self.titleTextField.text = ""
+                self.detailTextView.text = ""
+                self.URLTextField.text = ""
+            }
         }
         
         alertController.addAction(OK)
@@ -143,20 +112,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
-        
-        self.titleTextField.text = ""
-        self.detailTextView.text = ""
-        self.URLTextField.text = ""
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import Firebase
 
 class ListViewController: UIViewController,UISearchBarDelegate {
@@ -174,8 +173,9 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             cell.textLabel!.text = myList[number].titleNameString
         } else {
             cell.textLabel?.text = myList[indexPath.row].titleNameString
+            
         }
-        
+       
         return cell
     }
     
