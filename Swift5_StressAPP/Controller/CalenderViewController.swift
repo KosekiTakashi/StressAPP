@@ -18,7 +18,6 @@ class CalenderViewController: UIViewController {
     @IBOutlet weak var DateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var test = ["a", "b", "c","d"]
     
     var currentDataTime: Date!
     var diary = [Diary]()
@@ -28,15 +27,11 @@ class CalenderViewController: UIViewController {
     var maneger = DiaryManeger()
     
     fileprivate let gregorian: Calendar = Calendar(identifier: .gregorian)
-    fileprivate lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-//        formatter.timeStyle = .none
-//        formatter.dateStyle = .medium
-        return formatter
-    }()
     
-    var selectday = ""
+    let dateFormatter = DateFormatter()
+    let date = Date()
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         Calender.delegate = self
@@ -47,42 +42,33 @@ class CalenderViewController: UIViewController {
         
         maneger.delegate = self
         
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: Date())
-        let month = tmpDate.component(.month, from: Date())
-        let day = tmpDate.component(.day, from: Date())
-        selectday = "\(year)-\(month)-\(day)"
-        DateLabel.text = selectday
+        print("viewdidLoad")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        maneger.fetch(userID: userID, selectday: selectday)
-        tableView.reloadData()
-    }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        DateLabel.text = dateString
+        maneger.fetch(userID: userID, selectday: dateString)
     }
-    */
 
 }
 //MARK: - DataFetch
 extension CalenderViewController: DiaryDataFetchDelegate{
     func didFetch(List: Diary, titleNameList: String) {
-        
+        print("protcol")
         diary.removeAll()
+        
         DispatchQueue.main.async{
             self.diary.insert(List, at: 0)
+            print("test")
+            print(self.diary)
         }
         DispatchQueue.main.async{
             self.tableView.reloadData()
+            print("test")
         }
     }
     
@@ -137,19 +123,19 @@ extension CalenderViewController: FSCalendarDelegate,FSCalendarDataSource,FSCale
     
      
      func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: date)
-        let month = tmpDate.component(.month, from: date)
-        let day = tmpDate.component(.day, from: date)
-        let selectday = "\(year)-\(month)-\(day)"
+       
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        
         diary.removeAll()
-        maneger.fetch(userID: userID, selectday: selectday)
+        maneger.fetch(userID: userID, selectday: dateString)
          
         self.eventCount = self.diary.count
         self.Calender.reloadData()
              
         tableView.reloadData()
-        DateLabel.text = "\(year)-\(month)-\(day) の出来事"
+        DateLabel.text = "\(dateString) の出来事"
      }
      //曜日判定
      func judgeWeek(_ date: Date) -> Int{

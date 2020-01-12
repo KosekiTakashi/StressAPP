@@ -43,10 +43,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.delegate = self
         print("viewDidLoad")
         print(self.myList)
-        
-        
-        
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,8 +132,6 @@ extension ListViewController: MyListFeatchDelegate{
         DispatchQueue.main.async{
             print("protcol")
             print(self.myList)
-            
-            
             
             self.tableView.reloadData()
             

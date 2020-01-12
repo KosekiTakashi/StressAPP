@@ -19,16 +19,17 @@ struct DiaryManeger {
     var delegate: DiaryDataFetchDelegate?
     
     func fetch(userID: String, selectday: String ){
+       print("model fetch")
         MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
-            
+        print(snapshot)
             for child in snapshot.children{
+                
                 let childSnapshoto = child as! DataSnapshot
                 let List = Diary(snapshot: childSnapshoto)
                 let titleName = Diary(snapshot: childSnapshoto).titleName
                 self.delegate?.didFetch(List: List, titleNameList: titleName)
                 
             }
-            
         }
     }
 }
