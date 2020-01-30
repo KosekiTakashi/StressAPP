@@ -17,8 +17,6 @@ class NewViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var passwordTextField: KaedeTextField!
     
-    @IBOutlet weak var userNameTextField: KaedeTextField!
-    
     @IBOutlet weak var addButton: UIButton!
     
     var username : String = ""
@@ -28,7 +26,6 @@ class NewViewController: UIViewController,UITextFieldDelegate {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        userNameTextField.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -45,11 +42,6 @@ class NewViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func NewCreate(_ sender: Any) {
         
-        username = userNameTextField.text!
-        if username != ""{
-            addButton.isHidden = false
-            addButton.isEnabled = true
-        }
         
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil{
