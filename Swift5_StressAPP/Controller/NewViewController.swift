@@ -12,12 +12,11 @@ import Firebase
 
 class NewViewController: UIViewController,UITextFieldDelegate {
     
-    
     @IBOutlet weak var emailTextField: KaedeTextField!
-    
     @IBOutlet weak var passwordTextField: KaedeTextField!
-    
     @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var messageLabel: UILabel!
     
     var username : String = ""
     
@@ -26,7 +25,8 @@ class NewViewController: UIViewController,UITextFieldDelegate {
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        // Do any additional setup after loading the view.
+        
+        messageLabel.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +46,7 @@ class NewViewController: UIViewController,UITextFieldDelegate {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil{
                 print(error as Any)
+                self.messageLabel.isHidden = false
             }else{
                 print("succees")
                 
