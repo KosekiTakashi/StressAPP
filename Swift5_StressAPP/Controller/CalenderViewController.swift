@@ -140,17 +140,17 @@ extension CalenderViewController: FSCalendarDelegate,FSCalendarDataSource,FSCale
      //曜日判定
      func judgeWeek(_ date: Date) -> Int{
          
-         let tmpCalender = Calendar(identifier: .gregorian)
-         return tmpCalender.component(.weekday, from: date)
+         let tmpCalendar = Calendar(identifier: .gregorian)
+         return tmpCalendar.component(.weekday, from: date)
          
      }
      
      //休日判定
         func judgeHoliday(_ date: Date) -> Bool{
-            let tmpCalender = Calendar(identifier: .gregorian)
-            let year = tmpCalender.component(.year, from: date)
-            let month = tmpCalender.component(.month, from: date)
-            let day = tmpCalender.component(.day, from: date)
+            let tmpCalendar = Calendar(identifier: .gregorian)
+            let year = tmpCalendar.component(.year, from: date)
+            let month = tmpCalendar.component(.month, from: date)
+            let day = tmpCalendar.component(.day, from: date)
             
             let holiday = CalculateCalendarLogic()
             
