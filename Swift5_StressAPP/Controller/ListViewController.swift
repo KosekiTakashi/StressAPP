@@ -104,9 +104,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         let searchBarHeight = searchBar.frame.size.height
-//        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        
-        
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + 20 , width: 414, height: 681)
     }
 }

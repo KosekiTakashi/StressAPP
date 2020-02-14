@@ -67,39 +67,4 @@ struct TimeLineManeger {
         
     }
         
-//        let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
-//        //画像 storageについて
-//        let storage = Storage.storage().reference(forURL: "gs://stressapp-7d738.appspot.com")
-//        let key = timeLineDB.child("Users").childByAutoId().key
-//        let imageref = storage.child("Users").child("\(String(describing: key!)).jpg")
-//        let userprofileImageData = (userImage.jpegData(compressionQuality: 0.01)!)
-//
-//        let uploadTask = imageref.putData(userprofileImageData, metadata: nil){
-//        (metaData,error) in
-//            if error != nil{
-//                print(error as Any)
-//                return
-//            }else{
-//                print("成功")
-//            }
-//
-//        }
-//
-//        imageref.downloadURL { (url, error) in
-//            if url != nil{
-//                print("---------------------------")
-//                let timeLineInfo = ["userName": userName as Any , "titleName":titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser,"userProfileImage":url?.absoluteString as Any] as [String:Any]
-//
-//                timeLineDB.updateChildValues(timeLineInfo)
-//            }else{
-//                print(error as Any)
-//                print("----------------test-------------")
-//                let timeLineInfo = ["userName": userName as Any , "titleName":titleName as Any,"detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"count":count as Any,"userID":userID,"goodUser":goodUser] as [String:Any]
-//
-//                timeLineDB.updateChildValues(timeLineInfo)
-//            }
-//        }
-//
-//    }
-        
 }
