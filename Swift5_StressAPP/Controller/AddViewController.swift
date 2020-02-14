@@ -78,6 +78,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         
     }
     
+    //MARK: - Alart
+    
     func showeAlart(){
         let alertController = UIAlertController(title: "タイムラインに共有しますか？", message:"NOを押すと自分のリストにだけ追加できます", preferredStyle: .actionSheet)
        
