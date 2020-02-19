@@ -106,9 +106,14 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             cell.content = timeLineData
             
         } else {
+            print(indexPath.row)
+            print(searchNameArray)
+            if searchNameArray.count != 0 {
+                let content = self.searchNameArray[indexPath.row]
+                cell.content = content
+            }
             
-            let content = searchNameArray[indexPath.row]
-            cell.content = content
+            
         }
         return cell
     }
