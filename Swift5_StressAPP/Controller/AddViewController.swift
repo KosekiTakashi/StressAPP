@@ -39,7 +39,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         super.viewDidLoad()
         
         
-        UserNameLabel.text = userData.userNameData()
+        UserNameLabel.text = userName
         
         logoImageView.layer.cornerRadius = logoImageView.frame.height/2
         logoImageView.image = userData.ImageData()

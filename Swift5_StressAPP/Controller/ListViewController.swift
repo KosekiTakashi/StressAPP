@@ -119,10 +119,10 @@ extension ListViewController: MyListFeatchDelegate{
         DispatchQueue.main.async{
             self.myList.insert(List, at: 0)
             self.myListArray.insert(titleNameList, at: 0)
-            let userData = UserData()
-            let username = userData.userNameData()
+            
+            let userName = UserData.userName
             self.navigationController?.title = String(self.myList.count)
-            self.title = "\(username)'sリスト (\(self.myList.count))"
+            self.title = "\(userName)'sリスト (\(self.myList.count))"
         }
         
         
