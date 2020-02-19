@@ -41,8 +41,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        print("viewDidLoad")
-        print(self.myList)
 
     }
     
@@ -53,11 +51,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
-        
-        print("viewWillAppear")
-        print(myList)
-        
-
         
     }
     
@@ -119,17 +112,14 @@ extension ListViewController: MyListFeatchDelegate{
         DispatchQueue.main.async{
             self.myList.insert(List, at: 0)
             self.myListArray.insert(titleNameList, at: 0)
-            let userData = UserData()
-            let username = userData.userNameData()
+            
+            let userName = UserData.userName
             self.navigationController?.title = String(self.myList.count)
-            self.title = "\(username)'sリスト (\(self.myList.count))"
+            self.title = "\(userName)'sリスト (\(self.myList.count))"
         }
         
         
         DispatchQueue.main.async{
-            print("protcol")
-            print(self.myList)
-            
             self.tableView.reloadData()
             
         }
@@ -213,7 +203,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
 
                         let orderID = child.value as? String//get autoID
                         if orderID == listDetail{
-                            print(orderID!)
                             snapshot.ref.removeValue(completionBlock: { (error, reference) in
                                 if error != nil {
                                     print("There has been an error:\(String(describing: error))")
@@ -238,7 +227,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
 
                         let orderID = child.value as? String//get autoID
                         if orderID == listDetail{
-                            print(orderID!)
                             snapshot.ref.removeValue(completionBlock: { (error, reference) in
                                 if error != nil {
                                     print("There has been an error:\(String(describing: error))")
@@ -251,7 +239,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             
             //List削除
             myList.remove(at: indexPath.row)
-            print(myList.count)
             
         }
         //tableView削除
