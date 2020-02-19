@@ -106,8 +106,6 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             cell.content = timeLineData
             
         } else {
-            print(indexPath.row)
-            print(searchNameArray)
             if searchNameArray.count != 0 {
                 let content = self.searchNameArray[indexPath.row]
                 cell.content = content
@@ -133,7 +131,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             let content = searchNameArray[indexPath.row]
             nextVC.contents = content
         } else {
-            print("yes")
+            
             number = numberArray[indexPath.row]
             let contentNumber = searchNameArray[number]
             nextVC.contents = contentNumber
