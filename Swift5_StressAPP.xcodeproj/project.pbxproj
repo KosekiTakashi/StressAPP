@@ -26,6 +26,7 @@
 		B45E57A7239546F700C79337 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E57A6239546F700C79337 /* UserViewController.swift */; };
 		B45E57A92396AE3000C79337 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45E57A82396AE3000C79337 /* UserData.swift */; };
 		B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */; };
+		B47800E923FD74A100380F57 /* MyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47800E823FD74A100380F57 /* MyListCell.swift */; };
 		B47E393A23A1FF3A00F27017 /* UserNameInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E393923A1FF3A00F27017 /* UserNameInputViewController.swift */; };
 		B4931AA2238C2491006C5952 /* MyListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA1238C2491006C5952 /* MyListManager.swift */; };
 		B4931AA423926B6F006C5952 /* TimeLineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4931AA323926B6F006C5952 /* TimeLineManager.swift */; };
@@ -61,6 +62,7 @@
 		B45E57A6239546F700C79337 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B45E57A82396AE3000C79337 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		B45FF0EB237D941F005F36F7 /* DiarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarDetailViewController.swift; sourceTree = "<group>"; };
+		B47800E823FD74A100380F57 /* MyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListCell.swift; sourceTree = "<group>"; };
 		B47E393923A1FF3A00F27017 /* UserNameInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameInputViewController.swift; sourceTree = "<group>"; };
 		B4931AA1238C2491006C5952 /* MyListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListManager.swift; sourceTree = "<group>"; };
 		B4931AA323926B6F006C5952 /* TimeLineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineManager.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				B41C46CE234758E200D3210C /* Assets.xcassets */,
 				B41C46D0234758E200D3210C /* LaunchScreen.storyboard */,
 				B41781AB235B11B7002149F9 /* SearchTableViewCell.swift */,
+				B47800E823FD74A100380F57 /* MyListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				B45FF0EC237D941F005F36F7 /* DiarDetailViewController.swift in Sources */,
 				B4F198FE234CE9DB00E1230D /* TimeLineData.swift in Sources */,
 				B4931AA2238C2491006C5952 /* MyListManager.swift in Sources */,
+				B47800E923FD74A100380F57 /* MyListCell.swift in Sources */,
 				B4FD117D237AC98800D3171E /* Diary.swift in Sources */,
 				B41C46E32348A74600D3210C /* SearchDetailViewController.swift in Sources */,
 				B43B599C23AA511C0086E051 /* WebViewController.swift in Sources */,

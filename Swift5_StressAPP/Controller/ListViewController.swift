@@ -149,12 +149,18 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+//
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
+//            else{
+//                fatalError("not found")
+//        }
         
         if  numberArray != [] {
             number = numberArray[indexPath.row]
             cell.textLabel!.text = myList[number].titleNameString
         } else {
             cell.textLabel?.text = myList[indexPath.row].titleNameString
+//            cell.evaluationLabel.text = myList[indexPath.row].titleNameString
             
         }
        
