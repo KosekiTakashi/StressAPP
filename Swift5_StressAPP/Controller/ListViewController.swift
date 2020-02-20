@@ -115,7 +115,10 @@ extension ListViewController: MyListFeatchDelegate{
             
             let userName = UserData.userName
             self.navigationController?.title = String(self.myList.count)
-            self.title = "\(userName)'sリスト (\(self.myList.count))"
+            if let user = userName{
+                self.title = "\(user)'sリスト (\(self.myList.count))"
+            }
+            
         }
         
         

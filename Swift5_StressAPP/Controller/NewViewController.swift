@@ -50,15 +50,6 @@ class NewViewController: UIViewController,UITextFieldDelegate {
             }else{
                 print("succees")
                 
-                
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                
-                changeRequest?.displayName = self.username
-                changeRequest?.commitChanges(completion: { (error) in
-                    print(error as Any)
-                    return
-                })
-                
                 self.performSegue(withIdentifier: "userInput", sender: nil)
             }
         }

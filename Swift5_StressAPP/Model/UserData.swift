@@ -10,7 +10,7 @@ import Firebase
 
 struct UserData {
     static let userID = (Auth.auth().currentUser?.uid)!
-    static let userName = (Auth.auth().currentUser?.displayName)!
+    static let userName = (Auth.auth().currentUser?.displayName)
     static let userEmail = (Auth.auth().currentUser?.email)!
     static let userCreateDay = (Auth.auth().currentUser?.metadata.creationDate)!
     

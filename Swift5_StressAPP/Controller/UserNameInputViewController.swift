@@ -38,10 +38,70 @@ class UserNameInputViewController: UIViewController {
         //dataを保存
         
         UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(UserData.userID)")
+        
         let data = logoImageView.image?.jpegData(compressionQuality: 0.1)
+        if let data = data{
+            DispatchQueue.main.async {
+                let imageURL = self.imagefetch(userImageData: data)
+                print("imageURL-------------------")
+                print(imageURL)
+            }
+        }
         UserDefaults.standard.set(data, forKey: "userImage\(UserData.userID)")
         
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        
+        if userNameTextField.text != nil{
+            changeRequest?.displayName = userNameTextField.text
+            changeRequest?.commitChanges(completion: { (error) in
+                print(error as Any)
+                return
+            })
+        }
+        
+        
         self.performSegue(withIdentifier: "tab", sender: nil)
+        
+    }
+    
+    func imagefetch(userImageData: Data) -> String{
+        
+        let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
+        let storageRef = Storage.storage().reference()
+        let key = timeLineDB.child("Users").childByAutoId().key
+        let riversRef = storageRef.child("userImage").child("userlogo").child("\(String(describing: key!)).jpg")
+    
+        
+        var urlString = ""
+        
+        let uploadTask = riversRef.putData(userImageData, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                return
+            }
+            let size = metadata.size
+            print(size)
+              
+            riversRef.downloadURL { (url, error) in
+                guard let downloadURL = url
+                    else {
+                        print(error as Any)
+                        return
+                    }
+                
+                let imageURL = downloadURL.absoluteString
+                DispatchQueue.main.async {
+                    urlString = imageURL
+                }
+                
+            }
+        }
+        
+        uploadTask.resume()
+        if urlString != ""{
+            return urlString
+        }
+        
+        return urlString
         
     }
     
@@ -51,6 +111,8 @@ class UserNameInputViewController: UIViewController {
     
 }
 
+
+//MARK: - Selected image
 extension UserNameInputViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     
     //camera立ち上げ

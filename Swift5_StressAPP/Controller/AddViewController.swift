@@ -39,7 +39,10 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         super.viewDidLoad()
         
         
-        UserNameLabel.text = userName
+        if let userName = Auth.auth().currentUser?.displayName{
+            UserNameLabel.text = userName
+        }
+        
         
         logoImageView.layer.cornerRadius = logoImageView.frame.height/2
         logoImageView.image = userData.ImageData()
@@ -53,6 +56,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("Name")
+        
         
     }
     
@@ -85,9 +90,12 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         let OK = UIAlertAction(title: "OK", style: .default) { (alert) in
             
             self.goodUser.append(self.userID)
-            self.userName = UserData.userName
-            self.timeLineManeger.timeLineAdd(userName: self.userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
-            self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+            if let userName = Auth.auth().currentUser?.displayName{
+    
+                self.timeLineManeger.timeLineAdd(userName: userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
+                self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+            
+            }
             
             DispatchQueue.main.async{
                 self.goodUser.removeAll()
