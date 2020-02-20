@@ -11,5 +11,5 @@ import UIKit
 
 class MyListCell: UITableViewCell{
     @IBOutlet weak var evaluationLabel: UILabel!
-    
+    @IBOutlet weak var titleLabel: UILabel!
 }

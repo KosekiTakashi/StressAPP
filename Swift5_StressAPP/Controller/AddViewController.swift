@@ -67,9 +67,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         urlString = URLTextField.text!
         
         if titleName == "" || detail == ""{
-            addButton.isHidden = true
-            addButton.isEnabled = false
-            
             return
         }
         

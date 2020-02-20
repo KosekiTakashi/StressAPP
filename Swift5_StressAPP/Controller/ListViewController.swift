@@ -148,28 +148,29 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-//
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
-//            else{
-//                fatalError("not found")
-//        }
+//        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+
+        guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
+            else{
+                fatalError("not found")
+        }
         
         if  numberArray != [] {
             number = numberArray[indexPath.row]
-            cell.textLabel!.text = myList[number].titleNameString
+//            cell.textLabel!.text = myList[number].titleNameString
         } else {
-            cell.textLabel?.text = myList[indexPath.row].titleNameString
-//            cell.evaluationLabel.text = myList[indexPath.row].titleNameString
+//            cell.textLabel?.text = myList[indexPath.row].titleNameString
+            cell1.titleLabel.text = myList[indexPath.row].titleNameString
+            cell1.evaluationLabel.text = "使用回数：\(myList[indexPath.row].usedCount)"
             
         }
        
-        return cell
+        return cell1
     }
     
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+        print("height__\(view.frame.size.height/7)")
         return view.frame.size.height/7
     }
     
