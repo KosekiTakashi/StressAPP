@@ -22,7 +22,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
    
     var userName = UserData.userName
-    var userID = UserData.userID
+    var userID = ""
     var titleName = String()
     var detail = String()
     var urlString = String()
@@ -44,20 +44,14 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             UserNameLabel.text = userName
         }
         
-        let imageURL = userData.userImageURL()
-        print("----------------")
-        print(imageURL)
-        print("----------------")
+        
+        
+        
         
         logoImageView.layer.cornerRadius = logoImageView.frame.height/2
 //        logoImageView.image = userData.ImageData()
         
-        if imageURL == "NoName"{
-            logoImageView.image = UIImage(named: "noimage")!
-        }else{
-            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
-        }
-        logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+        
         
         
         
@@ -70,6 +64,20 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("Name")
+        
+        if let userID = (Auth.auth().currentUser?.uid){
+            self.userID = userID
+            let imageURL = userData.userImageURL(userID: userID)
+            print("----------------")
+            print(imageURL)
+            print("----------------")
+            if imageURL == "NoName"{
+                logoImageView.image = UIImage(named: "noimage")!
+            }else{
+                logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+            }
+            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+        }
         
         
     }

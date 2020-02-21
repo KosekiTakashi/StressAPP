@@ -51,7 +51,10 @@ class CalenderViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = dateFormatter.string(from: date)
         DateLabel.text = dateString
-        maneger.fetch(userID: userID, selectday: dateString)
+        if let userID = (Auth.auth().currentUser?.uid){
+            maneger.fetch(userID: userID, selectday: dateString)
+        }
+        
     }
 
 }

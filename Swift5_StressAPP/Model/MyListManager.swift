@@ -19,7 +19,7 @@ struct MyListManeger {
     let userID = UserData.userID
     let MyListref = Database.database().reference().child("MyList")
     
-    func fetch() {
+    func fetch(userID: String) {
         MyListref.child(userID).child("List").observe(.value) { (snapshot) in
             for child in snapshot.children{
                 let childSnapshoto = child as! DataSnapshot

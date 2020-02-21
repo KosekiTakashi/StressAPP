@@ -32,8 +32,8 @@ struct UserData {
         return "NoName"
     }
     
-    func userImageURL() -> String{
-        if UserDefaults.standard.object(forKey: "userImageURL\(UserData.userID)") != nil{
+    func userImageURL(userID: String) -> String{
+        if UserDefaults.standard.object(forKey: "userImageURL\(userID)") != nil{
             let userImageURL = UserDefaults.standard.object(forKey: "userImageURL\(UserData.userID)") as! String
             print("test_\(userImageURL)")
             return userImageURL

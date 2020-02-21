@@ -96,7 +96,10 @@ class UserNameInputViewController: UIViewController {
                 let imageURL = downloadURL.absoluteString
                 DispatchQueue.main.async {
                     urlString = imageURL
-                    UserDefaults.standard.set(urlString, forKey: "userImageURL\(UserData.userID)")
+                    if let userID = (Auth.auth().currentUser?.uid){
+                        UserDefaults.standard.set(urlString, forKey: "userImageURL\(userID)")
+                    }
+                    
                     
                 }
                 

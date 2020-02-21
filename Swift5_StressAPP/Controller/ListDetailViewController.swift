@@ -69,7 +69,10 @@ class ListDetailViewController: UIViewController {
 
         //受け取り
         myListArray.removeAll()
-        self.maneger.fetch()
+        if let userID = (Auth.auth().currentUser?.uid){
+            maneger.fetch(userID: userID)
+        }
+//        self.maneger.fetch()
 
     }
     override func viewDidAppear(_ animated: Bool) {

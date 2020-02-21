@@ -24,12 +24,33 @@ class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changeButton.isHidden = true
-        userNameTextField.text = userData.userNameData()
-        emailLabel.text = UserData.userEmail
-        createDayLabel.text = "\(UserData.userCreateDay)"
-//        let ID = UserData.userID
+        if let userName = (Auth.auth().currentUser?.displayName){
+            userNameTextField.text = userName
+        }
+        
+        
+        if let userEmail = (Auth.auth().currentUser?.email){
+            emailLabel.text = userEmail
+        }
+        
+        if let userCreateDay = (Auth.auth().currentUser?.metadata.creationDate){
+            createDayLabel.text = "\(userCreateDay)"
+        }
+        if let userID = (Auth.auth().currentUser?.uid){
+            let imageURL = userData.userImageURL(userID: userID)
+            if imageURL == "NoName"{
+                logoImageView.image = UIImage(named: "noimage")!
+            }else{
+                logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+            }
+            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+        }
+        
+        
+        
+        
         logoImageView.layer.cornerRadius = logoImageView.frame.height / 2
-        logoImageView.image = userData.ImageData()
+//        logoImageView.image = userData.ImageData()
         
     }
     

@@ -46,7 +46,11 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        manegar.fetch()
+        
+        if let userID = (Auth.auth().currentUser?.uid){
+            manegar.fetch(userID: userID)
+        }
+        
         searchBar.isHidden = true
         
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
@@ -173,7 +177,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("height__\(view.frame.size.height/7)")
+        
         return view.frame.size.height/7
     }
     
