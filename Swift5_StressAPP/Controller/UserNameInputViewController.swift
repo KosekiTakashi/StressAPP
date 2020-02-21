@@ -37,7 +37,7 @@ class UserNameInputViewController: UIViewController {
     @IBAction func done(_ sender: Any) {
         //dataを保存
         
-        UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(UserData.userID)")
+//        UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(UserData.userID)")
         
         let data = logoImageView.image?.jpegData(compressionQuality: 0.1)
         if let data = data{
@@ -46,7 +46,10 @@ class UserNameInputViewController: UIViewController {
                 print("imageURL-------------------")
                 print(imageURL)
             }
+        }else{
+            return
         }
+        
         UserDefaults.standard.set(data, forKey: "userImage\(UserData.userID)")
         
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
@@ -57,6 +60,8 @@ class UserNameInputViewController: UIViewController {
                 print(error as Any)
                 return
             })
+        }else{
+            return
         }
         
         
@@ -91,6 +96,8 @@ class UserNameInputViewController: UIViewController {
                 let imageURL = downloadURL.absoluteString
                 DispatchQueue.main.async {
                     urlString = imageURL
+                    UserDefaults.standard.set(urlString, forKey: "userImageURL\(UserData.userID)")
+                    
                 }
                 
             }
