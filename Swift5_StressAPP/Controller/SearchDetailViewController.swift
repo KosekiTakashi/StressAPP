@@ -34,7 +34,8 @@ class SearchDetailViewController: UIViewController {
     var searchNameArray = [TimeLineData]()
     
     var content:TimeLineData!
-    var userID = UserData.userID
+    let userData = UserData()
+    var userID = ""
     var timeuserID = ""
     var good = 0
     var goodUsers = [String]()
@@ -73,6 +74,8 @@ class SearchDetailViewController: UIViewController {
             urlTapButton.isEnabled = true
             urlLabel.textColor = .systemBlue
         }
+        
+        userID = userData.userID()
 
     }
     

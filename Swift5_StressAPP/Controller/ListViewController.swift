@@ -21,8 +21,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     var usedcount = Int()
     var myList = [MyListData]()
     
-    var userID  =  UserData.userID
-    var userName = UserData.userName
+    
     
     var searchResults:[String] = []
     var numberArray = [Int]()
@@ -32,7 +31,8 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     let MyListref = Database.database().reference().child("MyList")
     var manegar = MyListManeger()
     
-    
+    let userData = UserData()
+    var userID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +41,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        
+        userID = userData.userID()
 
     }
     
@@ -117,11 +120,12 @@ extension ListViewController: MyListFeatchDelegate{
             self.myList.insert(List, at: 0)
             self.myListArray.insert(titleNameList, at: 0)
             
-            let userName = UserData.userName
+            
             self.navigationController?.title = String(self.myList.count)
-            if let user = userName{
-                self.title = "\(user)'sリスト (\(self.myList.count))"
-            }
+            
+            
+            let userName = self.userData.userName()
+            self.title = "\(userName)'sリスト (\(self.myList.count))"
             
         }
         
@@ -208,6 +212,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             //Firebase削除
             let listTitleName = myList[number].titleNameString
             let listDetail = myList[number].detail
+            
             let ref = MyListref.child(userID).child("List")
             
             ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in

@@ -50,7 +50,9 @@ class UserNameInputViewController: UIViewController {
             return
         }
         
-        UserDefaults.standard.set(data, forKey: "userImage\(UserData.userID)")
+        let userData = UserData()
+        let userID = userData.userID()
+        UserDefaults.standard.set(data, forKey: "userImage\(userID)")
         
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         

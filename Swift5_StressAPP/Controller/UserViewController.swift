@@ -23,7 +23,7 @@ class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        changeButton.isHidden = true
+        changeButton.isHidden = false
         if let userName = (Auth.auth().currentUser?.displayName){
             userNameTextField.text = userName
         }
@@ -56,7 +56,9 @@ class UserViewController: UIViewController {
     
     @IBAction func changePressed(_ sender: Any) {
         if userNameTextField.text == userData.userNameData(){
-            UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(UserData.userID)")
+            let userData = UserData()
+            let userID = userData.userID()
+            UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(userID)")
         }
     }
     

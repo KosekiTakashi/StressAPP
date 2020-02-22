@@ -21,7 +21,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     @IBOutlet weak var logoImageView: UIImageView!
     
    
-    var userName = UserData.userName
+    var userName = ""
     var userID = ""
     var titleName = String()
     var detail = String()
@@ -114,6 +114,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             if let userName = Auth.auth().currentUser?.displayName{
     
                 self.timeLineManeger.timeLineAdd(userName: userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
+                
+                
                 self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
             
             }

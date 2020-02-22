@@ -21,7 +21,7 @@ class CalenderViewController: UIViewController {
     
     var currentDataTime: Date!
     var diary = [Diary]()
-    var userID = UserData.userID
+    var userID = ""
     let MyListref = Database.database().reference().child("MyList")
     var eventCount = 0
     var maneger = DiaryManeger()
@@ -52,6 +52,7 @@ class CalenderViewController: UIViewController {
         let dateString = dateFormatter.string(from: date)
         DateLabel.text = dateString
         if let userID = (Auth.auth().currentUser?.uid){
+            self.userID = userID
             maneger.fetch(userID: userID, selectday: dateString)
         }
         
