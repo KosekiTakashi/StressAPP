@@ -55,10 +55,21 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func changePressed(_ sender: Any) {
-        if userNameTextField.text == userData.userNameData(){
-            let userData = UserData()
-            let userID = userData.userID()
+        let userData = UserData()
+        let userID = userData.userID()
+        let userName = userData.userName()
+        if userNameTextField.text != userName{
+            
             UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(userID)")
+            
+            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            if userNameTextField.text != nil{
+                changeRequest?.displayName = userNameTextField.text
+                changeRequest?.commitChanges(completion: { (error) in
+                    print(error as Any)
+                    return
+                })
+            }
         }
     }
     

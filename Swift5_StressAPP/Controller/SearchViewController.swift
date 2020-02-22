@@ -101,9 +101,15 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             for j in 0...numberArray.count - 1{
                 number = numberArray[j]
             }
-            number = numberArray[indexPath.row]
-            timeLineData = searchNameArray[number]
-            cell.content = timeLineData
+            if numberArray.count != 0{
+                number = numberArray[indexPath.row]
+                if searchNameArray.count != 0{
+                    timeLineData = searchNameArray[number]
+                    cell.content = timeLineData
+                }
+            }
+            
+            
             
         } else {
             if searchNameArray.count != 0 {
@@ -146,6 +152,7 @@ extension SearchViewController: UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         self.view.endEditing(true)
+        numberArray.removeAll()
         self.tableView.reloadData()
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height

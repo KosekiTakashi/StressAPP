@@ -39,21 +39,8 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if let userName = Auth.auth().currentUser?.displayName{
-            UserNameLabel.text = userName
-        }
-        
-        
-        
-        
-        
         logoImageView.layer.cornerRadius = logoImageView.frame.height/2
 //        logoImageView.image = userData.ImageData()
-        
-        
-        
-        
         
         titleTextField.delegate = self
         detailTextView.delegate = self
@@ -63,14 +50,14 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("Name")
+        
+        if let userName = Auth.auth().currentUser?.displayName{
+            UserNameLabel.text = userName
+        }
         
         if let userID = (Auth.auth().currentUser?.uid){
             self.userID = userID
             let imageURL = userData.userImageURL(userID: userID)
-            print("----------------")
-            print(imageURL)
-            print("----------------")
             if imageURL == "NoName"{
                 logoImageView.image = UIImage(named: "noimage")!
             }else{
