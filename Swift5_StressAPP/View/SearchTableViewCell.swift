@@ -37,8 +37,6 @@ class SerchTabViewCell: UITableViewCell {
             userImageView.layer.cornerRadius = userImageView.frame.height/2
             userImageView.sd_setImage(with: URL(string: content.userProfileImage), completed: nil)
             
-//            userLogoImageView.sd_setImage(with: URL(string: content.userProfileImage), completed: nil)
-            
        }
     }
     

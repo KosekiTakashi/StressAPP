@@ -9,10 +9,6 @@
 import Firebase
 
 struct UserData {
-//    static let userID = (Auth.auth().currentUser?.uid)!
-//    static let userName = (Auth.auth().currentUser?.displayName)
-//    static let userEmail = (Auth.auth().currentUser?.email)!
-//    static let userCreateDay = (Auth.auth().currentUser?.metadata.creationDate)!
     
     func ImageData() -> UIImage{
         let userData = UserData()
@@ -25,8 +21,6 @@ struct UserData {
         }
         return UIImage(named: "noimage")!
     }
-    
-    
     
     func userImageURL(userID: String) -> String{
         if UserDefaults.standard.object(forKey: "userImageURL\(userID)") != nil{

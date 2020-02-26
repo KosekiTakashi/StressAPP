@@ -50,6 +50,7 @@ class ListDetailViewController: UIViewController {
         detailLabel.text = detail
         maneger.delegate = self
         
+        //平均
         if usedCount != 0{
             let ave = evaluation / usedCount
             evaluationLabel.text = "\(ave) (使用回数：\(usedCount))"
@@ -72,7 +73,6 @@ class ListDetailViewController: UIViewController {
         if let userID = (Auth.auth().currentUser?.uid){
             maneger.fetch(userID: userID)
         }
-//        self.maneger.fetch()
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +82,8 @@ class ListDetailViewController: UIViewController {
         titlenameLabel.text = myListArray[indexNumber].titleNameString
         detailLabel.text = myListArray[indexNumber].detail
         urlStringLabel.text = myListArray[indexNumber].urlString
+        
+        //URLの形か確認
         let name = "https"
         urlString = myListArray[indexNumber].urlString
         if name.prefix(4) != urlString.prefix(4){
@@ -109,27 +111,19 @@ class ListDetailViewController: UIViewController {
         let mylist = myListArray[indexNumber]
         nextVC.urlString = mylist.urlString
     }
-
-    
     
     @IBAction func webAction(_ sender: Any) {
-//        let nextVC = storyboard?.instantiateViewController(identifier: "webView") as! WebViewController
-//        let mylist = myListArray[indexNumber]
-//
-//        nextVC.urlString = mylist.urlString
-//        nextVC.urlString = "https://www.apple.com"
         
         self.performSegue(withIdentifier: "webView", sender: nil)
     }
     
 }
 
+//MARK: - fetch
 extension ListDetailViewController : MyListFeatchDelegate{
     func didFetch(List: MyListData, titleNameList: String) {
         self.myListArray.insert(List, at: 0)
         print(myListArray)
     }
-    
-    
     
 }

@@ -42,7 +42,6 @@ class NewViewController: UIViewController,UITextFieldDelegate {
     
     @IBAction func NewCreate(_ sender: Any) {
         
-        
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil{
                 print(error as Any)
@@ -54,7 +53,4 @@ class NewViewController: UIViewController,UITextFieldDelegate {
             }
         }
     }
-    
-  
-
 }

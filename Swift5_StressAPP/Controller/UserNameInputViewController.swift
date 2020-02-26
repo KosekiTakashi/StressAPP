@@ -35,17 +35,13 @@ class UserNameInputViewController: UIViewController {
     
     
     @IBAction func done(_ sender: Any) {
-        //dataを保存
-        
-//        UserDefaults.standard.set(userNameTextField.text!, forKey: "userName\(UserData.userID)")
-        
+        //image
         let data = logoImageView.image?.jpegData(compressionQuality: 0.1)
         if let data = data{
             DispatchQueue.main.async {
-                let imageURL = self.imagefetch(userImageData: data)
-                print("imageURL-------------------")
-                print(imageURL)
+                self.imagefetch(userImageData: data)
             }
+            
         }else{
             return
         }
@@ -54,8 +50,8 @@ class UserNameInputViewController: UIViewController {
         let userID = userData.userID()
         UserDefaults.standard.set(data, forKey: "userImage\(userID)")
         
+        //Name
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-        
         if userNameTextField.text != nil{
             changeRequest?.displayName = userNameTextField.text
             changeRequest?.commitChanges(completion: { (error) in
@@ -71,7 +67,7 @@ class UserNameInputViewController: UIViewController {
         
     }
     
-    func imagefetch(userImageData: Data) -> String{
+    func imagefetch(userImageData: Data) {
         
         let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
         let storageRef = Storage.storage().reference()
@@ -109,11 +105,6 @@ class UserNameInputViewController: UIViewController {
         }
         
         uploadTask.resume()
-        if urlString != ""{
-            return urlString
-        }
-        
-        return urlString
         
     }
     

@@ -159,24 +159,23 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+       
 
-        guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
             else{
                 fatalError("not found")
         }
         
         if  numberArray != [] {
             number = numberArray[indexPath.row]
-//            cell.textLabel!.text = myList[number].titleNameString
+
         } else {
-//            cell.textLabel?.text = myList[indexPath.row].titleNameString
-            cell1.titleLabel.text = myList[indexPath.row].titleNameString
-            cell1.evaluationLabel.text = "使用回数：\(myList[indexPath.row].usedCount)"
+            cell.titleLabel.text = myList[indexPath.row].titleNameString
+            cell.evaluationLabel.text = "使用回数：\(myList[indexPath.row].usedCount)"
             
         }
        
-        return cell1
+        return cell
     }
     
     //セルの高さ
