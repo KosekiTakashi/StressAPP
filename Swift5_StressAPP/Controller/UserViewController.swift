@@ -43,7 +43,7 @@ class UserViewController: UIViewController {
             }else{
                 logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
-            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+//            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
         }
         
         

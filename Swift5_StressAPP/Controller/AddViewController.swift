@@ -58,12 +58,14 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         if let userID = (Auth.auth().currentUser?.uid){
             self.userID = userID
             let imageURL = userData.userImageURL(userID: userID)
+            print("imageURL")
+            print(imageURL)
             if imageURL == "NoName"{
                 logoImageView.image = UIImage(named: "noimage")!
             }else{
                 logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
-            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
+//            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
         }
         
         
