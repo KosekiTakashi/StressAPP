@@ -16,6 +16,7 @@ class ListDetailViewController: UIViewController {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var urlStringLabel: UILabel!
     @IBOutlet weak var evaluationLabel: UILabel!
+    @IBOutlet weak var usedLabel: UILabel!
     @IBOutlet var urlTapButton: UITapGestureRecognizer!
     
     
@@ -53,10 +54,13 @@ class ListDetailViewController: UIViewController {
         //平均
         if usedCount != 0{
             let ave = evaluation / usedCount
-            evaluationLabel.text = "\(ave) (使用回数：\(usedCount))"
+            evaluationLabel.text = "\(ave)"
+            usedLabel.text = "使用回数：\(usedCount)"
             
         }else{
-            evaluationLabel.text = "未使用です"
+            evaluationLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+            evaluationLabel.text = "カレンダー画面から使ってみよう!!"
+            usedLabel.text = ""
         }
         self.titlenameLabel.text = titleName
         self.detailLabel.text = detail

@@ -34,6 +34,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     let userData = UserData()
     var userID = ""
     
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         manegar.delegate = self
@@ -57,7 +60,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.isHidden = true
         
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: width, height: height)
         
     }
     
@@ -74,7 +77,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.reloadData()
         
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight!, width: 414, height: 725)
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight!, width: width, height: height)
 
         searchBar.isHidden = true
     }
@@ -108,8 +111,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         
         let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
+        
         
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + statusHeight , width: width, height: height)
     }

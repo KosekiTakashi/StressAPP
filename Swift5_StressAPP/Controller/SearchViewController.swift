@@ -34,6 +34,9 @@ class SearchViewController: UIViewController {
     let timeLinesref = Database.database().reference().child("timeLines")
     var timeLineData: TimeLineData!
     var maneger = TimeLineManeger()
+    
+    let width = UIScreen.main.bounds.size.width
+    let height = UIScreen.main.bounds.size.height
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +57,7 @@ class SearchViewController: UIViewController {
         maneger.fetch()
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20, width: 414, height: 725)
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20, width: width, height: height)
 
     }
 }
@@ -157,7 +160,7 @@ extension SearchViewController: UISearchBarDelegate{
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20 , width: 414, height: 725)
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight!  , width: width, height: height)
     }
     //searchの実施
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -184,8 +187,7 @@ extension SearchViewController: UISearchBarDelegate{
         let searchBarHeight = searchBar.frame.size.height
         let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         
-        let width = UIScreen.main.bounds.size.width
-        let height = UIScreen.main.bounds.size.height
+        
         
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + statusHeight , width: width, height: height)
         
