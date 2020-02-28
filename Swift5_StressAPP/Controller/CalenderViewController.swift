@@ -34,15 +34,13 @@ class CalenderViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         Calender.delegate = self
         Calender.dataSource = self
-        
         tableView.delegate = self
         tableView.dataSource = self
-        
         maneger.delegate = self
         
-        print("viewdidLoad")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +49,8 @@ class CalenderViewController: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = dateFormatter.string(from: date)
         DateLabel.text = dateString
+        
+        
         if let userID = (Auth.auth().currentUser?.uid){
             self.userID = userID
             maneger.fetch(userID: userID, selectday: dateString)
@@ -67,12 +67,11 @@ extension CalenderViewController: DiaryDataFetchDelegate{
         
         DispatchQueue.main.async{
             self.diary.insert(List, at: 0)
-            print("test")
-            print(self.diary)
         }
+        
+        
         DispatchQueue.main.async{
             self.tableView.reloadData()
-            print("test")
         }
     }
     

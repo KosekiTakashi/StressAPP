@@ -78,8 +78,10 @@ class UserViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             
+//            presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             self.dismiss(animated: true, completion: nil)
-            } catch let signOutError as NSError {
+            
+        } catch let signOutError as NSError {
               print ("Error signing out: %@", signOutError)
         }
             

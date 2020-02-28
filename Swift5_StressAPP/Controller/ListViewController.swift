@@ -73,9 +73,10 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         numberArray.removeAll()
         tableView.reloadData()
         
-        searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.frame.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: 414, height: 725)
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight!, width: 414, height: 725)
+
+        searchBar.isHidden = true
     }
     
     
@@ -104,7 +105,13 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         let searchBarHeight = searchBar.frame.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + 20 , width: 414, height: 681)
+        
+        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + statusHeight , width: width, height: height)
     }
 }
 
