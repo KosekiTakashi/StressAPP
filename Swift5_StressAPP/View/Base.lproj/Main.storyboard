@@ -104,6 +104,7 @@
                                 </state>
                                 <connections>
                                     <action selector="logOutPressed:" destination="xfD-sh-wbK" eventType="touchUpInside" id="uz1-5u-eMi"/>
+                                    <segue destination="sFU-9K-Bux" kind="unwind" unwindAction="returnToMeWithSegue:" id="LH7-on-aZV"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nt0-il-Nlm">
@@ -222,6 +223,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbQ-xy-9va" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="sFU-9K-Bux" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4257.971014492754" y="-1761.1607142857142"/>
         </scene>
