@@ -34,7 +34,11 @@ class UserViewController: UIViewController {
         }
         
         if let userCreateDay = (Auth.auth().currentUser?.metadata.creationDate){
-            createDayLabel.text = "\(userCreateDay)"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: userCreateDay)
+            createDayLabel.text = dateString
         }
         if let userID = (Auth.auth().currentUser?.uid){
             let imageURL = userData.userImageURL(userID: userID)
@@ -78,9 +82,8 @@ class UserViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             
-//            presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-            self.dismiss(animated: true, completion: nil)
-            
+//            self.dismiss(animated: true, completion: nil)
+        
         } catch let signOutError as NSError {
               print ("Error signing out: %@", signOutError)
         }
