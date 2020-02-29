@@ -16,7 +16,7 @@ class SerchTabViewCell: UITableViewCell {
     var tapcount = 0
     var tapdowncount = 0
     var timeuserID = ""
-    var userID = (Auth.auth().currentUser?.uid)!
+    var userID = ""
     var goodUser = [String]()
     var good = 0
     var test = ""
@@ -43,7 +43,9 @@ class SerchTabViewCell: UITableViewCell {
  
     
     func mylistAdd(){
-        let myListDB = Database.database().reference().child("MyList").child(String(userID)).childByAutoId()
+        let userData = UserData()
+        self.userID = userData.userID()
+        let myListDB = Database.database().reference().child("MyList").child(userID).childByAutoId()
         
         let mylistInfo = ["titleName":content.titleNameString as Any,"detail": content.detail as Any,"URL":content.urlString as Any,"postDate":ServerValue.timestamp(),"count":content.count as Any] as [String:Any]
         

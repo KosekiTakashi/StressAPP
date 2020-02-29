@@ -22,8 +22,8 @@ class UserNameInputViewController: UIViewController {
         
         logoImageView.layer.cornerRadius = logoImageView.frame.height / 2
 
-        // Do any additional setup after loading the view.
     }
+    
     
     
     @IBAction func test(_ sender: UITapGestureRecognizer) {
