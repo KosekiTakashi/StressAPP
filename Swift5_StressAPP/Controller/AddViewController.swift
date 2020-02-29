@@ -67,9 +67,16 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             }
 //            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
         }
-        
-        
     }
+    
+    
+    @IBAction func TappedLabel(_ sender: UITapGestureRecognizer) {
+        
+        print("tapped")
+        
+        performSegue(withIdentifier: "UserData", sender: nil)
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
