@@ -34,7 +34,11 @@ class UserViewController: UIViewController {
         }
         
         if let userCreateDay = (Auth.auth().currentUser?.metadata.creationDate){
-            createDayLabel.text = "\(userCreateDay)"
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateString = dateFormatter.string(from: userCreateDay)
+            createDayLabel.text = dateString
         }
         if let userID = (Auth.auth().currentUser?.uid){
             let imageURL = userData.userImageURL(userID: userID)
