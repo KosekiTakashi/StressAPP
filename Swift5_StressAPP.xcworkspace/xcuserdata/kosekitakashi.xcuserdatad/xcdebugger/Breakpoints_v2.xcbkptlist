@@ -284,7 +284,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "viewWillAppear(_:)"
+            landmarkName = "searchBarCancelButtonClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -410,9 +410,9 @@
             filePath = "Swift5_StressAPP/Controller/ListDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "prepare(for:sender:)"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "change(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -428,7 +428,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
-            landmarkName = "searchBarSearchButtonClicked(_:)"
+            landmarkName = "searchPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -444,7 +444,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "searchBarSearchButtonClicked(_:)"
+            landmarkName = "searchPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

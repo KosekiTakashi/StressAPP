@@ -10,18 +10,6 @@ import Firebase
 
 struct UserData {
     
-    func ImageData() -> UIImage{
-        let userData = UserData()
-        let userID = userData.userID()
-        if UserDefaults.standard.object(forKey: "userImage\(userID)") != nil{
-            
-            let userImageData = UserDefaults.standard.object(forKey: "userImage\(userID)") as! Data
-            let userImage = UIImage(data: userImageData)!
-            return userImage
-        }
-        return UIImage(named: "noimage")!
-    }
-    
     func userImageURL(userID: String) -> String{
         if UserDefaults.standard.object(forKey: "userImageURL\(userID)") != nil{
             
@@ -70,15 +58,27 @@ struct UserData {
     
     
     func userNameData() -> String{
-        
+
         let userData = UserData()
         let userID = userData.userID()
-        
+
         if UserDefaults.standard.object(forKey: "userName\(userID)") != nil{
             let username = UserDefaults.standard.object(forKey: "userName\(userID)") as! String
             return username
         }
         return "NoName"
+    }
+    
+    func ImageData() -> UIImage{
+        let userData = UserData()
+        let userID = userData.userID()
+        if UserDefaults.standard.object(forKey: "userImage\(userID)") != nil{
+            
+            let userImageData = UserDefaults.standard.object(forKey: "userImage\(userID)") as! Data
+            let userImage = UIImage(data: userImageData)!
+            return userImage
+        }
+        return UIImage(named: "noimage")!
     }
     
     

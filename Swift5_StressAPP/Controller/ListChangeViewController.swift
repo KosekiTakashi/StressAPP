@@ -38,7 +38,6 @@ class ListChangeViewController: UIViewController,UITextFieldDelegate,UITextViewD
         detailTextView.text! = detail
         urlStringTextField.text! = urlString
 
-        // Do any additional setup after loading the view.
     }
     
     
@@ -56,7 +55,6 @@ class ListChangeViewController: UIViewController,UITextFieldDelegate,UITextViewD
     @IBAction func change(_ sender: Any) {
         myLists.changeList(titleName: titleName, detail: detail, urlString: urlString)
         self.navigationController?.popViewController(animated: true)
-        //self.navigationController?.popToRootViewController(animated: true)
     }
 
 }

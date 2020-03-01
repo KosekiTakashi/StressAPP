@@ -20,52 +20,22 @@ class ListDetailViewController: UIViewController {
     @IBOutlet var urlTapButton: UITapGestureRecognizer!
     
     
-    var titleName : String = ""
-    var detail : String = ""
-    var urlString : String = ""
-    var usedCount = 0
-    var evaluation = 0
-    
     var myListArray = [MyListData]()
     var myList: MyListData!
     var maneger = MyListManeger()
-    
     let MyListref = Database.database().reference().child("MyList")
+    
+    //前の画面からの引き継ぎ
     var indexNumber = 0
     
-    var myLists:MyListData!{
-        didSet{
-            titleName = myLists.titleNameString
-            detail = myLists.detail
-            urlString = myLists.urlString
-            usedCount = myLists.usedCount
-            evaluation = myLists.evaluation
-            
-        }
-    }
+    //UserData
+    let userData = UserData()
+    var userID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titlenameLabel.text = titleName
-        detailLabel.text = detail
         maneger.delegate = self
-        
-        //平均
-        if usedCount != 0{
-            let ave = evaluation / usedCount
-            evaluationLabel.text = "\(ave)"
-            usedLabel.text = "使用回数：\(usedCount)"
-            
-        }else{
-            evaluationLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
-            evaluationLabel.text = "カレンダー画面から使ってみよう!!"
-            usedLabel.text = ""
-        }
-        self.titlenameLabel.text = titleName
-        self.detailLabel.text = detail
-        self.urlStringLabel.text = urlString
-        
     }
     
     
@@ -74,28 +44,44 @@ class ListDetailViewController: UIViewController {
 
         //受け取り
         myListArray.removeAll()
-        if let userID = (Auth.auth().currentUser?.uid){
-            maneger.fetch(userID: userID)
-        }
-
+        self.userID = userData.userID()
+        self.maneger.fetch(userID: self.userID)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-
         titlenameLabel.text = myListArray[indexNumber].titleNameString
-        detailLabel.text = myListArray[indexNumber].detail
-        urlStringLabel.text = myListArray[indexNumber].urlString
         
+        detailLabel.text = myListArray[indexNumber].detail
+        
+        urlStringLabel.text = myListArray[indexNumber].urlString
         //URLの形か確認
         let name = "https"
-        urlString = myListArray[indexNumber].urlString
+        let urlString = myListArray[indexNumber].urlString
         if name.prefix(4) != urlString.prefix(4){
             urlTapButton.isEnabled = false
+            
         }else{
             urlTapButton.isEnabled = true
             urlStringLabel.textColor = .systemBlue
         }
+        
+        //平均
+        let usedCount = myListArray[indexNumber].usedCount
+        let evaluation = myListArray[indexNumber].evaluation
+        
+        if usedCount != 0{
+            let ave = Double(evaluation) / Double(usedCount)
+            evaluationLabel.text = String(format: "%.1f", ave)
+            usedLabel.text = "使用回数：\(usedCount)"
+            
+        }else{
+            evaluationLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+            evaluationLabel.text = "カレンダー画面から使ってみよう!!"
+            usedLabel.text = ""
+        }
+ 
     }
     
     

@@ -15,14 +15,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     
-    var titleName = String()
-    var detail = String()
-    var urlString = String()
-    var usedcount = Int()
     var myList = [MyListData]()
-    
-    
-    
     var searchResults:[String] = []
     var numberArray = [Int]()
     var number = 0
@@ -40,7 +33,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         manegar.delegate = self
-//        self.manegar.fetch()
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -53,19 +45,14 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let userID = (Auth.auth().currentUser?.uid){
-            manegar.fetch(userID: userID)
-        }
+        userID = userData.userID()
+        manegar.fetch(userID: userID)
         
         searchBar.isHidden = true
         
-        let navigationBarHeight = navigationController?.navigationBar.frame.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! , width: width, height: height)
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        if let navigationBarHeight = navigationController?.navigationBar.frame.size.height{
+            tableView.frame = CGRect(x: 0, y: navigationBarHeight , width: width, height: height)
+        }
         
         
     }
@@ -76,9 +63,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         numberArray.removeAll()
         tableView.reloadData()
         
-        let navigationBarHeight = navigationController?.navigationBar.frame.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight!, width: width, height: height)
-
+        if let navigationBarHeight = navigationController?.navigationBar.frame.size.height{
+            tableView.frame = CGRect(x: 0, y: navigationBarHeight, width: width, height: height)
+        }
         searchBar.isHidden = true
     }
     
@@ -106,14 +93,14 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
         
-        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
-        let searchBarHeight = searchBar.frame.size.height
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height{
+            let searchBarHeight = searchBar.frame.size.height
+                
+            let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         
-        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+            tableView.frame = CGRect(x: 0, y: navigationBarHeight + searchBarHeight + statusHeight , width: width, height: height)
+        }
         
-        
-        
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + statusHeight , width: width, height: height)
     }
 }
 
@@ -128,17 +115,11 @@ extension ListViewController: MyListFeatchDelegate{
         DispatchQueue.main.async{
             self.myList.insert(List, at: 0)
             self.myListArray.insert(titleNameList, at: 0)
-            
-            
             self.navigationController?.title = String(self.myList.count)
-            
-            
             let userName = self.userData.userName()
             self.title = "\(userName)'sリスト (\(self.myList.count))"
             
         }
-        
-        
         DispatchQueue.main.async{
             self.tableView.reloadData()
             
@@ -197,14 +178,11 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        let mylist = myList[indexPath.row]
         if  numberArray == []{
-            nextVC.myLists = mylist
             nextVC.indexNumber = indexPath.row
             
         }else{
             number = numberArray[indexPath.row]
-            nextVC.myLists = myList[number]
             nextVC.indexNumber = number
             
         }

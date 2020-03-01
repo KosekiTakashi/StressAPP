@@ -23,9 +23,7 @@ class UserNameInputViewController: UIViewController {
         logoImageView.layer.cornerRadius = logoImageView.frame.height / 2
 
     }
-    
-    
-    
+
     @IBAction func test(_ sender: UITapGestureRecognizer) {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
@@ -67,6 +65,7 @@ class UserNameInputViewController: UIViewController {
         
     }
     
+    //Firestorageに保存しURLを取得
     func imagefetch(userImageData: Data) {
         
         let timeLineDB = Database.database().reference().child("timeLines").childByAutoId()
@@ -159,7 +158,6 @@ extension UserNameInputViewController:UIImagePickerControllerDelegate,UINavigati
         if info[.originalImage] as? UIImage != nil{
             let selectedImage = info[.originalImage] as! UIImage
             
-            UserDefaults.standard.set(selectedImage.jpegData(compressionQuality: 0.1), forKey: "userImage")
             //投影
             logoImageView.image = selectedImage
             //pickerを閉じる

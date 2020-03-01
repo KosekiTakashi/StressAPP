@@ -15,7 +15,8 @@ class TimeLineData {
     var detail:String = ""
     var urlString:String = ""
     var count:Int = 0
-    var userID :String = ""
+    let userData = UserData()
+    var userID :String = UserData().userID()
     var goodUser = [String]()
     var userProfileImage = ""
     
@@ -57,8 +58,9 @@ extension TimeLineData{
     func pluslike(){
         count += 1
         ref.child("count").setValue(count)
-        
-        let gooduserID = (Auth.auth().currentUser?.uid)!
+        let userData = UserData()
+        let userID = userData.userID()
+        let gooduserID = userID
         goodUser.append(gooduserID)
         ref.child("goodUser").setValue(goodUser)
     }

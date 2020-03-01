@@ -24,39 +24,49 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        //簡単にログインするため
         emailTextField.text = "testTakashi@gmail.com"
         passwordTextField.text = "testTakashi"
         
+        //errorの時のみ
         messageLabel.isHidden = true
-        // Do any additional setup after loading the view.
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
     }
 
-    
-
     @IBAction func login(_ sender: Any) {
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-            if error != nil{
-                print(error as Any)
-                self.messageLabel.isHidden = false
-            }else{
-                print("succees")
-                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-                
-                
-                changeRequest?.commitChanges(completion: { (error) in
+        
+        if let email = emailTextField.text , let password = passwordTextField.text {
+            
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                if error != nil{
                     print(error as Any)
-                    return
-                })
-                
-                self.performSegue(withIdentifier: "tab", sender: nil)
+                    self.messageLabel.isHidden = false
+                }else{
+                    print("succees")
+                    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                    
+                    
+                    changeRequest?.commitChanges(completion: { (error) in
+                        print(error as Any)
+                        return
+                    })
+                    
+                    self.performSegue(withIdentifier: "tab", sender: nil)
+                }
             }
+        }else{
+
+            self.messageLabel.isHidden = false
+            
         }
+        
     }
     
+    
+    //ログアウトからここに来るため
     @IBAction func returnToMe(segue: UIStoryboardSegue) { }
 
 }
