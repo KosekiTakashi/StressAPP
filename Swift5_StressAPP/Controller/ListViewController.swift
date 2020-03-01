@@ -51,7 +51,10 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         searchBar.isHidden = true
         
         if let navigationBarHeight = navigationController?.navigationBar.frame.size.height{
-            tableView.frame = CGRect(x: 0, y: navigationBarHeight , width: width, height: height)
+            let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+            let tabbarHeight = tabBarController!.tabBar.frame.size.height
+            tableView.frame = CGRect(x: 0, y: navigationBarHeight + statusHeight  , width: width, height: height - navigationBarHeight - statusHeight - tabbarHeight  )
+            
         }
         
         
@@ -64,7 +67,11 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.reloadData()
         
         if let navigationBarHeight = navigationController?.navigationBar.frame.size.height{
-            tableView.frame = CGRect(x: 0, y: navigationBarHeight, width: width, height: height)
+            
+            let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+            let tabbarHeight = tabBarController!.tabBar.frame.size.height
+            tableView.frame = CGRect(x: 0, y: navigationBarHeight + statusHeight  , width: width, height: height - navigationBarHeight - statusHeight - tabbarHeight  )
+//            tableView.frame = CGRect(x: 0, y: navigationBarHeight, width: width, height: height)
         }
         searchBar.isHidden = true
     }
@@ -95,8 +102,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height{
             let searchBarHeight = searchBar.frame.size.height
-                
             let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+            
+            
         
             tableView.frame = CGRect(x: 0, y: navigationBarHeight + searchBarHeight + statusHeight , width: width, height: height)
         }

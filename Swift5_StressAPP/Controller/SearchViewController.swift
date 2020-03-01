@@ -15,11 +15,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var searchNameArray = [TimeLineData]()
-    var userName = String()
-    var titleName = String()
-    var count = Int()
-    var urlString = String()
-    var goodUser = [String]()
+
     
     var searchTitleNameResults:[String] = []
     var searchUserNameResults:[String] = []
@@ -57,7 +53,9 @@ class SearchViewController: UIViewController {
         maneger.fetch()
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + 20, width: width, height: height)
+        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let tabbarHeight = tabBarController!.tabBar.frame.size.height
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + statusHeight  , width: width, height: height - navigationBarHeight! - statusHeight - tabbarHeight  )
 
     }
 }
@@ -158,9 +156,13 @@ extension SearchViewController: UISearchBarDelegate{
         numberArray.removeAll()
         self.tableView.reloadData()
         searchBar.isHidden = true
-        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         
-        tableView.frame = CGRect(x: 0, y: navigationBarHeight!  , width: width, height: height)
+        let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
+        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let tabbarHeight = tabBarController!.tabBar.frame.size.height
+        tableView.frame = CGRect(x: 0, y: navigationBarHeight! + statusHeight  , width: width, height: height - navigationBarHeight! - statusHeight - tabbarHeight  )
+        
+        
     }
     //searchの実施
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

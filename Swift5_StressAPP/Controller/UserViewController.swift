@@ -47,14 +47,12 @@ class UserViewController: UIViewController {
             }else{
                 logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
-//            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
         }
         
         
         
         
         logoImageView.layer.cornerRadius = logoImageView.frame.height / 2
-//        logoImageView.image = userData.ImageData()
         
     }
     
@@ -82,8 +80,6 @@ class UserViewController: UIViewController {
         do {
             try Auth.auth().signOut()
             
-//            self.dismiss(animated: true, completion: nil)
-        
         } catch let signOutError as NSError {
               print ("Error signing out: %@", signOutError)
         }

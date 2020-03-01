@@ -40,7 +40,6 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         super.viewDidLoad()
         
         logoImageView.layer.cornerRadius = logoImageView.frame.height/2
-//        logoImageView.image = userData.ImageData()
         
         titleTextField.delegate = self
         detailTextView.delegate = self
@@ -65,15 +64,11 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             }else{
                 logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
             }
-//            logoImageView.sd_setImage(with: URL(string: imageURL), completed: nil)
         }
     }
     
     
     @IBAction func TappedLabel(_ sender: UITapGestureRecognizer) {
-        
-        print("tapped")
-        
         performSegue(withIdentifier: "UserData", sender: nil)
     }
     
