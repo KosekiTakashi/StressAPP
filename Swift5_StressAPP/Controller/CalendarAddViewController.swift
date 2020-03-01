@@ -164,14 +164,25 @@ class CalendarAddViewController: UIViewController {
         titleName = eventNameTextView.text!
         result = resultTextView.text!
         
-        let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("Diary").child(dateString).childByAutoId()
-        
-        let mylistInfo = ["titleName":self.titleName as Any, "stressCount": stresscount  as Any,"selectedList":selectedList as Any,"result":result as Any, "evaluation":evaluation as Any,"timeString":timeString as Any] as [String:Any]
-        myListDB.updateChildValues(mylistInfo)
-        
-        select?.usedEvaluation(eva: evaluation)
-        
-        dismiss(animated: true, completion: nil)
+        if let titleName = eventNameTextView.text, let result = resultTextView.text, stresscount != 0 , evaluation != 0, let timeString = dateTextField.text {
+            
+            let myListDB = Database.database().reference().child("MyList").child(String(userID)).child("Diary").child(dateString).childByAutoId()
+            
+            let mylistInfo = ["titleName": titleName as Any,
+                              "stressCount": stresscount as Any,
+                              "selectedList":selectedList as Any,
+                              "result": result as Any,
+                              "evaluation": evaluation as Any,
+                              "timeString": self.timeString as Any] as [String:Any]
+            
+            myListDB.updateChildValues(mylistInfo)
+            select?.usedEvaluation(eva: evaluation)
+            
+            dismiss(animated: true, completion: nil)
+            
+        }else{
+            return
+        }
     }
 }
 
