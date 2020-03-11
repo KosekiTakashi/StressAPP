@@ -1469,7 +1469,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fEA-yb-tyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="XJh-y6-Y9D">
                     <connections>
-                        <action selector="TappedLabel:" destination="hZQ-JJ-Q2p" id="Tsm-Gc-MKw"/>
+                        <action selector="tappedLabel:" destination="hZQ-JJ-Q2p" id="cAi-Wz-QjO"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -69,7 +69,7 @@ struct UserData {
         return "NoName"
     }
     
-    func ImageData() -> UIImage{
+    func imageData() -> UIImage{
         let userData = UserData()
         let userID = userData.userID()
         if UserDefaults.standard.object(forKey: "userImage\(userID)") != nil{

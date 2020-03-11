@@ -68,7 +68,9 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
     }
     
     
-    @IBAction func TappedLabel(_ sender: UITapGestureRecognizer) {
+    
+    @IBAction func tappedLabel(_ sender: UITapGestureRecognizer) {
+        
         performSegue(withIdentifier: "UserData", sender: nil)
     }
     
@@ -104,7 +106,7 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             self.goodUser.append(self.userID)
             if let userName = Auth.auth().currentUser?.displayName{
     
-                self.timeLineManeger.timeLineAdd(userName: userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.ImageData())
+                self.timeLineManeger.timeLineAdd(userName: userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.imageData())
                 
                 
                 self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
