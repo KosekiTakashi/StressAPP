@@ -89,26 +89,18 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
-        if numberArray.isEmpty{
-            if searchNameArray.count != 0 {
-                let content = self.searchNameArray[indexPath.row]
-                cell.content = content
-            }
-        }else{
-            for j in 0...numberArray.count - 1{
-                number = numberArray[j]
-            }
-            if numberArray.count != 0{
-                number = numberArray[indexPath.row]
-                if searchNameArray.count != 0{
-                    timeLineData = searchNameArray[number]
-                    cell.content = timeLineData
-                }
-            }
-        }
         
+        if numberArray.isEmpty{
+            let content = self.searchNameArray[indexPath.row]
+            cell.content = content
+        }else{
+            number = numberArray[indexPath.row]
+            timeLineData = searchNameArray[number]
+            cell.content = timeLineData
+        }
         return cell
     }
+    
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
@@ -137,6 +129,7 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
 extension SearchViewController: UISearchBarDelegate{
     //cancelの実施
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
         searchBar.text = ""
         self.view.endEditing(true)
         numberArray.removeAll()
@@ -147,7 +140,6 @@ extension SearchViewController: UISearchBarDelegate{
         let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         let tabbarHeight = tabBarController!.tabBar.frame.size.height
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + statusHeight  , width: width, height: height - navigationBarHeight! - statusHeight - tabbarHeight  )
-        
         
     }
     //searchの実施
@@ -173,8 +165,6 @@ extension SearchViewController: UISearchBarDelegate{
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         let searchBarHeight = searchBar.frame.size.height
         let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        
-        
         
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + searchBarHeight + statusHeight , width: width, height: height)
         

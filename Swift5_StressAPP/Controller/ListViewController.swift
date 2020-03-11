@@ -59,6 +59,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         
     }
     
+    //MARK: - Search
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         view.endEditing(true)
@@ -79,9 +80,15 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         self.view.endEditing(true)
-        searchResults = myListArray.filter{
-            $0.lowercased().contains(searchBar.text!.lowercased())
-        }
+        
+//        searchResults.removeAll()
+//        searchResults = self.myList.map {
+//            $0.titleNameString
+//        }.filter {
+//            $0.lowercased().contains(searchBar.text!.lowercased())
+//        }
+//
+//        print("map_filter\(searchResults)")
         
         numberArray.removeAll()
         for (i,value) in myList.enumerated() {
@@ -102,9 +109,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height{
             let searchBarHeight = searchBar.frame.size.height
             let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-            
-            
-        
             tableView.frame = CGRect(x: 0, y: navigationBarHeight + searchBarHeight + statusHeight , width: width, height: height)
         }
         
