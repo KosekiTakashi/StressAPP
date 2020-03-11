@@ -37,7 +37,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        
         userID = userData.userID()
 
     }
@@ -71,7 +70,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
             let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
             let tabbarHeight = tabBarController!.tabBar.frame.size.height
             tableView.frame = CGRect(x: 0, y: navigationBarHeight + statusHeight  , width: width, height: height - navigationBarHeight - statusHeight - tabbarHeight  )
-//            tableView.frame = CGRect(x: 0, y: navigationBarHeight, width: width, height: height)
         }
         searchBar.isHidden = true
     }
@@ -81,18 +79,19 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         self.view.endEditing(true)
-        
         searchResults = myListArray.filter{
             $0.lowercased().contains(searchBar.text!.lowercased())
         }
         
         numberArray.removeAll()
-        for i in 0...myList.count - 1{
-            if  myList[i].titleNameString.contains(searchBar.text!){
+        for (i,value) in myList.enumerated() {
+            
+            if value.titleNameString.contains(searchBar.text!){
                 number = i
                 numberArray.append(i)
             }
         }
+        
         self.tableView.reloadData()
     }
     
@@ -167,6 +166,8 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             cell.evaluationLabel.text = "使用回数：\(myList[indexPath.row].usedCount)"
         }else{
             number = numberArray[indexPath.row]
+            cell.titleLabel.text = myList[number].titleNameString
+            cell.evaluationLabel.text = "使用回数：\(myList[number].usedCount)"
         }
         return cell
     }

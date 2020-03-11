@@ -15,18 +15,11 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     var searchNameArray = [TimeLineData]()
-
-    
-    var searchTitleNameResults:[String] = []
-    var searchUserNameResults:[String] = []
-    var searchCountResults:[String] = []
-    
     var nameArray:[String] = []
     var number = 0
     var numberArray = [Int]()
     
     var content = [TimeLineData]()
-    //var tapupcount = Int()
     let timeLinesref = Database.database().reference().child("timeLines")
     var timeLineData: TimeLineData!
     var maneger = TimeLineManeger()
@@ -160,16 +153,15 @@ extension SearchViewController: UISearchBarDelegate{
     //searchの実施
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
-        searchTitleNameResults = nameArray.filter{
-            $0.lowercased().contains(searchBar.text!.lowercased())
-        }
         numberArray.removeAll()
-        for i in 0...searchNameArray.count - 1{
-            if  nameArray[i].lowercased().contains(searchBar.text!){
+        
+        for (i,value) in searchNameArray.enumerated() {
+            if  value.titleNameString.lowercased().contains(searchBar.text!){
                 number = i
                 numberArray.append(number)
             }
         }
+        
         self.tableView.reloadData()
     }
     
