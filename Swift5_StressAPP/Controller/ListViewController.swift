@@ -14,12 +14,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    
     var myList = [MyListData]()
-    var searchResults:[String] = []
     var numberArray = [Int]()
     var number = 0
-    var myListArray:[String] = []
     
     let MyListref = Database.database().reference().child("MyList")
     var manegar = MyListManeger()
@@ -32,7 +29,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        manegar.delegate = self
+        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -45,7 +42,6 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         super.viewWillAppear(animated)
         
         userID = userData.userID()
-        manegar.fetch(userID: userID)
         
         searchBar.isHidden = true
         
@@ -54,6 +50,17 @@ class ListViewController: UIViewController,UISearchBarDelegate {
             let tabbarHeight = tabBarController!.tabBar.frame.size.height
             tableView.frame = CGRect(x: 0, y: navigationBarHeight + statusHeight  , width: width, height: height - navigationBarHeight - statusHeight - tabbarHeight  )
             
+        }
+        
+        manegar.fetch(userID: userID) { (data) in
+            print("fetch_ex")
+            print(data)
+            self.myList = data
+            
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+                
+            }
         }
         
         
@@ -80,17 +87,8 @@ class ListViewController: UIViewController,UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         self.view.endEditing(true)
-        
-//        searchResults.removeAll()
-//        searchResults = self.myList.map {
-//            $0.titleNameString
-//        }.filter {
-//            $0.lowercased().contains(searchBar.text!.lowercased())
-//        }
-//
-//        print("map_filter\(searchResults)")
-        
         numberArray.removeAll()
+        
         for (i,value) in myList.enumerated() {
             
             if value.titleNameString.contains(searchBar.text!){
@@ -102,6 +100,7 @@ class ListViewController: UIViewController,UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
+    
     @IBAction func searchPressed(_ sender: Any) {
         searchBar.isHidden = false
         searchBar.placeholder = "タイトル名を入力してください"
@@ -111,33 +110,9 @@ class ListViewController: UIViewController,UISearchBarDelegate {
             let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
             tableView.frame = CGRect(x: 0, y: navigationBarHeight + searchBarHeight + statusHeight , width: width, height: height)
         }
-        
     }
 }
 
-//MARK: - Fetch
-extension ListViewController: MyListFeatchDelegate{
-    
-    func didFetch(List: MyListData, titleNameList: String) {
-        
-        myListArray.removeAll()
-        myList.removeAll()
-        
-        DispatchQueue.main.async{
-            self.myList.insert(List, at: 0)
-            self.myListArray.insert(titleNameList, at: 0)
-            self.navigationController?.title = String(self.myList.count)
-            let userName = self.userData.userName()
-            self.title = "\(userName)'sリスト (\(self.myList.count))"
-            
-        }
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
-            
-        }
-        
-    }
-}
 
 //MARK: - TableView
 
@@ -152,7 +127,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
         if numberArray.isEmpty{
             return myList.count
         }else{
-            return searchResults.count
+            return numberArray.count
         }
         
     }
@@ -224,7 +199,6 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             myList.remove(at: indexPath.row)
             
         }else{
-            searchResults.remove(at: indexPath.row)
             //Firebase削除
             let listTitleName = myList[number].titleNameString
             let listDetail = myList[number].detail

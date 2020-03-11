@@ -9,34 +9,32 @@
 import Foundation
 import Firebase
 
-protocol MyListFeatchDelegate {
-    func didFetch(List: MyListData,titleNameList: String)
-}
+
 
 struct MyListManeger {
     
-    var delegate:MyListFeatchDelegate?
     let userID = UserData.userID
     let MyListref = Database.database().reference().child("MyList")
     
-    func fetch(userID: String) {
-        MyListref.child(userID).child("List").observe(.value) { (snapshot) in
-            for child in snapshot.children{
+    func fetch(userID: String, callback: @escaping ([MyListData]) -> Void) {
+        MyListref.child(userID).child("List").observe(.value){ (snapshot) in
+            let data = snapshot.children.map { child -> MyListData in
                 let childSnapshoto = child as! DataSnapshot
-            
-                let content = MyListData(snapshot: childSnapshoto)
-                let nameContent = MyListData(snapshot: childSnapshoto).titleNameString
-                self.delegate?.didFetch(List: content,titleNameList: nameContent)
+                return MyListData(snapshot: childSnapshoto)
             }
+            callback(data)
         }
     }
-    
     func mylistAdd(userID:String, titleName: String, detail: String, urlString: String, count: Int){
         
         let myListDB = Database.database().reference().child("MyList").child(userID).child("List").childByAutoId()
+        let mylistInfo = ["titleName":titleName as Any,
+                          "detail": detail as Any,
+                          "URL":urlString as Any,
+                          "postDate":ServerValue.timestamp(),
+                          "usedcount":count as Any,
+                          "evaluation":count as Any] as [String:Any]
         
-        
-        let mylistInfo = ["titleName":titleName as Any, "detail": detail as Any,"URL":urlString as Any,"postDate":ServerValue.timestamp(),"usedcount":count as Any,"evaluation":count as Any] as [String:Any]
         myListDB.updateChildValues(mylistInfo)
         
     

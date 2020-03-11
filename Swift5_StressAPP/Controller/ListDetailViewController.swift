@@ -35,7 +35,6 @@ class ListDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        maneger.delegate = self
     }
     
     
@@ -45,45 +44,40 @@ class ListDetailViewController: UIViewController {
         //受け取り
         myListArray.removeAll()
         self.userID = userData.userID()
-        self.maneger.fetch(userID: self.userID)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        titlenameLabel.text = myListArray[indexNumber].titleNameString
-        
-        detailLabel.text = myListArray[indexNumber].detail
-        
-        urlStringLabel.text = myListArray[indexNumber].urlString
-        //URLの形か確認
-        let name = "https"
-        let urlString = myListArray[indexNumber].urlString
-        if name.prefix(4) != urlString.prefix(4){
-            urlTapButton.isEnabled = false
+        self.maneger.fetch(userID: self.userID) { (data) in
+            self.myListArray = data
+            self.titlenameLabel.text = self.myListArray[self.indexNumber].titleNameString
+            self.detailLabel.text = self.myListArray[self.indexNumber].detail
             
-        }else{
-            urlTapButton.isEnabled = true
-            urlStringLabel.textColor = .systemBlue
-        }
-        
-        //平均
-        let usedCount = myListArray[indexNumber].usedCount
-        let evaluation = myListArray[indexNumber].evaluation
-        
-        if usedCount != 0{
-            let ave = Double(evaluation) / Double(usedCount)
-            evaluationLabel.text = String(format: "%.1f", ave)
-            usedLabel.text = "使用回数：\(usedCount)"
+            self.urlStringLabel.text = self.myListArray[self.indexNumber].urlString
+            //URLの形か確認
+            let name = "https"
+            let urlString = self.myListArray[self.indexNumber].urlString
+            if name.prefix(4) != urlString.prefix(4){
+                self.urlTapButton.isEnabled = false
+                
+            }else{
+                self.urlTapButton.isEnabled = true
+                self.urlStringLabel.textColor = .systemBlue
+            }
             
-        }else{
-            evaluationLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
-            evaluationLabel.text = "カレンダー画面から使ってみよう!!"
-            usedLabel.text = ""
+            //平均
+            let usedCount = self.myListArray[self.indexNumber].usedCount
+            let evaluation = self.myListArray[self.indexNumber].evaluation
+            
+            if usedCount != 0{
+                let ave = Double(evaluation) / Double(usedCount)
+                self.evaluationLabel.text = String(format: "%.1f", ave)
+                self.usedLabel.text = "使用回数：\(usedCount)"
+                
+            }else{
+                self.evaluationLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+                self.evaluationLabel.text = "カレンダー画面から使ってみよう!!"
+                self.usedLabel.text = ""
+            }
         }
- 
     }
-    
     
     @IBAction func change(_ sender: Any) {
         
@@ -109,11 +103,3 @@ class ListDetailViewController: UIViewController {
     
 }
 
-//MARK: - fetch
-extension ListDetailViewController : MyListFeatchDelegate{
-    func didFetch(List: MyListData, titleNameList: String) {
-        self.myListArray.insert(List, at: 0)
-        print(myListArray)
-    }
-    
-}
