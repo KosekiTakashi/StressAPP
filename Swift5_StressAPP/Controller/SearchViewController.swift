@@ -38,12 +38,10 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         maneger.delegate = self
-
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
         
-       
         title = "TimeLine"
     }
         
@@ -87,18 +85,23 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
             
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchBar.text != "" && numberArray != [] {
-            return numberArray.count
-        } else {
+        if numberArray.isEmpty{
             return searchNameArray.count
+        }else{
+            return numberArray.count
         }
     }
             
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SerchTabViewCell
-
-        if numberArray != []{
+        if numberArray.isEmpty{
+            if searchNameArray.count != 0 {
+                let content = self.searchNameArray[indexPath.row]
+                cell.content = content
+            }
+        }else{
             for j in 0...numberArray.count - 1{
                 number = numberArray[j]
             }
@@ -109,17 +112,8 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
                     cell.content = timeLineData
                 }
             }
-            
-            
-            
-        } else {
-            if searchNameArray.count != 0 {
-                let content = self.searchNameArray[indexPath.row]
-                cell.content = content
-            }
-            
-            
         }
+        
         return cell
     }
     //セルの高さ
@@ -134,11 +128,10 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource{
         let content = searchNameArray[indexPath.row]
         nextVC.contents = content
           
-        if  searchBar.text == "" && numberArray == []{
+        if  numberArray.isEmpty{
             let content = searchNameArray[indexPath.row]
             nextVC.contents = content
         } else {
-            
             number = numberArray[indexPath.row]
             let contentNumber = searchNameArray[number]
             nextVC.contents = contentNumber

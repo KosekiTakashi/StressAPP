@@ -141,44 +141,38 @@ extension ListViewController: MyListFeatchDelegate{
 extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if numberArray != []  {
-           return searchResults.count
-            
-        } else {
+        if numberArray.isEmpty{
             return myList.count
+        }else{
+            return searchResults.count
         }
+        
     }
     
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
             else{
                 fatalError("not found")
         }
         
-        if  numberArray != [] {
-            number = numberArray[indexPath.row]
-
-        } else {
+        if numberArray.isEmpty{
             cell.titleLabel.text = myList[indexPath.row].titleNameString
             cell.evaluationLabel.text = "使用回数：\(myList[indexPath.row].usedCount)"
-            
+        }else{
+            number = numberArray[indexPath.row]
         }
-       
         return cell
     }
     
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return view.frame.size.height/7
     }
     
@@ -186,13 +180,12 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
-        if  numberArray == []{
+        
+        if  numberArray.isEmpty {
             nextVC.indexNumber = indexPath.row
-            
         }else{
             number = numberArray[indexPath.row]
             nextVC.indexNumber = number
-            
         }
     
         navigationController?.pushViewController(nextVC, animated: true)
@@ -201,34 +194,7 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //削除機能
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        if numberArray != []{
-            searchResults.remove(at: indexPath.row)
-            //Firebase削除
-            let listTitleName = myList[number].titleNameString
-            let listDetail = myList[number].detail
-            
-            let ref = MyListref.child(userID).child("List")
-            
-            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
-                if let result = snapshot.children.allObjects as? [DataSnapshot] {
-
-                    for child in result {
-
-                        let orderID = child.value as? String//get autoID
-                        if orderID == listDetail{
-                            snapshot.ref.removeValue(completionBlock: { (error, reference) in
-                                if error != nil {
-                                    print("There has been an error:\(String(describing: error))")
-                                }
-                            })
-                        }
-                    }
-                }
-            }
-            myList.remove(at: number)
-            
-        }else{
-            
+        if numberArray.isEmpty{
             //Firebase削除
             let listTitleName = myList[indexPath.row].titleNameString
             let listDetail = myList[indexPath.row].detail
@@ -249,10 +215,33 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
             }
-            
             //List削除
             myList.remove(at: indexPath.row)
             
+        }else{
+            searchResults.remove(at: indexPath.row)
+            //Firebase削除
+            let listTitleName = myList[number].titleNameString
+            let listDetail = myList[number].detail
+            let ref = MyListref.child(userID).child("List")
+            
+            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+                if let result = snapshot.children.allObjects as? [DataSnapshot] {
+
+                    for child in result {
+
+                        let orderID = child.value as? String//get autoID
+                        if orderID == listDetail{
+                            snapshot.ref.removeValue(completionBlock: { (error, reference) in
+                                if error != nil {
+                                    print("There has been an error:\(String(describing: error))")
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+            myList.remove(at: number)
         }
         //tableView削除
         tableView.deleteRows(at: [indexPath], with: .automatic)
