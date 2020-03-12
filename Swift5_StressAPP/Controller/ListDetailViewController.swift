@@ -41,8 +41,6 @@ class ListDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        //受け取り
-        myListArray.removeAll()
         self.userID = userData.userID()
         
         self.maneger.fetch(userID: self.userID) { (data) in

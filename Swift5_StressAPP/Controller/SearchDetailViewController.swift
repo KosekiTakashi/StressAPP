@@ -99,7 +99,7 @@ class SearchDetailViewController: UIViewController {
     
     
     @IBAction func addAction(_ sender: Any) {
-        myListManeger.mylistAdd(userID: userID, titleName: titleName, detail: detail, urlString: urlString, count: count)
+        myListManeger.mylistAdd(userID: userID, titleName: titleName, detail: detail, urlString: urlString, count: 0)
         
         addButton.isEnabled = false
         addButton.title = "追加済み"

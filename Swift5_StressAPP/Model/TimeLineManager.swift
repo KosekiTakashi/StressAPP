@@ -9,25 +9,18 @@
 import Foundation
 import Firebase
 
-protocol TimeLineDataFetchDelegate {
-    func didFetch(List: TimeLineData,titleNameList: String)
-}
 
 class TimeLineManeger {
     let timeLinesref = Database.database().reference().child("timeLines")
-    var delegate: TimeLineDataFetchDelegate?
     
-    func fetch() {
-        
+    
+    func fetch(callback: @escaping ([TimeLineData]) -> Void) {
         timeLinesref.observe(.value) { (snapshot) in
-                
-            for child in snapshot.children{
+            let data = snapshot.children.map { child -> TimeLineData in
                 let childSnapshoto = child as! DataSnapshot
-                
-                let contentList = TimeLineData(snapshot: childSnapshoto)
-                let contentTitleName = TimeLineData(snapshot: childSnapshoto).titleNameString
-                self.delegate?.didFetch(List: contentList, titleNameList: contentTitleName)
+                return TimeLineData(snapshot: childSnapshoto)
             }
+            callback(data)
         }
     }
     

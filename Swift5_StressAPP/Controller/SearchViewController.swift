@@ -30,7 +30,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        maneger.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -40,31 +39,19 @@ class SearchViewController: UIViewController {
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchNameArray.removeAll()
-        maneger.fetch()
+        
         searchBar.isHidden = true
         let navigationBarHeight = navigationController?.navigationBar.bounds.size.height
         let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         let tabbarHeight = tabBarController!.tabBar.frame.size.height
         tableView.frame = CGRect(x: 0, y: navigationBarHeight! + statusHeight  , width: width, height: height - navigationBarHeight! - statusHeight - tabbarHeight  )
-
-    }
-}
-//MARK: - DataFetch
-extension SearchViewController: TimeLineDataFetchDelegate{
-    
-    func didFetch(List: TimeLineData, titleNameList: String) {
         
-        searchNameArray.removeAll()
-        nameArray.removeAll()
-        
-        DispatchQueue.main.async{
-            self.searchNameArray.insert(List, at: 0)
-            self.nameArray.insert(titleNameList, at: 0)
-        }
-        
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
+        maneger.fetch { (data) in
+            self.searchNameArray = data
+            
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
         }
     }
 }

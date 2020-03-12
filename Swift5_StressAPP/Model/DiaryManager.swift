@@ -19,7 +19,6 @@ struct DiaryManeger {
     var delegate: DiaryDataFetchDelegate?
     
     func fetch(userID: String, selectday: String ){
-       print("model fetch")
         MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
         print(snapshot)
             for child in snapshot.children{
