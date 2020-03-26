@@ -135,9 +135,10 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //cellの設定
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? MyListCell
-            else{
-                fatalError("not found")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            as? MyListCell
+        else{
+            fatalError("not found")
         }
         
         if numberArray.isEmpty{
@@ -159,7 +160,8 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
     //セルをタッチで画面遷移（ListDetailViewController）
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let nextVC = storyboard?.instantiateViewController(identifier: "next") as! ListDetailViewController
+        let nextVC = storyboard?.instantiateViewController(identifier: "next")
+            as! ListDetailViewController
         
         if  numberArray.isEmpty {
             nextVC.indexNumber = indexPath.row
@@ -179,11 +181,12 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             let listTitleName = myList[indexPath.row].titleNameString
             let listDetail = myList[indexPath.row].detail
             let ref = MyListref.child(userID).child("List")
-            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+            ref.queryOrdered(byChild: "titleName")
+                .queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+                    
                 if let result = snapshot.children.allObjects as? [DataSnapshot] {
-
+                    
                     for child in result {
-
                         let orderID = child.value as? String//get autoID
                         if orderID == listDetail{
                             snapshot.ref.removeValue(completionBlock: { (error, reference) in
@@ -204,7 +207,9 @@ extension ListViewController: UITableViewDelegate,UITableViewDataSource{
             let listDetail = myList[number].detail
             let ref = MyListref.child(userID).child("List")
             
-            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName).observe(.childAdded) { (snapshot) in
+            ref.queryOrdered(byChild: "titleName").queryEqual(toValue: listTitleName)
+                .observe(.childAdded) { (snapshot) in
+                    
                 if let result = snapshot.children.allObjects as? [DataSnapshot] {
 
                     for child in result {

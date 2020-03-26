@@ -25,9 +25,11 @@ struct MyListManeger {
             callback(data)
         }
     }
+    
     func mylistAdd(userID:String, titleName: String, detail: String, urlString: String, count: Int){
         
-        let myListDB = Database.database().reference().child("MyList").child(userID).child("List").childByAutoId()
+        let myListDB = MyListref.child(userID).child("List").childByAutoId()
+        
         let mylistInfo = ["titleName":titleName as Any,
                           "detail": detail as Any,
                           "URL":urlString as Any,

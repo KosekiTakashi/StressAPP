@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 protocol DiaryDataFetchDelegate {
-    func didFetch(List: Diary, titleNameList: String)
+    func didFetch(List: [Diary])
 }
 
 
@@ -19,16 +19,15 @@ struct DiaryManeger {
     var delegate: DiaryDataFetchDelegate?
     
     func fetch(userID: String, selectday: String ){
+        var array = [Diary]()
         MyListref.child(userID).child("Diary").child(selectday).observe(.value) { (snapshot) in
-        print(snapshot)
             for child in snapshot.children{
                 
                 let childSnapshoto = child as! DataSnapshot
                 let List = Diary(snapshot: childSnapshoto)
-                let titleName = Diary(snapshot: childSnapshoto).titleName
-                self.delegate?.didFetch(List: List, titleNameList: titleName)
-                
+                array.append(List)
             }
+            self.delegate?.didFetch(List: array)
         }
     }
 }

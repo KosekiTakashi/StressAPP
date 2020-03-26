@@ -61,20 +61,14 @@ class CalenderViewController: UIViewController {
 }
 //MARK: - DataFetch
 extension CalenderViewController: DiaryDataFetchDelegate{
-    func didFetch(List: Diary, titleNameList: String) {
-        print("protcol")
-        diary.removeAll()
+    func didFetch(List: [Diary]) {
         
-        DispatchQueue.main.async{
-            self.diary.insert(List, at: 0)
-        }
-        
+        self.diary = List
         
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
     }
-    
     
 }
 
@@ -133,9 +127,6 @@ extension CalenderViewController: FSCalendarDelegate,FSCalendarDataSource,FSCale
         
         diary.removeAll()
         maneger.fetch(userID: userID, selectday: dateString)
-         
-        self.eventCount = self.diary.count
-        self.Calender.reloadData()
              
         tableView.reloadData()
         DateLabel.text = "\(dateString) の出来事"

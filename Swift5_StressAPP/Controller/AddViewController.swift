@@ -106,10 +106,21 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
             self.goodUser.append(self.userID)
             if let userName = Auth.auth().currentUser?.displayName{
     
-                self.timeLineManeger.timeLineAdd(userName: userName, userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count, goodUser: self.goodUser, userImage: self.userData.imageData())
+                self.timeLineManeger.timeLineAdd(userName: userName,
+                                                 userID: self.userID,
+                                                 titleName: self.titleName,
+                                                 detail: self.detail,
+                                                 urlString: self.urlString,
+                                                 count: self.count,
+                                                 goodUser: self.goodUser,
+                                                 userImage: self.userData.imageData())
                 
                 
-                self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+                self.myListmaneger.mylistAdd(userID: self.userID,
+                                             titleName: self.titleName,
+                                             detail: self.detail,
+                                             urlString: self.urlString,
+                                             count: self.count)
             
             }
             
@@ -122,7 +133,13 @@ class AddViewController: UIViewController,UITextFieldDelegate,UITextViewDelegate
         }
         
         let NO = UIAlertAction(title: "NO", style: .default) { (alert) in
-            self.myListmaneger.mylistAdd(userID: self.userID, titleName: self.titleName, detail: self.detail, urlString: self.urlString, count: self.count)
+            
+            self.myListmaneger.mylistAdd(userID: self.userID,
+                                         titleName: self.titleName,
+                                         detail: self.detail,
+                                         urlString: self.urlString,
+                                         count: self.count)
+            
             DispatchQueue.main.async {
                 self.titleTextField.text = ""
                 self.detailTextView.text = ""
